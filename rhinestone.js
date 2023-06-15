@@ -313,18 +313,18 @@ Panopolis.nystrom = function(fortecken) {
 };
 
 Panopolis.stringTuner = function(sym, qp) {
-  print('\t' + this[sym].fn(qp));
-  print('\t' + this[sym].cn(qp));
-  print('\t' + this[sym].gn(qp));
-  print('\t' + this[sym].dn(qp));
-  print('\t' + this[sym].an(qp));
-  print('\t' + this[sym].en(qp));
-  print('\t' + this[sym].bn(qp));
-  print('\t' + this[sym].fk(qp));
-  print('\t' + this[sym].ck(qp));
-  print('\t' + this[sym].gk(qp));
-  print('\t' + this[sym].dk(qp));
-  print('\t' + this[sym].ak(qp));
+  console.log('\t' + this[sym].fn(qp));
+  console.log('\t' + this[sym].cn(qp));
+  console.log('\t' + this[sym].gn(qp));
+  console.log('\t' + this[sym].dn(qp));
+  console.log('\t' + this[sym].an(qp));
+  console.log('\t' + this[sym].en(qp));
+  console.log('\t' + this[sym].bn(qp));
+  console.log('\t' + this[sym].fk(qp));
+  console.log('\t' + this[sym].ck(qp));
+  console.log('\t' + this[sym].gk(qp));
+  console.log('\t' + this[sym].dk(qp));
+  console.log('\t' + this[sym].ak(qp));
 };
 
 Panopolis.chronoMetric = function() {
@@ -334,21 +334,21 @@ Panopolis.chronoMetric = function() {
 
 Panopolis.serialStamp = String(Panopolis.chronoMetric());
 
-print();
+console.log();
 
 for (let i in Panopolis.zosimos) {
-  print('\n\t' + i + '-sv' + Panopolis.serialStamp);
+  console.log('\n\t' + i + '-sv' + Panopolis.serialStamp);
   Panopolis.stringTuner("latin", Panopolis.zosimos[i]);
-  print();
+  console.log();
 
-  print('\n\t' + i + '-zh' + Panopolis.serialStamp);
+  console.log('\n\t' + i + '-zh' + Panopolis.serialStamp);
   Panopolis.stringTuner("hanzi", Panopolis.daoling[i]);
-  print();
+  console.log();
 
-  print('\n\t' + i + '-hx' + Panopolis.serialStamp);
+  console.log('\n\t' + i + '-hx' + Panopolis.serialStamp);
   Panopolis.stringTuner("hanzi", Panopolis.nystrom(i));
-  print();
+  console.log();
 }
 
-print();
+console.log();
 
