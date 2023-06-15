@@ -334,6 +334,8 @@ Panopolis.chronoMetric = function() {
 
 Panopolis.serialStamp = String(Panopolis.chronoMetric());
 
+Panopolis.completed = false;
+
 console.log();
 
 for (let i in Panopolis.zosimos) {
@@ -348,7 +350,15 @@ for (let i in Panopolis.zosimos) {
   console.log('\n\t' + i + '-hx' + Panopolis.serialStamp);
   Panopolis.stringTuner("hanzi", Panopolis.nystrom(i));
   console.log();
+
+  if (i >= Panopolis.zosimos.length) Panopolis.completed = true;
 }
 
 console.log();
+
+// terminal pager bug remedy
+if (Panopolis.completed) {
+  process.exit(1);
+}
+
 

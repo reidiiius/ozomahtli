@@ -1,5 +1,5 @@
 # Ozomahtli
-Primatology
+Codex Atelidae
 
 ---
 
@@ -16,7 +16,7 @@ command-line
 
 :
 
-    js rhinestone.js | less
+    js rhinestone.js | sensible-pager
 
 or filter with grep
 
@@ -24,7 +24,7 @@ or filter with grep
 
 :
 
-    js rhinestone.js | grep -B2 -A14 'zh' | less
+    js rhinestone.js | grep -B2 -A14 'zh' | sensible-pager
 
 set execute permission
 
@@ -32,7 +32,7 @@ set execute permission
 
 :
 
-    ./rhinestone.js | less
+    ./rhinestone.js | sensible-pager
 
 ---
 
