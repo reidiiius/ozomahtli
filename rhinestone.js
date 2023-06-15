@@ -1,4 +1,4 @@
-#!/usr/bin/env js
+#! /usr/bin/env js
 
 "use strict";
 
@@ -334,31 +334,61 @@ Panopolis.chronoMetric = function() {
 
 Panopolis.serialStamp = String(Panopolis.chronoMetric());
 
-Panopolis.completed = false;
+Panopolis.signatures = Object.keys(Panopolis.zosimos);
 
-console.log();
+Panopolis.signatures.sort();
 
-for (let i in Panopolis.zosimos) {
-  console.log('\n\t' + i + '-sv' + Panopolis.serialStamp);
-  Panopolis.stringTuner("latin", Panopolis.zosimos[i]);
-  console.log();
+// display menu selections
+if (process.argv.length < 3) {
+  for (let k in Panopolis.signatures) {
+    if (k % 7 == 0) process.stdout.write('\n');
 
-  console.log('\n\t' + i + '-zh' + Panopolis.serialStamp);
-  Panopolis.stringTuner("hanzi", Panopolis.daoling[i]);
-  console.log();
+    process.stdout.write('\t' + Panopolis.signatures[k]);
+  }
 
-  console.log('\n\t' + i + '-hx' + Panopolis.serialStamp);
-  Panopolis.stringTuner("hanzi", Panopolis.nystrom(i));
-  console.log();
-
-  if (i >= Panopolis.zosimos.length) Panopolis.completed = true;
+  console.log('\n');
 }
 
-console.log();
+// display all tables
+if (process.argv.length == 3 && process.argv[2] == 'gamut') {
+  console.log();
 
-// terminal pager bug remedy
-if (Panopolis.completed) {
-  process.exit(1);
+  for (let i in Panopolis.zosimos) {
+    console.log('\n\t' + i + '-sv' + Panopolis.serialStamp);
+    Panopolis.stringTuner("latin", Panopolis.zosimos[i]);
+    console.log();
+
+    console.log('\n\t' + i + '-zh' + Panopolis.serialStamp);
+    Panopolis.stringTuner("hanzi", Panopolis.daoling[i]);
+    console.log();
+
+    console.log('\n\t' + i + '-hx' + Panopolis.serialStamp);
+    Panopolis.stringTuner("hanzi", Panopolis.nystrom(i));
+    console.log();
+  }
+
+  console.log();
+
+  return;
+}
+
+// display requested tables
+if (process.argv.length > 2) {
+  console.log();
+
+  process.argv.forEach((val, ndx) => {
+    if (ndx > 1) {
+      if (Panopolis.zosimos[val]) {
+      console.log('\n\t' + val + '-sv' + Panopolis.serialStamp);
+      Panopolis.stringTuner("latin", Panopolis.zosimos[val]);
+      console.log();
+      } else {
+        console.log('\n\t' + val + ' ?\n');
+      }
+    }
+  });
+
+  console.log();
 }
 
 
