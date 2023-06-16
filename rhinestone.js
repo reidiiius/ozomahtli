@@ -261,45 +261,54 @@ var Panopolis = {
 
 };
 
+Panopolis.pegbox = function(crow, gear) {
+  return crow.slice(gear[0], gear[1]).concat(crow.slice(0, gear[0]));
+};
+
 Panopolis.latin = {
-  gj: function(crow) {return(crow.slice(30,60).concat(crow.slice(0,30)))},
-  dj: function(crow) {return(crow.slice( 5,60).concat(crow.slice(0, 5)))},
-  aj: function(crow) {return(crow.slice(40,60).concat(crow.slice(0,40)))},
-  ej: function(crow) {return(crow.slice(15,60).concat(crow.slice(0,15)))},
-  bj: function(crow) {return(crow.slice(50,60).concat(crow.slice(0,50)))},
-  fn: function(crow) {return(crow.slice(25,60).concat(crow.slice(0,25)))},
-  cn: function(crow) {return(crow.slice( 0,60).concat(crow.slice(0, 0)))},
-  gn: function(crow) {return(crow.slice(35,60).concat(crow.slice(0,35)))},
-  dn: function(crow) {return(crow.slice(10,60).concat(crow.slice(0,10)))},
-  an: function(crow) {return(crow.slice(45,60).concat(crow.slice(0,45)))},
-  en: function(crow) {return(crow.slice(20,60).concat(crow.slice(0,20)))},
-  bn: function(crow) {return(crow.slice(55,60).concat(crow.slice(0,55)))},
-  fk: function(crow) {return(crow.slice(30,60).concat(crow.slice(0,30)))},
-  ck: function(crow) {return(crow.slice( 5,60).concat(crow.slice(0, 5)))},
-  gk: function(crow) {return(crow.slice(40,60).concat(crow.slice(0,40)))},
-  dk: function(crow) {return(crow.slice(15,60).concat(crow.slice(0,15)))},
-  ak: function(crow) {return(crow.slice(50,60).concat(crow.slice(0,50)))}
+  gj: [30, 60],
+  dj: [ 5, 60],
+  aj: [40, 60],
+  ej: [15, 60],
+  bj: [50, 60],
+  fn: [25, 60],
+  cn: [ 0, 60],
+  gn: [35, 60],
+  dn: [10, 60],
+  an: [45, 60],
+  en: [20, 60],
+  bn: [55, 60],
+  fk: [30, 60],
+  ck: [ 5, 60],
+  gk: [40, 60],
+  dk: [15, 60],
+  ak: [50, 60],
 };
 
 Panopolis.hanzi = {
-  gj: function(crow) {return(crow.slice(18,36).concat(crow.slice(0,18)))},
-  dj: function(crow) {return(crow.slice( 3,36).concat(crow.slice(0, 3)))},
-  aj: function(crow) {return(crow.slice(24,36).concat(crow.slice(0,24)))},
-  ej: function(crow) {return(crow.slice( 9,36).concat(crow.slice(0, 9)))},
-  bj: function(crow) {return(crow.slice(30,36).concat(crow.slice(0,30)))},
-  fn: function(crow) {return(crow.slice(15,36).concat(crow.slice(0,15)))},
-  cn: function(crow) {return(crow.slice( 0,36).concat(crow.slice(0, 0)))},
-  gn: function(crow) {return(crow.slice(21,36).concat(crow.slice(0,21)))},
-  dn: function(crow) {return(crow.slice( 6,36).concat(crow.slice(0, 6)))},
-  an: function(crow) {return(crow.slice(27,36).concat(crow.slice(0,27)))},
-  en: function(crow) {return(crow.slice(12,36).concat(crow.slice(0,12)))},
-  bn: function(crow) {return(crow.slice(33,36).concat(crow.slice(0,33)))},
-  fk: function(crow) {return(crow.slice(18,36).concat(crow.slice(0,18)))},
-  ck: function(crow) {return(crow.slice( 3,36).concat(crow.slice(0, 3)))},
-  gk: function(crow) {return(crow.slice(24,36).concat(crow.slice(0,24)))},
-  dk: function(crow) {return(crow.slice( 9,36).concat(crow.slice(0, 9)))},
-  ak: function(crow) {return(crow.slice(30,36).concat(crow.slice(0,30)))}
+  gj: [18, 36],
+  dj: [ 3, 36],
+  aj: [24, 36],
+  ej: [ 9, 36],
+  bj: [30, 36],
+  fn: [15, 36],
+  cn: [ 0, 36],
+  gn: [21, 36],
+  dn: [ 6, 36],
+  an: [27, 36],
+  en: [12, 36],
+  bn: [33, 36],
+  fk: [18, 36],
+  ck: [ 3, 36],
+  gk: [24, 36],
+  dk: [ 9, 36],
+  ak: [30, 36],
 };
+
+Panopolis.pitches = [
+  'fn', 'cn', 'gn', 'dn', 'an', 'en',
+  'bn', 'fk', 'ck', 'gk', 'dk', 'ak',
+];
 
 Panopolis.nystrom = function(token) {
   let datarr = this.amalgam[token];
@@ -313,18 +322,12 @@ Panopolis.nystrom = function(token) {
 };
 
 Panopolis.fingerboard = function(kind, crow) {
-  console.log('\t' + this[kind].fn(crow));
-  console.log('\t' + this[kind].cn(crow));
-  console.log('\t' + this[kind].gn(crow));
-  console.log('\t' + this[kind].dn(crow));
-  console.log('\t' + this[kind].an(crow));
-  console.log('\t' + this[kind].en(crow));
-  console.log('\t' + this[kind].bn(crow));
-  console.log('\t' + this[kind].fk(crow));
-  console.log('\t' + this[kind].ck(crow));
-  console.log('\t' + this[kind].gk(crow));
-  console.log('\t' + this[kind].dk(crow));
-  console.log('\t' + this[kind].ak(crow));
+  for (let item in this.pitches) {
+    console.log('\t' +
+      this.pegbox(crow, this[kind][this.pitches[item]])
+    );
+  }
+  return;
 };
 
 Panopolis.chronoMetric = function() {
@@ -364,15 +367,15 @@ if (process.argv.length == 3 && process.argv[2] == 'gamut') {
 
   for (let i in Panopolis.zosimos) {
     console.log('\n\t' + i + '-sv' + Panopolis.serialStamp);
-    Panopolis.fingerboard("latin", Panopolis.zosimos[i]);
+    Panopolis.fingerboard('latin', Panopolis.zosimos[i]);
     console.log();
 
     console.log('\n\t' + i + '-zh' + Panopolis.serialStamp);
-    Panopolis.fingerboard("hanzi", Panopolis.daoling[i]);
+    Panopolis.fingerboard('hanzi', Panopolis.daoling[i]);
     console.log();
 
     console.log('\n\t' + i + '-hx' + Panopolis.serialStamp);
-    Panopolis.fingerboard("hanzi", Panopolis.nystrom(i));
+    Panopolis.fingerboard('hanzi', Panopolis.nystrom(i));
     console.log();
   }
 
@@ -388,7 +391,7 @@ if (process.argv.length > 2) {
     if (ndx > 1) {
       if (Panopolis.zosimos[val]) {
         console.log('\n\t' + val + '-sv' + Panopolis.serialStamp);
-        Panopolis.fingerboard("latin", Panopolis.zosimos[val]);
+        Panopolis.fingerboard('latin', Panopolis.zosimos[val]);
         console.log();
       } else {
         console.log('\n\t' + val + ' ?\n');
