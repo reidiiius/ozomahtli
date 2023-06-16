@@ -46,7 +46,6 @@ var Panopolis = {
     n345: "____ PuFe ____ ____ CuNp PbAu ____ AuPb NpCu ____ TiSn FePu ",
     n5y2: "HgMn ____ ____ MnHg CuFe ____ ____ AuNp NpAu ____ TiPb FeCu ",
     n6x2: "FeCu HgMn ____ ____ MnHg CuFe PbTi ____ AuNp NpAu ____ ____ ",
-   j17k2: "____ ____ ____ MnFe CuTi PbAg ____ AuAu ____ AgPb TiCu FeMn ",
    j17y2: "HgAg ____ ____ ____ CuPb PbCu ____ AuSn ____ AgHg TiFe FeTi ",
    j23k6: "HgHg PuFe ____ UrAg ____ PbAu ____ AuPb ____ ____ TiSn FePu ",
    j25y6: "TiCu FeMn ____ ____ SnHg MnFe CuTi PbAg ____ ____ ____ AgPb ",
@@ -59,6 +58,7 @@ var Panopolis = {
    k17j5: "TiCu FeMn HgSn ____ SnHg MnFe CuTi ____ ____ AuAu ____ ____ ",
    k25x1: "____ ____ TiSn FePu HgHg PuFe ____ ____ CuNp PbAu ____ AuPb ",
    k26x5: "HgSn ____ ____ MnFe CuTi PbAg ____ ____ ____ AgPb TiCu FeMn ",
+   k2j17: "____ ____ ____ MnFe CuTi PbAg ____ AuAu ____ AgPb TiCu FeMn ",
    k2j56: "NpCu ____ ____ FePu HgHg PuFe SnTi ____ CuNp ____ ____ AuPb ",
    k34x2: "PbCu ____ ____ ____ AgHg TiFe FeTi HgAg ____ SnAu ____ CuPb ",
    k56x4: "HgAu ____ SnPb ____ CuUr ____ ____ AuHg NpFe ____ TiAg FeNp ",
@@ -131,7 +131,6 @@ var Panopolis = {
     n345: "一一 钚铁 一一 一一 铜镎 铅金 一一 金铅 镎铜 一一 钒锡 铁钚 ",
     n5y2: "汞锰 一一 一一 锰汞 铜铁 一一 一一 金镎 镎金 一一 钒铅 铁铜 ",
     n6x2: "铁铜 汞锰 一一 一一 锰汞 铜铁 铅钒 一一 金镎 镎金 一一 一一 ",
-   j17k2: "一一 一一 一一 锰铁 铜钒 铅银 一一 金金 一一 银铅 钒铜 铁锰 ",
    j17y2: "汞银 一一 一一 一一 铜铅 铅铜 一一 金锡 一一 银汞 钒铁 铁钒 ",
    j23k6: "汞汞 钚铁 一一 铀银 一一 铅金 一一 金铅 一一 一一 钒锡 铁钚 ",
    j25y6: "钒铜 铁锰 一一 一一 锡汞 锰铁 铜钒 铅银 一一 一一 一一 银铅 ",
@@ -144,6 +143,7 @@ var Panopolis = {
    k17j5: "钒铜 铁锰 汞锡 一一 锡汞 锰铁 铜钒 一一 一一 金金 一一 一一 ",
    k25x1: "一一 一一 钒锡 铁钚 汞汞 钚铁 一一 一一 铜镎 铅金 一一 金铅 ",
    k26x5: "汞锡 一一 一一 锰铁 铜钒 铅银 一一 一一 一一 银铅 钒铜 铁锰 ",
+   k2j17: "一一 一一 一一 锰铁 铜钒 铅银 一一 金金 一一 银铅 钒铜 铁锰 ",
    k2j56: "镎铜 一一 一一 铁钚 汞汞 钚铁 锡钒 一一 铜镎 一一 一一 金铅 ",
    k34x2: "铅铜 一一 一一 一一 银汞 钒铁 铁钒 汞银 一一 锡金 一一 铜铅 ",
    k56x4: "汞金 一一 锡铅 一一 铜铀 一一 一一 金汞 镎铁 一一 钒银 铁镎 ",
@@ -216,7 +216,6 @@ var Panopolis = {
     n345: [  0, 228,   0,   0,  92, 168,   0, 138, 197,   0,  39,  78],
     n5y2: [147,   0,   0,  57,  84,   0,   0, 140, 200,   0,  42,  69],
     n6x2: [ 69, 147,   0,   0,  57,  84, 162,   0, 140, 200,   0,   0],
-   j17k2: [  0,   0,   0,  52,  82, 166,   0, 136,   0, 106,  37,  67],
    j17y2: [150,   0,   0,   0,  90, 165,   0, 135,   0, 105,  36,  66],
    j23k6: [153, 228,   0, 182,   0, 168,   0, 138,   0,   0,  39,  78],
    j25y6: [ 37,  67,   0,   0, 121,  52,  82, 166,   0,   0,   0, 106],
@@ -229,6 +228,7 @@ var Panopolis = {
    k17j5: [ 37,  67, 151,   0, 121,  52,  82,   0,   0, 136,   0,   0],
    k25x1: [  0,   0,  39,  78, 153, 228,   0,   0,  92, 168,   0, 138],
    k26x5: [151,   0,   0,  52,  82, 166,   0,   0,   0, 106,  37,  67],
+   k2j17: [  0,   0,   0,  52,  82, 166,   0, 136,   0, 106,  37,  67],
    k2j56: [197,   0,   0,  78, 153, 228, 114,   0,  92,   0,   0, 138],
    k34x2: [165,   0,   0,   0, 105,  36,  66, 150,   0, 120,   0,  90],
    k56x4: [152,   0, 122,   0,  91,   0,   0, 137, 196,   0,  38,  76],
@@ -262,47 +262,47 @@ var Panopolis = {
 };
 
 Panopolis.latin = {
-  gj: function(qp) {return(qp.slice(30,60).concat(qp.slice(0,30)))},
-  dj: function(qp) {return(qp.slice( 5,60).concat(qp.slice(0, 5)))},
-  aj: function(qp) {return(qp.slice(40,60).concat(qp.slice(0,40)))},
-  ej: function(qp) {return(qp.slice(15,60).concat(qp.slice(0,15)))},
-  bj: function(qp) {return(qp.slice(50,60).concat(qp.slice(0,50)))},
-  fn: function(qp) {return(qp.slice(25,60).concat(qp.slice(0,25)))},
-  cn: function(qp) {return(qp.slice( 0,60).concat(qp.slice(0, 0)))},
-  gn: function(qp) {return(qp.slice(35,60).concat(qp.slice(0,35)))},
-  dn: function(qp) {return(qp.slice(10,60).concat(qp.slice(0,10)))},
-  an: function(qp) {return(qp.slice(45,60).concat(qp.slice(0,45)))},
-  en: function(qp) {return(qp.slice(20,60).concat(qp.slice(0,20)))},
-  bn: function(qp) {return(qp.slice(55,60).concat(qp.slice(0,55)))},
-  fk: function(qp) {return(qp.slice(30,60).concat(qp.slice(0,30)))},
-  ck: function(qp) {return(qp.slice( 5,60).concat(qp.slice(0, 5)))},
-  gk: function(qp) {return(qp.slice(40,60).concat(qp.slice(0,40)))},
-  dk: function(qp) {return(qp.slice(15,60).concat(qp.slice(0,15)))},
-  ak: function(qp) {return(qp.slice(50,60).concat(qp.slice(0,50)))}
+  gj: function(crow) {return(crow.slice(30,60).concat(crow.slice(0,30)))},
+  dj: function(crow) {return(crow.slice( 5,60).concat(crow.slice(0, 5)))},
+  aj: function(crow) {return(crow.slice(40,60).concat(crow.slice(0,40)))},
+  ej: function(crow) {return(crow.slice(15,60).concat(crow.slice(0,15)))},
+  bj: function(crow) {return(crow.slice(50,60).concat(crow.slice(0,50)))},
+  fn: function(crow) {return(crow.slice(25,60).concat(crow.slice(0,25)))},
+  cn: function(crow) {return(crow.slice( 0,60).concat(crow.slice(0, 0)))},
+  gn: function(crow) {return(crow.slice(35,60).concat(crow.slice(0,35)))},
+  dn: function(crow) {return(crow.slice(10,60).concat(crow.slice(0,10)))},
+  an: function(crow) {return(crow.slice(45,60).concat(crow.slice(0,45)))},
+  en: function(crow) {return(crow.slice(20,60).concat(crow.slice(0,20)))},
+  bn: function(crow) {return(crow.slice(55,60).concat(crow.slice(0,55)))},
+  fk: function(crow) {return(crow.slice(30,60).concat(crow.slice(0,30)))},
+  ck: function(crow) {return(crow.slice( 5,60).concat(crow.slice(0, 5)))},
+  gk: function(crow) {return(crow.slice(40,60).concat(crow.slice(0,40)))},
+  dk: function(crow) {return(crow.slice(15,60).concat(crow.slice(0,15)))},
+  ak: function(crow) {return(crow.slice(50,60).concat(crow.slice(0,50)))}
 };
 
 Panopolis.hanzi = {
-  gj: function(qp) {return(qp.slice(18,36).concat(qp.slice(0,18)))},
-  dj: function(qp) {return(qp.slice( 3,36).concat(qp.slice(0, 3)))},
-  aj: function(qp) {return(qp.slice(24,36).concat(qp.slice(0,24)))},
-  ej: function(qp) {return(qp.slice( 9,36).concat(qp.slice(0, 9)))},
-  bj: function(qp) {return(qp.slice(30,36).concat(qp.slice(0,30)))},
-  fn: function(qp) {return(qp.slice(15,36).concat(qp.slice(0,15)))},
-  cn: function(qp) {return(qp.slice( 0,36).concat(qp.slice(0, 0)))},
-  gn: function(qp) {return(qp.slice(21,36).concat(qp.slice(0,21)))},
-  dn: function(qp) {return(qp.slice( 6,36).concat(qp.slice(0, 6)))},
-  an: function(qp) {return(qp.slice(27,36).concat(qp.slice(0,27)))},
-  en: function(qp) {return(qp.slice(12,36).concat(qp.slice(0,12)))},
-  bn: function(qp) {return(qp.slice(33,36).concat(qp.slice(0,33)))},
-  fk: function(qp) {return(qp.slice(18,36).concat(qp.slice(0,18)))},
-  ck: function(qp) {return(qp.slice( 3,36).concat(qp.slice(0, 3)))},
-  gk: function(qp) {return(qp.slice(24,36).concat(qp.slice(0,24)))},
-  dk: function(qp) {return(qp.slice( 9,36).concat(qp.slice(0, 9)))},
-  ak: function(qp) {return(qp.slice(30,36).concat(qp.slice(0,30)))}
+  gj: function(crow) {return(crow.slice(18,36).concat(crow.slice(0,18)))},
+  dj: function(crow) {return(crow.slice( 3,36).concat(crow.slice(0, 3)))},
+  aj: function(crow) {return(crow.slice(24,36).concat(crow.slice(0,24)))},
+  ej: function(crow) {return(crow.slice( 9,36).concat(crow.slice(0, 9)))},
+  bj: function(crow) {return(crow.slice(30,36).concat(crow.slice(0,30)))},
+  fn: function(crow) {return(crow.slice(15,36).concat(crow.slice(0,15)))},
+  cn: function(crow) {return(crow.slice( 0,36).concat(crow.slice(0, 0)))},
+  gn: function(crow) {return(crow.slice(21,36).concat(crow.slice(0,21)))},
+  dn: function(crow) {return(crow.slice( 6,36).concat(crow.slice(0, 6)))},
+  an: function(crow) {return(crow.slice(27,36).concat(crow.slice(0,27)))},
+  en: function(crow) {return(crow.slice(12,36).concat(crow.slice(0,12)))},
+  bn: function(crow) {return(crow.slice(33,36).concat(crow.slice(0,33)))},
+  fk: function(crow) {return(crow.slice(18,36).concat(crow.slice(0,18)))},
+  ck: function(crow) {return(crow.slice( 3,36).concat(crow.slice(0, 3)))},
+  gk: function(crow) {return(crow.slice(24,36).concat(crow.slice(0,24)))},
+  dk: function(crow) {return(crow.slice( 9,36).concat(crow.slice(0, 9)))},
+  ak: function(crow) {return(crow.slice(30,36).concat(crow.slice(0,30)))}
 };
 
-Panopolis.nystrom = function(fortecken) {
-  let datarr = this.amalgam[fortecken];
+Panopolis.nystrom = function(token) {
+  let datarr = this.amalgam[token];
   let tmparr = [];
     for (var i = 0; i < datarr.length; i++) {
       tmparr.push(datarr[i].toString(16));
@@ -312,19 +312,19 @@ Panopolis.nystrom = function(fortecken) {
   return result;
 };
 
-Panopolis.stringTuner = function(sym, qp) {
-  console.log('\t' + this[sym].fn(qp));
-  console.log('\t' + this[sym].cn(qp));
-  console.log('\t' + this[sym].gn(qp));
-  console.log('\t' + this[sym].dn(qp));
-  console.log('\t' + this[sym].an(qp));
-  console.log('\t' + this[sym].en(qp));
-  console.log('\t' + this[sym].bn(qp));
-  console.log('\t' + this[sym].fk(qp));
-  console.log('\t' + this[sym].ck(qp));
-  console.log('\t' + this[sym].gk(qp));
-  console.log('\t' + this[sym].dk(qp));
-  console.log('\t' + this[sym].ak(qp));
+Panopolis.fingerboard = function(kind, crow) {
+  console.log('\t' + this[kind].fn(crow));
+  console.log('\t' + this[kind].cn(crow));
+  console.log('\t' + this[kind].gn(crow));
+  console.log('\t' + this[kind].dn(crow));
+  console.log('\t' + this[kind].an(crow));
+  console.log('\t' + this[kind].en(crow));
+  console.log('\t' + this[kind].bn(crow));
+  console.log('\t' + this[kind].fk(crow));
+  console.log('\t' + this[kind].ck(crow));
+  console.log('\t' + this[kind].gk(crow));
+  console.log('\t' + this[kind].dk(crow));
+  console.log('\t' + this[kind].ak(crow));
 };
 
 Panopolis.chronoMetric = function() {
@@ -338,6 +338,14 @@ Panopolis.signatures = Object.keys(Panopolis.zosimos);
 
 Panopolis.signatures.sort();
 
+Panopolis.volume = Panopolis.signatures.length;
+
+if ( Object.keys(Panopolis.daoling).length != Panopolis.volume
+  || Object.keys(Panopolis.amalgam).length != Panopolis.volume ) {
+  console.log('\n\t' + 'Check databank records: ' + Panopolis.volume + '\n');
+  return;
+}
+
 // display menu selections
 if (process.argv.length < 3) {
   for (let k in Panopolis.signatures) {
@@ -347,6 +355,7 @@ if (process.argv.length < 3) {
   }
 
   console.log('\n');
+  return;
 }
 
 // display all tables
@@ -355,20 +364,19 @@ if (process.argv.length == 3 && process.argv[2] == 'gamut') {
 
   for (let i in Panopolis.zosimos) {
     console.log('\n\t' + i + '-sv' + Panopolis.serialStamp);
-    Panopolis.stringTuner("latin", Panopolis.zosimos[i]);
+    Panopolis.fingerboard("latin", Panopolis.zosimos[i]);
     console.log();
 
     console.log('\n\t' + i + '-zh' + Panopolis.serialStamp);
-    Panopolis.stringTuner("hanzi", Panopolis.daoling[i]);
+    Panopolis.fingerboard("hanzi", Panopolis.daoling[i]);
     console.log();
 
     console.log('\n\t' + i + '-hx' + Panopolis.serialStamp);
-    Panopolis.stringTuner("hanzi", Panopolis.nystrom(i));
+    Panopolis.fingerboard("hanzi", Panopolis.nystrom(i));
     console.log();
   }
 
   console.log();
-
   return;
 }
 
@@ -379,9 +387,9 @@ if (process.argv.length > 2) {
   process.argv.forEach((val, ndx) => {
     if (ndx > 1) {
       if (Panopolis.zosimos[val]) {
-      console.log('\n\t' + val + '-sv' + Panopolis.serialStamp);
-      Panopolis.stringTuner("latin", Panopolis.zosimos[val]);
-      console.log();
+        console.log('\n\t' + val + '-sv' + Panopolis.serialStamp);
+        Panopolis.fingerboard("latin", Panopolis.zosimos[val]);
+        console.log();
       } else {
         console.log('\n\t' + val + ' ?\n');
       }
@@ -389,6 +397,7 @@ if (process.argv.length > 2) {
   });
 
   console.log();
+  return;
 }
 
 
