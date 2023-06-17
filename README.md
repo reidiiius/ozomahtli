@@ -20,7 +20,7 @@ command-line
 
 :
 
-    js rhinestone.js n0 j23
+    js rhinestone.js n0 j3
 
 :
 
@@ -28,11 +28,19 @@ command-line
 
 or filter with grep
 
-    js rhinestone.js gamut | grep -B2 -A14 'k15' | sensible-pager
+    js rhinestone.js gamut | grep -B2 -A14 n0 | sensible-pager
 
 :
 
-    js rhinestone.js gamut | grep -B2 -A14 'zh' | sensible-pager
+    js rhinestone.js gamut | grep -B2 -A14 sv | sensible-pager
+
+:
+
+    js rhinestone.js gamut | grep -B2 -A14 zh | sensible-pager
+
+:
+
+    js rhinestone.js gamut | grep -B2 -A14 hx | sensible-pager
 
 set execute permission
 

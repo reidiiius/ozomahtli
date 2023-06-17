@@ -2,7 +2,7 @@
 
 "use strict";
 
-var Panopolis = {
+const Panopolis = {
 
   zosimos: {
       j2: "HgHg PuFe ____ ____ CuNp PbAu ____ AuPb ____ AgUr ____ FePu ",
@@ -261,10 +261,6 @@ var Panopolis = {
 
 };
 
-Panopolis.pegbox = function(crow, gear) {
-  return crow.slice(gear[0], gear[1]).concat(crow.slice(0, gear[0]));
-};
-
 Panopolis.latin = {
   gj: [30, 60],
   dj: [ 5, 60],
@@ -310,6 +306,17 @@ Panopolis.pitches = [
   'bn', 'fk', 'ck', 'gk', 'dk', 'ak',
 ];
 
+Panopolis.signatures = Object.keys(Panopolis.zosimos).sort();
+
+Panopolis.volume = Panopolis.signatures.length;
+
+Panopolis.serialStamp = String(new Date().getTime());
+
+Panopolis.sentinel = function() {
+   console.log('\n\t' + 'Check databank records: ' + this.volume + '\n');
+   return;
+};
+
 Panopolis.nystrom = function(token) {
   let datarr = this.amalgam[token];
   let tmparr = [];
@@ -321,6 +328,10 @@ Panopolis.nystrom = function(token) {
   return result;
 };
 
+Panopolis.pegbox = function(crow, gear) {
+  return crow.slice(gear[0], gear[1]).concat(crow.slice(0, gear[0]));
+};
+
 Panopolis.fingerboard = function(kind, crow) {
   for (let item in this.pitches) {
     console.log('\t' +
@@ -330,68 +341,46 @@ Panopolis.fingerboard = function(kind, crow) {
   return;
 };
 
-Panopolis.chronoMetric = function() {
-  let nwdt = new Date();
-  return nwdt.getTime();
-};
+Panopolis.selections = function() {
+  for (let ndx in this.signatures) {
+    if (ndx % 7 == 0) process.stdout.write('\n');
 
-Panopolis.serialStamp = String(Panopolis.chronoMetric());
-
-Panopolis.signatures = Object.keys(Panopolis.zosimos);
-
-Panopolis.signatures.sort();
-
-Panopolis.volume = Panopolis.signatures.length;
-
-if ( Object.keys(Panopolis.daoling).length != Panopolis.volume
-  || Object.keys(Panopolis.amalgam).length != Panopolis.volume ) {
-  console.log('\n\t' + 'Check databank records: ' + Panopolis.volume + '\n');
-  return;
-}
-
-// display menu selections
-if (process.argv.length < 3) {
-  for (let k in Panopolis.signatures) {
-    if (k % 7 == 0) process.stdout.write('\n');
-
-    process.stdout.write('\t' + Panopolis.signatures[k]);
+    process.stdout.write('\t' + this.signatures[ndx]);
   }
 
   console.log('\n');
   return;
-}
+};
 
-// display all tables
-if (process.argv.length == 3 && process.argv[2] == 'gamut') {
+Panopolis.dumpster = function() {
   console.log();
 
-  for (let i in Panopolis.zosimos) {
-    console.log('\n\t' + i + '-sv' + Panopolis.serialStamp);
-    Panopolis.fingerboard('latin', Panopolis.zosimos[i]);
+  for (let sign in this.zosimos) {
+    console.log('\n\t' + sign + '-sv' + this.serialStamp);
+    this.fingerboard('latin', this.zosimos[sign]);
     console.log();
 
-    console.log('\n\t' + i + '-zh' + Panopolis.serialStamp);
-    Panopolis.fingerboard('hanzi', Panopolis.daoling[i]);
+    console.log('\n\t' + sign + '-zh' + this.serialStamp);
+    this.fingerboard('hanzi', this.daoling[sign]);
     console.log();
 
-    console.log('\n\t' + i + '-hx' + Panopolis.serialStamp);
-    Panopolis.fingerboard('hanzi', Panopolis.nystrom(i));
+    console.log('\n\t' + sign + '-hx' + this.serialStamp);
+    this.fingerboard('hanzi', this.nystrom(sign));
     console.log();
   }
 
   console.log();
   return;
-}
+};
 
-// display requested tables
-if (process.argv.length > 2) {
+Panopolis.retriever = function() {
   console.log();
 
   process.argv.forEach((val, ndx) => {
     if (ndx > 1) {
-      if (Panopolis.zosimos[val]) {
-        console.log('\n\t' + val + '-sv' + Panopolis.serialStamp);
-        Panopolis.fingerboard('latin', Panopolis.zosimos[val]);
+      if (this.zosimos[val]) {
+        console.log('\n\t' + val + '-sv' + this.serialStamp);
+        this.fingerboard('latin', this.zosimos[val]);
         console.log();
       } else {
         console.log('\n\t' + val + ' ?\n');
@@ -401,6 +390,25 @@ if (process.argv.length > 2) {
 
   console.log();
   return;
-}
+};
+
+Panopolis.entryway = function() {
+  if ( Object.keys(this.daoling).length != this.volume
+    || Object.keys(this.amalgam).length != this.volume ) {
+    this.sentinel();
+  }
+  else if (process.argv.length < 3) {
+    this.selections();
+  }
+  else if (process.argv.length == 3 && process.argv[2] == 'gamut') {
+    this.dumpster();
+  }
+  else {
+    this.retriever();
+  }
+  return;
+};
+
+Panopolis.entryway();
 
 
