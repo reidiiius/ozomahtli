@@ -312,10 +312,19 @@ Panopolis.volume = Panopolis.signatures.length;
 
 Panopolis.serialStamp = String(new Date().getTime());
 
-Panopolis.sentinel = function() {
-   console.log('\n\t' + 'Check databank records: ' + this.volume + '\n');
-   return;
-};
+Panopolis.sentinel = function(args) {
+  let cart = new Array();
+
+  if (args.length > this.volume) {
+    cart = [String(args.length)];
+  }
+  else {
+    cart = args.slice(2, args.length);
+    cart = cart.filter(sign => sign.length < 9);
+  }
+
+  return cart;
+}
 
 Panopolis.nystrom = function(token) {
   let datarr = this.amalgam[token];
@@ -373,11 +382,11 @@ Panopolis.dumpster = function() {
   return;
 };
 
-Panopolis.retriever = function() {
+Panopolis.retriever = function(cart) {
   console.log();
 
-  process.argv.forEach((val, ndx) => {
-    if (ndx > 1) {
+  cart.forEach(val => {
+    if (typeof val == 'string') {
       if (this.zosimos[val]) {
         console.log('\n\t' + val + '-sv' + this.serialStamp);
         this.fingerboard('latin', this.zosimos[val]);
@@ -392,23 +401,26 @@ Panopolis.retriever = function() {
   return;
 };
 
-Panopolis.entryway = function() {
+Panopolis.entryway = function(args) {
+  let cart = this.sentinel(args);
+
   if ( Object.keys(this.daoling).length != this.volume
     || Object.keys(this.amalgam).length != this.volume ) {
-    this.sentinel();
+    console.log('\n\t' + 'Check databank records: ' + this.volume + '\n');
   }
-  else if (process.argv.length < 3) {
+  else if (cart.length < 1) {
     this.selections();
   }
-  else if (process.argv.length == 3 && process.argv[2] == 'gamut') {
+  else if (cart.length == 1 && cart[0] == 'gamut') {
     this.dumpster();
   }
   else {
-    this.retriever();
+    this.retriever(cart);
   }
+
   return;
 };
 
-Panopolis.entryway();
+Panopolis.entryway(process.argv);
 
 
