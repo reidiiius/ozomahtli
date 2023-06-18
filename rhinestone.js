@@ -312,20 +312,6 @@ Panopolis.volume = Panopolis.signatures.length;
 
 Panopolis.serialStamp = String(new Date().getTime());
 
-Panopolis.sentinel = function(args) {
-  let cart = new Array();
-
-  if (args.length > this.volume) {
-    cart = [String(args.length)];
-  }
-  else {
-    cart = args.slice(2, args.length);
-    cart = cart.filter(sign => sign.length < 9);
-  }
-
-  return cart;
-}
-
 Panopolis.nystrom = function(token) {
   let datarr = this.amalgam[token];
   let tmparr = [];
@@ -386,14 +372,12 @@ Panopolis.retriever = function(cart) {
   console.log();
 
   cart.forEach(val => {
-    if (typeof val == 'string') {
-      if (this.zosimos[val]) {
-        console.log('\n\t' + val + '-sv' + this.serialStamp);
-        this.fingerboard('latin', this.zosimos[val]);
-        console.log();
-      } else {
-        console.log('\n\t' + val + ' ?\n');
-      }
+    if (typeof val == 'string' && val in this.zosimos) {
+      console.log('\n\t' + val + '-sv' + this.serialStamp);
+      this.fingerboard('latin', this.zosimos[val]);
+      console.log();
+    } else {
+      console.log('\n\t' + val + ' ?\n');
     }
   });
 
@@ -401,18 +385,33 @@ Panopolis.retriever = function(cart) {
   return;
 };
 
+Panopolis.sentinel = function(args) {
+  let cart = new Array();
+
+  if (args.length > this.volume) {
+    cart = [String(args.length)];
+  }
+  else {
+    cart = args.slice(2, args.length);
+    cart = cart.filter(sign => sign.length < 9);
+  }
+
+  return cart;
+}
+
 Panopolis.entryway = function(args) {
   let cart = this.sentinel(args);
 
-  if ( Object.keys(this.daoling).length != this.volume
-    || Object.keys(this.amalgam).length != this.volume ) {
-    console.log('\n\t' + 'Check databank records: ' + this.volume + '\n');
-  }
-  else if (cart.length < 1) {
+  if (cart.length < 1) {
     this.selections();
   }
   else if (cart.length == 1 && cart[0] == 'gamut') {
-    this.dumpster();
+    if ( Object.keys(this.daoling).length != this.volume
+      || Object.keys(this.amalgam).length != this.volume ) {
+      console.log('\n\t' + 'Check databank records: ' + this.volume + '\n');
+    } else {
+      this.dumpster();
+    }
   }
   else {
     this.retriever(cart);
