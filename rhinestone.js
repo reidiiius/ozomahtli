@@ -5,6 +5,7 @@
 const Panopolis = {
 
   zosimos: {
+      i0: "____ ".repeat(12),
       j2: "HgHg PuFe ____ ____ CuNp PbAu ____ AuPb ____ AgUr ____ FePu ",
       j3: "HgSn ____ SnHg UrFe ____ PbAg ____ AuAu ____ AgPb ____ FeUr ",
       j5: "PbCu ____ AuSn ____ AgHg TiFe FeTi ____ ____ SnAu ____ CuPb ",
@@ -90,6 +91,7 @@ const Panopolis = {
  k2j56y7: "NpCu ____ ____ FePu HgHg PuFe SnTi ____ CuNp PbAu ____ ____ "},
 
   daoling: {
+      i0: "一一 ".repeat(12),
       j2: "汞汞 钚铁 一一 一一 铜镎 铅金 一一 金铅 一一 银铀 一一 铁钚 ",
       j3: "汞锡 一一 锡汞 铀铁 一一 铅银 一一 金金 一一 银铅 一一 铁铀 ",
       j5: "铅铜 一一 金锡 一一 银汞 钒铁 铁钒 一一 一一 锡金 一一 铜铅 ",
@@ -175,6 +177,7 @@ const Panopolis = {
  k2j56y7: "镎铜 一一 一一 铁钚 汞汞 钚铁 锡钒 一一 铜镎 铅金 一一 一一 "},
 
   amalgam: {
+      i0: Array(12).fill(0),
       j2: [153, 228,   0,   0,  92, 168,   0, 138,   0, 107,   0,  78],
       j3: [151,   0, 121, 180,   0, 166,   0, 136,   0, 106,   0,  75],
       j5: [165,   0, 135,   0, 105,  36,  66,   0,   0, 120,   0,  90],
@@ -312,20 +315,32 @@ Panopolis.volume = Panopolis.signatures.length;
 
 Panopolis.serialStamp = String(new Date().getTime());
 
+
 Panopolis.nystrom = function(token) {
   let datarr = this.amalgam[token];
-  let tmparr = [];
-    for (var i = 0; i < datarr.length; i++) {
-      tmparr.push(datarr[i].toString(16));
-    }
-  let novast = tmparr.join(" ").toUpperCase() + " ";
-  let result = novast.replace(/0/g, "__");
+  let result = new String();
+
+  if (datarr == null) {
+    result = "__ ".repeat(12);
+  } else {
+    let tmparr = [];
+
+      for (var i = 0; i < datarr.length; i++) {
+        tmparr.push(datarr[i].toString(16));
+      }
+
+    result = tmparr.join(" ").toUpperCase() + " ";
+    result = result.replace(/0/g, "__");
+  }
+
   return result;
 };
+
 
 Panopolis.pegbox = function(crow, gear) {
   return crow.slice(gear[0], gear[1]).concat(crow.slice(0, gear[0]));
 };
+
 
 Panopolis.fingerboard = function(kind, crow) {
   for (let item in this.pitches) {
@@ -335,6 +350,7 @@ Panopolis.fingerboard = function(kind, crow) {
   }
   return;
 };
+
 
 Panopolis.selections = function() {
   for (let ndx in this.signatures) {
@@ -347,43 +363,77 @@ Panopolis.selections = function() {
   return;
 };
 
+
 Panopolis.dumpster = function() {
   console.log();
 
   for (let sign in this.zosimos) {
-    console.log('\n\t' + sign + '-sv' + this.serialStamp);
-    this.fingerboard('latin', this.zosimos[sign]);
-    console.log();
+    if (sign in this.zosimos && typeof this.zosimos[sign] == 'string') {
 
-    console.log('\n\t' + sign + '-zh' + this.serialStamp);
-    this.fingerboard('hanzi', this.daoling[sign]);
-    console.log();
+      console.log('\n\t' + sign + '-sv' + this.serialStamp);
+      this.fingerboard('latin', this.zosimos[sign]);
+      console.log();
 
-    console.log('\n\t' + sign + '-hx' + this.serialStamp);
-    this.fingerboard('hanzi', this.nystrom(sign));
-    console.log();
+      console.log('\n\t' + sign + '-zh' + this.serialStamp);
+      this.fingerboard('hanzi', this.daoling[sign]);
+      console.log();
+
+      console.log('\n\t' + sign + '-hx' + this.serialStamp);
+      this.fingerboard('hanzi', this.nystrom(sign));
+      console.log();
+
+    } else {
+      continue;
+    }
   }
 
   console.log();
   return;
 };
 
+
 Panopolis.retriever = function(cart) {
+  let bank = this.amalgam;
+
+  let lang = '-hx';
+  let veil = 'hanzi';
+
   console.log();
 
-  cart.forEach(val => {
-    if (typeof val == 'string' && val in this.zosimos) {
-      console.log('\n\t' + val + '-sv' + this.serialStamp);
-      this.fingerboard('latin', this.zosimos[val]);
-      console.log();
+  cart.forEach(sign => {
+    if (sign in bank) {
+      let yarn = bank[sign];
+
+      if (typeof yarn == 'string') {
+
+        if (yarn.length > 36) {
+          lang = '-sv';
+          veil = 'latin';
+        } else {
+          lang = '-zh';
+          veil = 'hanzi';
+        }
+
+        console.log('\n\t' + sign + lang + this.serialStamp);
+        this.fingerboard(veil, bank[sign]);
+        console.log();
+
+      } else {
+
+        console.log('\n\t' + sign + lang + this.serialStamp);
+        this.fingerboard(veil, this.nystrom(sign));
+        console.log();
+
+      }
     } else {
-      console.log('\n\t' + val + ' ?\n');
+      console.log('\n\t' + sign + ' ?\n');
     }
   });
 
   console.log();
   return;
 };
+
 
 Panopolis.sentinel = function(args) {
   let cart = new Array();
@@ -398,6 +448,7 @@ Panopolis.sentinel = function(args) {
 
   return cart;
 }
+
 
 Panopolis.entryway = function(args) {
   let cart = this.sentinel(args);
@@ -419,6 +470,7 @@ Panopolis.entryway = function(args) {
 
   return;
 };
+
 
 Panopolis.entryway(process.argv);
 
