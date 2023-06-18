@@ -317,16 +317,16 @@ Panopolis.serialStamp = String(new Date().getTime());
 
 
 Panopolis.nystrom = function(token) {
-  let datarr = this.amalgam[token];
-  let result = new String();
+  var datarr = this.amalgam[token];
+  var result = new String();
 
   if (datarr == null) {
     result = "__ ".repeat(12);
   } else {
     let tmparr = [];
 
-      for (var i = 0; i < datarr.length; i++) {
-        tmparr.push(datarr[i].toString(16));
+      for (var ndx = 0; ndx < datarr.length; ndx++) {
+        tmparr.push(datarr[ndx].toString(16));
       }
 
     result = tmparr.join(" ").toUpperCase() + " ";
@@ -365,25 +365,35 @@ Panopolis.selections = function() {
 
 
 Panopolis.dumpster = function() {
+  var sign = new String();
+
   console.log();
 
-  for (let sign in this.zosimos) {
-    if (sign in this.zosimos && typeof this.zosimos[sign] == 'string') {
+  for (let ndx in this.signatures) {
+    sign = this.signatures[ndx];
 
+    if (sign in this.zosimos && typeof this.zosimos[sign] == 'string') {
       console.log('\n\t' + sign + '-sv' + this.serialStamp);
       this.fingerboard('latin', this.zosimos[sign]);
       console.log();
+    } else {
+      console.log('\n\t' + 'zosimos: ' + sign + ' ?\n');
+    }
 
+    if (sign in this.daoling && typeof this.daoling[sign] == 'string') {
       console.log('\n\t' + sign + '-zh' + this.serialStamp);
       this.fingerboard('hanzi', this.daoling[sign]);
       console.log();
+    } else {
+      console.log('\n\t' + 'daoling: ' + sign + ' ?\n');
+    }
 
+    if (sign in this.amalgam && typeof this.amalgam[sign] == 'object') {
       console.log('\n\t' + sign + '-hx' + this.serialStamp);
       this.fingerboard('hanzi', this.nystrom(sign));
       console.log();
-
     } else {
-      continue;
+      console.log('\n\t' + 'amalgam: ' + sign + ' ?\n');
     }
   }
 
@@ -393,10 +403,10 @@ Panopolis.dumpster = function() {
 
 
 Panopolis.retriever = function(cart) {
-  let bank = this.amalgam;
+  var bank = this.amalgam;
 
-  let lang = '-hx';
-  let veil = 'hanzi';
+  var lang = '-hx';
+  var veil = 'hanzi';
 
   console.log();
 
@@ -436,7 +446,7 @@ Panopolis.retriever = function(cart) {
 
 
 Panopolis.sentinel = function(args) {
-  let cart = new Array();
+  var cart = new Array();
 
   if (args.length > this.volume) {
     cart = [String(args.length)];
@@ -451,7 +461,7 @@ Panopolis.sentinel = function(args) {
 
 
 Panopolis.entryway = function(args) {
-  let cart = this.sentinel(args);
+  var cart = this.sentinel(args);
 
   if (cart.length < 1) {
     this.selections();
