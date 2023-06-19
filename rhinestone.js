@@ -316,6 +316,10 @@ Panopolis.volume = Panopolis.signatures.length;
 Panopolis.serialStamp = String(new Date().getTime());
 
 
+/*
+ * Takes a string argument and returns a string.
+ * Converts decimal integers to hexadecimal strings.
+ */
 Panopolis.nystrom = function(token) {
   var datarr = this.amalgam[token];
   var result = new String();
@@ -337,11 +341,22 @@ Panopolis.nystrom = function(token) {
 };
 
 
+/*
+ * Takes two arguments, a string and an array of two integers.
+ * The two integers are indices to permute the received string.
+ * Returns a mutated string the same length as the one pasted.
+ */
 Panopolis.pegbox = function(crow, gear) {
   return crow.slice(gear[0], gear[1]).concat(crow.slice(0, gear[0]));
 };
 
 
+/*
+ * Takes two string arguments and returns null.
+ * The first argument designates character style.
+ * The second is a string to be mutated and printed
+ * according to the string array of tuning pitches.
+ */
 Panopolis.fingerboard = function(kind, crow) {
   for (let item in this.pitches) {
     console.log('\t' +
@@ -352,6 +367,10 @@ Panopolis.fingerboard = function(kind, crow) {
 };
 
 
+/*
+ * Takes zero arguments and returns null.
+ * Format and print menu of key signatures.
+ */
 Panopolis.selections = function() {
   for (let ndx in this.signatures) {
     if (ndx % 7 == 0) process.stdout.write('\n');
@@ -364,6 +383,10 @@ Panopolis.selections = function() {
 };
 
 
+/*
+ * Takes zero arguments and returns null.
+ * Format and print all records tabulated.
+ */
 Panopolis.dumpster = function() {
   var sign = new String();
 
@@ -402,6 +425,10 @@ Panopolis.dumpster = function() {
 };
 
 
+/*
+ * Takes string array argument and returns null.
+ * Format and print selected records tabulated.
+ */
 Panopolis.retriever = function(cart) {
   var bank = this.amalgam;
 
@@ -445,6 +472,10 @@ Panopolis.retriever = function(cart) {
 };
 
 
+/*
+ * Takes string array argument and returns string array filtered.
+ * Sanitizes input arguments by limiting amount and word length.
+ */
 Panopolis.sentinel = function(args) {
   var cart = new Array();
 
@@ -460,6 +491,11 @@ Panopolis.sentinel = function(args) {
 }
 
 
+/*
+ * Takes string array argument and returns null.
+ * Parse arguments and facilitate conditional branching.
+ * Application entry point.
+ */
 Panopolis.entryway = function(args) {
   var cart = this.sentinel(args);
 
@@ -482,6 +518,12 @@ Panopolis.entryway = function(args) {
 };
 
 
-Panopolis.entryway(process.argv);
+// ensure data integrity
+Object.freeze(Panopolis);
+
+// negate condition to load as library
+if ( Object.isFrozen(Panopolis) ) {
+  Panopolis.entryway(process.argv);
+}
 
 
