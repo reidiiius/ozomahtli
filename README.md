@@ -56,7 +56,11 @@ or filter with grep
 
 :
 
-    js rhinestone.js gamut | grep -B2 -A14 hx | sensible-pager
+    js rhinestone.js gamut | grep -B2 -A14 dc | sensible-pager
+
+:
+
+    js rhinestone.js gamut | grep -B2 -A14 ac | sensible-pager
 
 set execute permission
 
