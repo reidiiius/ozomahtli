@@ -2,9 +2,9 @@
 
 "use strict";
 
-const Panopolis = {
+const Panopolis = new Object();
 
-  zosimos: {
+Panopolis.zosimos = {
       i0: "____ ".repeat(12),
       j2: "HgHg PuFe ____ ____ CuNp PbAu ____ AuPb ____ AgUr ____ FePu ",
       j3: "HgSn ____ SnHg UrFe ____ PbAg ____ AuAu ____ AgPb ____ FeUr ",
@@ -88,183 +88,10 @@ const Panopolis = {
  j2k56x4: "HgHg PuFe ____ ____ CuNp ____ ____ AuPb NpCu ____ TiSn FePu ",
  j3k56x4: "HgTi ____ SnNp UrAu ____ ____ ____ AuUr NpSn ____ TiHg FeFe ",
  k1j56y7: "____ AuUr NpSn ____ TiHg FeFe HgTi ____ SnNp UrAu ____ ____ ",
- k2j56y7: "NpCu ____ ____ FePu HgHg PuFe SnTi ____ CuNp PbAu ____ ____ "},
-
-  daoling: {
-      i0: "一一 ".repeat(12),
-      j2: "汞汞 钚铁 一一 一一 铜镎 铅金 一一 金铅 一一 银铀 一一 铁钚 ",
-      j3: "汞锡 一一 锡汞 铀铁 一一 铅银 一一 金金 一一 银铅 一一 铁铀 ",
-      j5: "铅铜 一一 金锡 一一 银汞 钒铁 铁钒 一一 一一 锡金 一一 铜铅 ",
-      j6: "汞金 一一 锡铅 一一 铜铀 铅锡 一一 金汞 镎铁 一一 一一 铁镎 ",
-      k1: "一一 铁铀 汞锡 一一 锡汞 铀铁 一一 铅银 一一 金金 一一 银铅 ",
-      k2: "镎铜 一一 一一 铁钚 汞汞 钚铁 一一 铀银 一一 铅金 一一 金铅 ",
-      k5: "铀铜 一一 铅锡 一一 金汞 镎铁 一一 一一 铁镎 汞金 一一 锡铅 ",
-      k6: "汞银 一一 锡金 一一 铜铅 铅铜 一一 金锡 一一 一一 钒铁 铁钒 ",
-      n0: "汞铜 一一 锡锡 一一 铜汞 铅铁 一一 金银 一一 银金 一一 铁铅 ",
-     j17: "一一 一一 锡金 一一 铜铅 铅铜 一一 金锡 一一 银汞 钒铁 铁钒 ",
-     j23: "汞汞 钚铁 一一 铀银 一一 铅金 一一 金铅 一一 银铀 一一 铁钚 ",
-     j25: "铁铜 汞锰 一一 一一 锰汞 铜铁 铅钒 一一 一一 镎金 一一 钒铅 ",
-     j26: "汞汞 钚铁 一一 一一 铜镎 铅金 一一 金铅 镎铜 一一 一一 铁钚 ",
-     j36: "汞金 一一 锡铅 铀铜 一一 铅锡 一一 金汞 镎铁 一一 一一 铁镎 ",
-     j56: "铀铜 一一 铅锡 一一 金汞 镎铁 银钒 一一 铁镎 一一 一一 锡铅 ",
-     k12: "一一 银铀 一一 铁钚 汞汞 钚铁 一一 铀银 一一 铅金 一一 金铅 ",
-     k15: "一一 铜铀 铅锡 一一 金汞 镎铁 一一 一一 铁镎 汞金 一一 锡铅 ",
-     k25: "镎铜 一一 一一 铁钚 汞汞 钚铁 一一 一一 铜镎 铅金 一一 金铅 ",
-     k26: "汞锰 一一 一一 锰汞 铜铁 铅钒 一一 金镎 一一 一一 钒铅 铁铜 ",
-     k34: "铅铜 一一 金锡 一一 一一 钒铁 铁钒 汞银 一一 锡金 一一 铜铅 ",
-     k56: "汞金 一一 锡铅 一一 铜铀 铅锡 一一 一一 镎铁 一一 钒银 铁镎 ",
-    j236: "汞汞 钚铁 一一 铀银 一一 铅金 一一 金铅 镎铜 一一 一一 铁钚 ",
-    j256: "铁铜 汞锰 一一 一一 锰汞 铜铁 铅钒 一一 金镎 一一 一一 钒铅 ",
-    j2k5: "铁铜 汞锰 一一 一一 锰汞 铜铁 一一 一一 金镎 镎金 一一 钒铅 ",
-    j2k6: "汞汞 钚铁 一一 一一 铜镎 铅金 一一 金铅 一一 一一 钒锡 铁钚 ",
-    j2y3: "汞汞 钚铁 锡钒 一一 一一 铅金 一一 金铅 一一 银铀 一一 铁钚 ",
-    j3k5: "镎铜 一一 钒锡 铁钚 一一 钚铁 一一 一一 铜镎 铅金 一一 金铅 ",
-    j3k6: "汞钒 一一 锡镎 铀金 一一 铅铅 一一 金铀 一一 一一 钒汞 铁铁 ",
-    j5y6: "铅铜 一一 金锡 一一 银汞 钒铁 铁钒 汞银 一一 一一 一一 铜铅 ",
-    k125: "一一 银铀 一一 铁钚 汞汞 钚铁 一一 一一 铜镎 铅金 一一 金铅 ",
-    k1j5: "一一 金铀 镎锡 一一 钒汞 铁铁 汞钒 一一 一一 铀金 一一 铅铅 ",
-    k1j6: "一一 钚铁 锡钒 一一 铜镎 铅金 一一 金铅 镎铜 一一 一一 铁钚 ",
-    k256: "汞锰 一一 一一 锰汞 铜铁 铅钒 一一 一一 镎金 一一 钒铅 铁铜 ",
-    k2j5: "镎铜 一一 一一 铁钚 汞汞 钚铁 锡钒 一一 一一 铅金 一一 金铅 ",
-    k2j6: "汞锰 一一 一一 锰汞 铜铁 铅钒 一一 金镎 镎金 一一 一一 铁铜 ",
-    k2x1: "一一 一一 钒锡 铁钚 汞汞 钚铁 一一 铀银 一一 铅金 一一 金铅 ",
-    k6x5: "汞银 一一 锡金 一一 铜铅 铅铜 一一 一一 一一 银汞 钒铁 铁钒 ",
-    n167: "镎铜 一一 一一 铁钚 一一 钚铁 锡钒 一一 铜镎 铅金 一一 金铅 ",
-    n345: "一一 钚铁 一一 一一 铜镎 铅金 一一 金铅 镎铜 一一 钒锡 铁钚 ",
-    n5y2: "汞锰 一一 一一 锰汞 铜铁 一一 一一 金镎 镎金 一一 钒铅 铁铜 ",
-    n6x2: "铁铜 汞锰 一一 一一 锰汞 铜铁 铅钒 一一 金镎 镎金 一一 一一 ",
-   j17y2: "汞银 一一 一一 一一 铜铅 铅铜 一一 金锡 一一 银汞 钒铁 铁钒 ",
-   j23k6: "汞汞 钚铁 一一 铀银 一一 铅金 一一 金铅 一一 一一 钒锡 铁钚 ",
-   j25y6: "钒铜 铁锰 一一 一一 锡汞 锰铁 铜钒 铅银 一一 一一 一一 银铅 ",
-   j26y3: "汞汞 钚铁 锡钒 一一 一一 铅金 一一 金铅 镎铜 一一 一一 铁钚 ",
-   j2k34: "钒铜 铁锰 一一 一一 一一 锰铁 铜钒 铅银 一一 金金 一一 银铅 ",
-   j2k56: "汞汞 钚铁 一一 一一 铜镎 铅金 一一 一一 镎铜 一一 钒锡 铁钚 ",
-   j34k6: "汞锡 一一 锡汞 锰铁 铜钒 一一 一一 金金 一一 一一 钒铜 铁锰 ",
-   j56y7: "铀铜 一一 铅锡 一一 金汞 镎铁 银钒 一一 铁镎 汞金 一一 一一 ",
-   k12j5: "一一 银铀 一一 铁钚 汞汞 钚铁 锡钒 一一 一一 铅金 一一 金铅 ",
-   k17j5: "钒铜 铁锰 汞锡 一一 锡汞 锰铁 铜钒 一一 一一 金金 一一 一一 ",
-   k25x1: "一一 一一 钒锡 铁钚 汞汞 钚铁 一一 一一 铜镎 铅金 一一 金铅 ",
-   k26x5: "汞锡 一一 一一 锰铁 铜钒 铅银 一一 一一 一一 银铅 钒铜 铁锰 ",
-   k2j17: "一一 一一 一一 锰铁 铜钒 铅银 一一 金金 一一 银铅 钒铜 铁锰 ",
-   k2j56: "镎铜 一一 一一 铁钚 汞汞 钚铁 锡钒 一一 铜镎 一一 一一 金铅 ",
-   k34x2: "铅铜 一一 一一 一一 银汞 钒铁 铁钒 汞银 一一 锡金 一一 铜铅 ",
-   k56x4: "汞金 一一 锡铅 一一 铜铀 一一 一一 金汞 镎铁 一一 钒银 铁镎 ",
-   n25x6: "钒铜 铁锰 汞锡 一一 一一 锰铁 铜钒 铅银 一一 一一 一一 银铅 ",
-   n26y5: "一一 一一 锡汞 锰铁 铜钒 铅银 一一 一一 一一 银铅 钒铜 铁锰 ",
-   n45y2: "汞钒 一一 一一 铀金 一一 铅铅 一一 金铀 镎锡 一一 钒汞 铁铁 ",
-   n67x2: "一一 金铀 一一 一一 钒汞 铁铁 汞钒 一一 锡镎 铀金 一一 铅铅 ",
-  j136y7: "一一 一一 锡铅 铀铜 一一 铅锡 一一 金汞 镎铁 银钒 一一 铁镎 ",
-  j167y2: "汞金 一一 一一 一一 铜铀 铅锡 一一 金汞 镎铁 一一 钒银 铁镎 ",
-  j246y3: "汞汞 钚铁 锡钒 一一 铜镎 一一 一一 金铅 镎铜 一一 一一 铁钚 ",
-  j26y34: "汞汞 钚铁 锡钒 铀银 一一 一一 一一 金铅 镎铜 一一 一一 铁钚 ",
-  j2k6x5: "汞汞 钚铁 一一 一一 铜镎 铅金 一一 一一 一一 银铀 钒锡 铁钚 ",
-  j2k6y3: "汞汞 钚铁 锡钒 一一 一一 铅金 一一 金铅 一一 一一 钒锡 铁钚 ",
-  j346y5: "镎铜 一一 钒锡 铁钚 汞汞 钚铁 一一 一一 铜镎 一一 一一 金铅 ",
-  j3k5x4: "汞金 一一 锡铅 铀铜 一一 一一 一一 金汞 镎铁 银钒 一一 铁镎 ",
-  k135x4: "一一 铜铀 铅锡 一一 一一 镎铁 一一 钒银 铁镎 汞金 一一 锡铅 ",
-  k157x6: "汞汞 钚铁 锡钒 一一 铜镎 铅金 一一 一一 镎铜 一一 一一 铁钚 ",
-  k1j6y7: "一一 铜铀 铅锡 一一 金汞 镎铁 一一 钒银 铁镎 汞金 一一 一一 ",
-  k257x1: "镎铜 一一 钒锡 铁钚 汞汞 钚铁 一一 一一 铜镎 铅金 一一 一一 ",
-  k25x17: "一一 银铀 钒锡 铁钚 汞汞 钚铁 一一 一一 铜镎 铅金 一一 一一 ",
-  k2j5x1: "一一 一一 钒锡 铁钚 汞汞 钚铁 锡钒 一一 一一 铅金 一一 金铅 ",
-  k2j5y6: "镎铜 一一 一一 铁钚 汞汞 钚铁 锡钒 铀银 一一 一一 一一 金铅 ",
-  k345x2: "铀铜 一一 一一 一一 金汞 镎铁 银钒 一一 铁镎 汞金 一一 锡铅 ",
-  n167x4: "汞金 一一 一一 铀铜 一一 铅锡 一一 金汞 镎铁 银钒 一一 铁镎 ",
-  n345y7: "一一 铜铀 一一 一一 金汞 镎铁 一一 钒银 铁镎 汞金 一一 锡铅 ",
- j2k56x4: "汞汞 钚铁 一一 一一 铜镎 一一 一一 金铅 镎铜 一一 钒锡 铁钚 ",
- j3k56x4: "汞钒 一一 锡镎 铀金 一一 一一 一一 金铀 镎锡 一一 钒汞 铁铁 ",
- k1j56y7: "一一 金铀 镎锡 一一 钒汞 铁铁 汞钒 一一 锡镎 铀金 一一 一一 ",
- k2j56y7: "镎铜 一一 一一 铁钚 汞汞 钚铁 锡钒 一一 铜镎 铅金 一一 一一 "},
-
-  amalgam: {
-      i0: Array(12).fill(0),
-      j2: [153, 228,   0,   0,  92, 168,   0, 138,   0, 107,   0,  78],
-      j3: [151,   0, 121, 180,   0, 166,   0, 136,   0, 106,   0,  75],
-      j5: [165,   0, 135,   0, 105,  36,  66,   0,   0, 120,   0,  90],
-      j6: [152,   0, 122,   0,  91, 167,   0, 137, 196,   0,   0,  76],
-      k1: [  0,  75, 151,   0, 121, 180,   0, 166,   0, 136,   0, 106],
-      k2: [197,   0,   0,  78, 153, 228,   0, 182,   0, 168,   0, 138],
-      k5: [181,   0, 167,   0, 137, 196,   0,   0,  76, 152,   0, 122],
-      k6: [150,   0, 120,   0,  90, 165,   0, 135,   0,   0,  36,  66],
-      n0: [149,   0, 119,   0,  89, 164,   0, 134,   0, 104,   0,  74],
-     j17: [  0,   0, 120,   0,  90, 165,   0, 135,   0, 105,  36,  66],
-     j23: [153, 228,   0, 182,   0, 168,   0, 138,   0, 107,   0,  78],
-     j25: [ 69, 147,   0,   0,  57,  84, 162,   0,   0, 200,   0,  42],
-     j26: [153, 228,   0,   0,  92, 168,   0, 138, 197,   0,   0,  78],
-     j36: [152,   0, 122, 181,   0, 167,   0, 137, 196,   0,   0,  76],
-     j56: [181,   0, 167,   0, 137, 196,  98,   0,  76,   0,   0, 122],
-     k12: [  0, 107,   0,  78, 153, 228,   0, 182,   0, 168,   0, 138],
-     k15: [  0,  91, 167,   0, 137, 196,   0,   0,  76, 152,   0, 122],
-     k25: [197,   0,   0,  78, 153, 228,   0,   0,  92, 168,   0, 138],
-     k26: [147,   0,   0,  57,  84, 162,   0, 140,   0,   0,  42,  69],
-     k34: [165,   0, 135,   0,   0,  36,  66, 150,   0, 120,   0,  90],
-     k56: [152,   0, 122,   0,  91, 167,   0,   0, 196,   0,  38,  76],
-    j236: [153, 228,   0, 182,   0, 168,   0, 138, 197,   0,   0,  78],
-    j256: [ 69, 147,   0,   0,  57,  84, 162,   0, 140,   0,   0,  42],
-    j2k5: [ 69, 147,   0,   0,  57,  84,   0,   0, 140, 200,   0,  42],
-    j2k6: [153, 228,   0,   0,  92, 168,   0, 138,   0,   0,  39,  78],
-    j2y3: [153, 228, 114,   0,   0, 168,   0, 138,   0, 107,   0,  78],
-    j3k5: [197,   0,  39,  78,   0, 228,   0,   0,  92, 168,   0, 138],
-    j3k6: [146,   0, 124, 184,   0, 170,   0, 139,   0,   0,  41,  68],
-    j5y6: [165,   0, 135,   0, 105,  36,  66, 150,   0,   0,   0,  90],
-    k125: [  0, 107,   0,  78, 153, 228,   0,   0,  92, 168,   0, 138],
-    k1j5: [  0, 139, 199,   0,  41,  68, 146,   0,   0, 184,   0, 170],
-    k1j6: [  0, 228, 114,   0,  92, 168,   0, 138, 197,   0,   0,  78],
-    k256: [147,   0,   0,  57,  84, 162,   0,   0, 200,   0,  42,  69],
-    k2j5: [197,   0,   0,  78, 153, 228, 114,   0,   0, 168,   0, 138],
-    k2j6: [147,   0,   0,  57,  84, 162,   0, 140, 200,   0,   0,  69],
-    k2x1: [  0,   0,  39,  78, 153, 228,   0, 182,   0, 168,   0, 138],
-    k6x5: [150,   0, 120,   0,  90, 165,   0,   0,   0, 105,  36,  66],
-    n167: [197,   0,   0,  78,   0, 228, 114,   0,  92, 168,   0, 138],
-    n345: [  0, 228,   0,   0,  92, 168,   0, 138, 197,   0,  39,  78],
-    n5y2: [147,   0,   0,  57,  84,   0,   0, 140, 200,   0,  42,  69],
-    n6x2: [ 69, 147,   0,   0,  57,  84, 162,   0, 140, 200,   0,   0],
-   j17y2: [150,   0,   0,   0,  90, 165,   0, 135,   0, 105,  36,  66],
-   j23k6: [153, 228,   0, 182,   0, 168,   0, 138,   0,   0,  39,  78],
-   j25y6: [ 37,  67,   0,   0, 121,  52,  82, 166,   0,   0,   0, 106],
-   j26y3: [153, 228, 114,   0,   0, 168,   0, 138, 197,   0,   0,  78],
-   j2k34: [ 37,  67,   0,   0,   0,  52,  82, 166,   0, 136,   0, 106],
-   j2k56: [153, 228,   0,   0,  92, 168,   0,   0, 197,   0,  39,  78],
-   j34k6: [151,   0, 121,  52,  82,   0,   0, 136,   0,   0,  37,  67],
-   j56y7: [181,   0, 167,   0, 137, 196,  98,   0,  76, 152,   0,   0],
-   k12j5: [  0, 107,   0,  78, 153, 228, 114,   0,   0, 168,   0, 138],
-   k17j5: [ 37,  67, 151,   0, 121,  52,  82,   0,   0, 136,   0,   0],
-   k25x1: [  0,   0,  39,  78, 153, 228,   0,   0,  92, 168,   0, 138],
-   k26x5: [151,   0,   0,  52,  82, 166,   0,   0,   0, 106,  37,  67],
-   k2j17: [  0,   0,   0,  52,  82, 166,   0, 136,   0, 106,  37,  67],
-   k2j56: [197,   0,   0,  78, 153, 228, 114,   0,  92,   0,   0, 138],
-   k34x2: [165,   0,   0,   0, 105,  36,  66, 150,   0, 120,   0,  90],
-   k56x4: [152,   0, 122,   0,  91,   0,   0, 137, 196,   0,  38,  76],
-   n25x6: [ 37,  67, 151,   0,   0,  52,  82, 166,   0,   0,   0, 106],
-   n26y5: [  0,   0, 121,  52,  82, 166,   0,   0,   0, 106,  37,  67],
-   n45y2: [146,   0,   0, 184,   0, 170,   0, 139, 199,   0,  41,  68],
-   n67x2: [  0, 139,   0,   0,  41,  68, 146,   0, 124, 184,   0, 170],
-  j136y7: [  0,   0, 122, 181,   0, 167,   0, 137, 196,  98,   0,  76],
-  j167y2: [152,   0,   0,   0,  91, 167,   0, 137, 196,   0,  38,  76],
-  j246y3: [153, 228, 114,   0,  92,   0,   0, 138, 197,   0,   0,  78],
-  j26y34: [153, 228, 114, 182,   0,   0,   0, 138, 197,   0,   0,  78],
-  j2k6x5: [153, 228,   0,   0,  92, 168,   0,   0,   0, 107,  39,  78],
-  j2k6y3: [153, 228, 114,   0,   0, 168,   0, 138,   0,   0,  39,  78],
-  j346y5: [197,   0,  39,  78, 153, 228,   0,   0,  92,   0,   0, 138],
-  j3k5x4: [152,   0, 122, 181,   0,   0,   0, 137, 196,  98,   0,  76],
-  k135x4: [  0,  91, 167,   0,   0, 196,   0,  38,  76, 152,   0, 122],
-  k157x6: [153, 228, 114,   0,  92, 168,   0,   0, 197,   0,   0,  78],
-  k1j6y7: [  0,  91, 167,   0, 137, 196,   0,  38,  76, 152,   0,   0],
-  k257x1: [197,   0,  39,  78, 153, 228,   0,   0,  92, 168,   0,   0],
-  k25x17: [  0, 107,  39,  78, 153, 228,   0,   0,  92, 168,   0,   0],
-  k2j5x1: [  0,   0,  39,  78, 153, 228, 114,   0,   0, 168,   0, 138],
-  k2j5y6: [197,   0,   0,  78, 153, 228, 114, 182,   0,   0,   0, 138],
-  k345x2: [181,   0,   0,   0, 137, 196,  98,   0,  76, 152,   0, 122],
-  n167x4: [152,   0,   0, 181,   0, 167,   0, 137, 196,  98,   0,  76],
-  n345y7: [  0,  91,   0,   0, 137, 196,   0,  38,  76, 152,   0, 122],
- j2k56x4: [153, 228,   0,   0,  92,   0,   0, 138, 197,   0,  39,  78],
- j3k56x4: [146,   0, 124, 184,   0,   0,   0, 139, 199,   0,  41,  68],
- k1j56y7: [  0, 139, 199,   0,  41,  68, 146,   0, 124, 184,   0,   0],
- k2j56y7: [197,   0,   0,  78, 153, 228, 114,   0,  92, 168,   0,   0]}
-
+ k2j56y7: "NpCu ____ ____ FePu HgHg PuFe SnTi ____ CuNp PbAu ____ ____ ",
 };
 
-Panopolis.latin = {
+Panopolis.quintet = {
   gj: [30, 60],
   dj: [ 5, 60],
   aj: [40, 60],
@@ -284,7 +111,7 @@ Panopolis.latin = {
   ak: [50, 60],
 };
 
-Panopolis.hanzi = {
+Panopolis.triplet = {
   gj: [18, 36],
   dj: [ 3, 36],
   aj: [24, 36],
@@ -309,6 +136,48 @@ Panopolis.pitches = [
   'bn', 'fk', 'ck', 'gk', 'dk', 'ak',
 ];
 
+Panopolis.arcane = [
+  '_', '2', '3', '4', '5', '6', '7', '8', '9', 'N', 'P', 'Q', 'R'
+];
+
+Panopolis.charms = [
+  '_', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+];
+
+Panopolis.glyphs = [
+  "\u{4E00}",
+  "\u{9492}",
+  "\u{9530}",
+  "\u{94C1}",
+  "\u{94DC}",
+  "\u{94F6}",
+  "\u{9521}",
+  "\u{91D1}",
+  "\u{6C5E}",
+  "\u{94C5}",
+  "\u{94C0}",
+  "\u{954E}",
+  "\u{949A}",
+];
+
+Panopolis.regexps = [
+  /__/g,
+  /Ti/g,
+  /Mn/g,
+  /Fe/g,
+  /Cu/g,
+  /Ag/g,
+  /Sn/g,
+  /Au/g,
+  /Hg/g,
+  /Pb/g,
+  /Ur/g,
+  /Np/g,
+  /Pu/g,
+];
+
+Panopolis.keyhole = /^([i|j|k|n][0-7]{1,3}){1,2}([x|y][1-7]{1,2})?[h|i]?$/;
+
 Panopolis.signatures = Object.keys(Panopolis.zosimos).sort();
 
 Panopolis.volume = Panopolis.signatures.length;
@@ -317,27 +186,18 @@ Panopolis.serialStamp = String(new Date().getTime());
 
 
 /*
- * Takes a string argument and returns a string.
- * Converts decimal integers to hexadecimal strings.
+ * Takes a string argument and an array of substrings
+ * which replace matched patterns in the first argument.
+ * Returns a new string with replacements.
  */
-Panopolis.nystrom = function(token) {
-  var datarr = this.amalgam[token];
-  var result = new String();
+Panopolis.crucible = function(cord, gems) {
+  var wire = cord.slice(0);
 
-  if (datarr == null) {
-    result = "__ ".repeat(12);
-  } else {
-    let tmparr = [];
-
-      for (var ndx = 0; ndx < datarr.length; ndx++) {
-        tmparr.push(datarr[ndx].toString(16));
-      }
-
-    result = tmparr.join(" ").toUpperCase() + " ";
-    result = result.replace(/0/g, "__");
+  for (var ndx = 0; ndx < this.regexps.length; ndx++) {
+    wire = wire.replace(this.regexps[ndx], gems[ndx]);
   }
 
-  return result;
+  return wire;
 };
 
 
@@ -369,7 +229,7 @@ Panopolis.fingerboard = function(kind, crow) {
 
 /*
  * Takes zero arguments and returns null.
- * Format and print menu of key signatures.
+ * Formats and prints menu of key signatures.
  */
 Panopolis.selections = function() {
   for (let ndx in this.signatures) {
@@ -385,38 +245,35 @@ Panopolis.selections = function() {
 
 /*
  * Takes zero arguments and returns null.
- * Format and print all records tabulated.
+ * Formats and prints all records tabulated.
  */
 Panopolis.dumpster = function() {
   var sign = new String();
+  var bank = this.zosimos;
 
   console.log();
 
   for (let ndx in this.signatures) {
     sign = this.signatures[ndx];
 
-    if (sign in this.zosimos && typeof this.zosimos[sign] == 'string') {
+    if (sign in bank && typeof bank[sign] == 'string') {
       console.log('\n\t' + sign + '-sv' + this.serialStamp);
-      this.fingerboard('latin', this.zosimos[sign]);
+      this.fingerboard('quintet', bank[sign]);
+      console.log();
+
+      console.log('\n\t' + sign + '-zh' + this.serialStamp);
+      this.fingerboard('triplet', this.crucible(bank[sign], this.glyphs));
+      console.log();
+
+      console.log('\n\t' + sign + '-dc' + this.serialStamp);
+      this.fingerboard('triplet', this.crucible(bank[sign], this.arcane));
+      console.log();
+
+      console.log('\n\t' + sign + '-ac' + this.serialStamp);
+      this.fingerboard('triplet', this.crucible(bank[sign], this.charms));
       console.log();
     } else {
       console.log('\n\t' + 'zosimos: ' + sign + ' ?\n');
-    }
-
-    if (sign in this.daoling && typeof this.daoling[sign] == 'string') {
-      console.log('\n\t' + sign + '-zh' + this.serialStamp);
-      this.fingerboard('hanzi', this.daoling[sign]);
-      console.log();
-    } else {
-      console.log('\n\t' + 'daoling: ' + sign + ' ?\n');
-    }
-
-    if (sign in this.amalgam && typeof this.amalgam[sign] == 'object') {
-      console.log('\n\t' + sign + '-hx' + this.serialStamp);
-      this.fingerboard('hanzi', this.nystrom(sign));
-      console.log();
-    } else {
-      console.log('\n\t' + 'amalgam: ' + sign + ' ?\n');
     }
   }
 
@@ -426,41 +283,52 @@ Panopolis.dumpster = function() {
 
 
 /*
- * Takes string array argument and returns null.
- * Format and print selected records tabulated.
+ * Takes two arguments, string and string array.
+ * Formats and prints selected records tabulated,
+ * afterwards returns null.
  */
-Panopolis.retriever = function(cart) {
-  var bank = this.amalgam;
-
-  var lang = '-hx';
-  var veil = 'hanzi';
+Panopolis.retriever = function(kind, cart) {
+  var bank = this.zosimos;
+  var mask, veil, yarn;
 
   console.log();
 
   cart.forEach(sign => {
-    if (sign in bank) {
-      let yarn = bank[sign];
+    if (sign.match(this.keyhole) && sign in bank) {
+
+      if (kind == '-sv') {
+        yarn = bank[sign];
+      } else {
+        switch(kind) {
+          case '-ac':
+            mask = 'charms';
+            break;
+          case '-dc':
+            mask = 'arcane';
+            break;
+          case '-zh':
+            mask = 'glyphs';
+            break;
+          default:
+            mask = 'charms';
+        }
+
+        yarn = this.crucible(bank[sign], this[mask]);
+      }
 
       if (typeof yarn == 'string') {
 
         if (yarn.length > 36) {
-          lang = '-sv';
-          veil = 'latin';
+          veil = 'quintet';
         } else {
-          lang = '-zh';
-          veil = 'hanzi';
+          veil = 'triplet';
         }
 
-        console.log('\n\t' + sign + lang + this.serialStamp);
-        this.fingerboard(veil, bank[sign]);
+        console.log('\n\t' + sign + kind + this.serialStamp);
+        this.fingerboard(veil, yarn);
         console.log();
-
       } else {
-
-        console.log('\n\t' + sign + lang + this.serialStamp);
-        this.fingerboard(veil, this.nystrom(sign));
-        console.log();
-
+        console.log('\n\t' + 'zosimos: ' + sign + ' ?\n');
       }
     } else {
       console.log('\n\t' + sign + ' ?\n');
@@ -498,20 +366,38 @@ Panopolis.sentinel = function(args) {
  */
 Panopolis.entryway = function(args) {
   var cart = this.sentinel(args);
+  var head = cart[0];
 
   if (cart.length < 1) {
     this.selections();
   }
-  else if (cart.length == 1 && cart[0] == 'gamut') {
-    if ( Object.keys(this.daoling).length != this.volume
-      || Object.keys(this.amalgam).length != this.volume ) {
-      console.log('\n\t' + 'Check databank records: ' + this.volume + '\n');
-    } else {
-      this.dumpster();
-    }
+  else if (cart.length == 1 && head == 'gamut') {
+    this.dumpster();
+  }
+  else if (cart.length > 1 && head == '-ac') {
+    cart.shift();
+    this.retriever(head, cart);
+  }
+  else if (cart.length > 1 && head == '-dc') {
+    cart.shift();
+    this.retriever(head, cart);
+  }
+  else if (cart.length > 1 && head == '-sv') {
+    cart.shift();
+    this.retriever(head, cart);
+  }
+  else if (cart.length > 1 && head == '-zh') {
+    cart.shift();
+    this.retriever(head, cart);
   }
   else {
-    this.retriever(cart);
+    if (head.charAt(0) == '-') cart.shift();
+
+    if (cart.length) {
+      this.retriever('-ac', cart);
+    } else {
+      this.selections();
+    }
   }
 
   return;
@@ -524,6 +410,8 @@ Object.freeze(Panopolis);
 // negate condition to load as library
 if ( Object.isFrozen(Panopolis) ) {
   Panopolis.entryway(process.argv);
+} else {
+  module.exports = Panopolis;
 }
 
 

@@ -24,6 +24,22 @@ command-line
 
 :
 
+    js rhinestone.js -sv n0 j3
+
+:
+
+    js rhinestone.js -zh n0 j3
+
+:
+
+    js rhinestone.js -dc n0 j3
+
+:
+
+    js rhinestone.js -ac n0 j3
+
+:
+
     js rhinestone.js gamut | sensible-pager
 
 or filter with grep
