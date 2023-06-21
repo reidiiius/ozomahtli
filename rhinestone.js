@@ -257,7 +257,7 @@ Panopolis.dumpster = function() {
     sign = this.signatures[ndx];
 
     if (sign in bank && typeof bank[sign] == 'string') {
-      console.log('\n\t' + sign + '-sv' + this.serialStamp);
+      console.log('\n\t' + sign + '-lt' + this.serialStamp);
       this.fingerboard('quintet', bank[sign]);
       console.log();
 
@@ -296,7 +296,7 @@ Panopolis.retriever = function(kind, cart) {
   cart.forEach(sign => {
     if (sign.match(this.keyhole) && sign in bank) {
 
-      if (kind == '-sv') {
+      if (kind == '-lt') {
         yarn = bank[sign];
       } else {
         switch(kind) {
@@ -382,7 +382,7 @@ Panopolis.entryway = function(args) {
     cart.shift();
     this.retriever(head, cart);
   }
-  else if (cart.length > 1 && head == '-sv') {
+  else if (cart.length > 1 && head == '-lt') {
     cart.shift();
     this.retriever(head, cart);
   }

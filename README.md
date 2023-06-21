@@ -24,7 +24,7 @@ command-line
 
 :
 
-    js rhinestone.js -sv n0 j3
+    js rhinestone.js -lt n0 j3
 
 :
 
@@ -48,7 +48,7 @@ or filter with grep
 
 :
 
-    js rhinestone.js gamut | grep -B2 -A14 sv | sensible-pager
+    js rhinestone.js gamut | grep -B2 -A14 lt | sensible-pager
 
 :
 
