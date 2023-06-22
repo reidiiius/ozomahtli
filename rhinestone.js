@@ -202,6 +202,56 @@ Panopolis.crucible = function(cord, gems) {
 
 
 /*
+ * Takes a string argument and returns null.
+ * Formats and prints table of unique tonalities.
+ */
+Panopolis.distillate = function(mask) {
+  var bank = this.zosimos;
+  var sign = new String();
+  var crow = new String();
+  var star = new Array();
+  var duos = new Set();
+
+  for (let ndx in this.signatures) {
+    sign = this.signatures[ndx];
+
+    if (mask == 'metals') {
+      crow = bank[sign].trim();
+    } else {
+      crow = this.crucible(bank[sign], this[mask]).trim();
+    }
+
+    star = crow.split(' ')
+      .filter(item =>
+        ! item.startsWith("\x5F") &&
+        ! item.startsWith("\u{4E00}")
+      );
+
+    for (let elm in star) {
+        duos.add(star[elm]);
+    }
+  }
+
+  star = [];
+
+  duos.forEach((item) => {
+    star.push(item);
+  });
+
+  star.sort();
+
+  for (let ndx = 0; ndx < star.length; ndx++) {
+    if (ndx % 7 == 0) process.stdout.write('\n');
+
+    process.stdout.write('  ' + star[ndx]);
+  }
+
+  console.log('\n');
+  return;
+}
+
+
+/*
  * Takes two arguments, a string and an array of two integers.
  * The two integers are indices to permute the received string.
  * Returns a mutated string the same length as the one pasted.
@@ -244,12 +294,13 @@ Panopolis.selections = function() {
 
 
 /*
- * Takes zero arguments and returns null.
+ * Takes a string argument and returns null.
  * Formats and prints all records tabulated.
  */
-Panopolis.dumpster = function() {
+Panopolis.dumpster = function(mask = 'charms') {
   var sign = new String();
   var bank = this.zosimos;
+  var kind;
 
   console.log();
 
@@ -257,21 +308,30 @@ Panopolis.dumpster = function() {
     sign = this.signatures[ndx];
 
     if (sign in bank && typeof bank[sign] == 'string') {
-      console.log('\n\t' + sign + '-lt' + this.serialStamp);
-      this.fingerboard('quintet', bank[sign]);
-      console.log();
 
-      console.log('\n\t' + sign + '-zh' + this.serialStamp);
-      this.fingerboard('triplet', this.crucible(bank[sign], this.glyphs));
-      console.log();
+      if (mask == 'metals') {
+        console.log('\n\t' + sign + '-lt' + this.serialStamp);
+        this.fingerboard('quintet', bank[sign]);
+        console.log();
+      } else {
+        switch(mask) {
+          case 'charms':
+            kind = '-ac';
+            break;
+          case 'arcane':
+            kind = '-dc';
+            break;
+          case 'glyphs':
+            kind = '-zh';
+            break;
+          default:
+            kind = '-ac';
+        }
 
-      console.log('\n\t' + sign + '-dc' + this.serialStamp);
-      this.fingerboard('triplet', this.crucible(bank[sign], this.arcane));
-      console.log();
-
-      console.log('\n\t' + sign + '-ac' + this.serialStamp);
-      this.fingerboard('triplet', this.crucible(bank[sign], this.charms));
-      console.log();
+        console.log('\n\t' + sign + kind + this.serialStamp);
+        this.fingerboard('triplet', this.crucible(bank[sign], this[mask]));
+        console.log();
+      }
     } else {
       console.log('\n\t' + 'zosimos: ' + sign + ' ?\n');
     }
@@ -367,12 +427,58 @@ Panopolis.sentinel = function(args) {
 Panopolis.entryway = function(args) {
   var cart = this.sentinel(args);
   var head = cart[0];
+  var mask;
 
   if (cart.length < 1) {
     this.selections();
   }
   else if (cart.length == 1 && head == 'gamut') {
     this.dumpster();
+  }
+  else if (cart.length == 2 && cart[1] == 'gamut') {
+    switch(head) {
+      case '-ac':
+        mask = 'charms';
+        break;
+      case '-dc':
+        mask = 'arcane';
+        break;
+      case '-lt':
+        mask = 'metals';
+        break;
+      case '-zh':
+        mask = 'glyphs';
+        break;
+      default:
+        mask = 'charms';
+    }
+
+    this.dumpster(mask);
+  }
+
+
+  else if (cart.length == 1 && head == 'tonal') {
+    this.distillate('charms');
+  }
+  else if (cart.length == 2 && cart[1] == 'tonal') {
+    switch(head) {
+      case '-ac':
+        mask = 'charms';
+        break;
+      case '-dc':
+        mask = 'arcane';
+        break;
+      case '-lt':
+        mask = 'metals';
+        break;
+      case '-zh':
+        mask = 'glyphs';
+        break;
+      default:
+        mask = 'charms';
+    }
+
+    this.distillate(mask);
   }
   else if (cart.length > 1 && head == '-ac') {
     cart.shift();

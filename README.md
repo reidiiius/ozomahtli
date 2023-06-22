@@ -40,35 +40,39 @@ command-line
 
 :
 
+    js rhinestone.js tonal
+
+:
+
+    js rhinestone.js -lt tonal
+
+:
+
+    js rhinestone.js -zh tonal
+
+:
+
+    js rhinestone.js -dc tonal
+
+:
+
+    js rhinestone.js -ac tonal
+
+:
+
     js rhinestone.js gamut | sensible-pager
+
+:
+
+    js rhinestone.js -lt gamut | sensible-pager
 
 or filter with grep
 
-    js rhinestone.js gamut | grep -B2 -A14 n0 | sensible-pager
+    js rhinestone.js gamut | grep -B2 -A14 k56 | sensible-pager
 
 :
 
-    js rhinestone.js gamut | grep -B2 -A14 lt | sensible-pager
-
-:
-
-    js rhinestone.js gamut | grep -B2 -A14 zh | sensible-pager
-
-:
-
-    js rhinestone.js gamut | grep -B2 -A14 dc | sensible-pager
-
-:
-
-    js rhinestone.js gamut | grep -B2 -A14 ac | sensible-pager
-
-set execute permission
-
-    chmod u+x rhinestone.js
-
-:
-
-    ./rhinestone.js gamut | sensible-pager
+    js rhinestone.js -lt gamut | grep -B2 -A14 k56 | sensible-pager
 
 ---
 
