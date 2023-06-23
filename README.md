@@ -60,6 +60,14 @@ command-line
 
 :
 
+    js rhinestone.js group yq
+
+:
+
+    js rhinestone.js query 56
+
+:
+
     js rhinestone.js gamut | sensible-pager
 
 :

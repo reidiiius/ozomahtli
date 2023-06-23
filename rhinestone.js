@@ -190,11 +190,11 @@ Panopolis.serialStamp = String(new Date().getTime());
  * which replace matched patterns in the first argument.
  * Returns a new string with replacements.
  */
-Panopolis.crucible = function(cord, gems) {
+Panopolis.crucible = function(cord, subs) {
   var wire = cord.slice(0);
 
   for (var ndx = 0; ndx < this.regexps.length; ndx++) {
-    wire = wire.replace(this.regexps[ndx], gems[ndx]);
+    wire = wire.replace(this.regexps[ndx], subs[ndx]);
   }
 
   return wire;
@@ -205,7 +205,7 @@ Panopolis.crucible = function(cord, gems) {
  * Takes a string argument and returns null.
  * Formats and prints table of unique tonalities.
  */
-Panopolis.distillate = function(mask) {
+Panopolis.distillate = function(mask = 'charms') {
   var bank = this.zosimos;
   var sign = new String();
   var crow = new String();
@@ -273,6 +273,68 @@ Panopolis.fingerboard = function(kind, crow) {
       this.pegbox(crow, this[kind][this.pitches[item]])
     );
   }
+  return;
+};
+
+
+/*
+ * Takes a string argument and returns null.
+ * Formats and prints table of found keys.
+ */
+Panopolis.panther = function(kind) {
+  var cart = this.signatures;
+  var gems = new Array();
+
+  gems = cart.filter(sign => sign.match(kind));
+
+  if (gems.length) {
+    for (let ndx in gems) {
+      if (ndx % 7 == 0) process.stdout.write('\n');
+
+      process.stdout.write('\t' + gems[ndx]);
+    }
+  } else {
+    process.stdout.write('\n\t' + kind + ' ?');
+  }
+
+  console.log('\n');
+  return;
+};
+
+
+/*
+ * Takes two string arguments and returns null.
+ * Formats and prints table of found tones.
+ */
+Panopolis.vulture = function(kind, mask = 'charms') {
+  var cart = this.signatures;
+  var bank = this.zosimos;
+  var gems = new Array();
+  var crow = new String();
+
+  cart.forEach(sign => {
+    if (mask == 'metals') {
+      crow = bank[sign].trim();
+    } else {
+      crow = this.crucible(bank[sign], this[mask]).trim();
+    }
+
+    if (crow.match(kind)) {
+      gems.push(sign);
+    }
+  });
+
+  if (gems.length) {
+    for (let ndx in gems) {
+      if (ndx % 7 == 0) process.stdout.write('\n');
+
+      process.stdout.write('\t' + gems[ndx]);
+    }
+  } else {
+    process.stdout.write('\n\t' + kind + ' ?');
+  }
+
+  console.log('\n');
   return;
 };
 
@@ -435,6 +497,9 @@ Panopolis.entryway = function(args) {
   else if (cart.length == 1 && head == 'gamut') {
     this.dumpster();
   }
+  else if (cart.length == 1 && head == 'tonal') {
+    this.distillate();
+  }
   else if (cart.length == 2 && cart[1] == 'gamut') {
     switch(head) {
       case '-ac':
@@ -455,11 +520,6 @@ Panopolis.entryway = function(args) {
 
     this.dumpster(mask);
   }
-
-
-  else if (cart.length == 1 && head == 'tonal') {
-    this.distillate('charms');
-  }
   else if (cart.length == 2 && cart[1] == 'tonal') {
     switch(head) {
       case '-ac':
@@ -479,6 +539,12 @@ Panopolis.entryway = function(args) {
     }
 
     this.distillate(mask);
+  }
+  else if (cart.length == 2 && head == 'query') {
+    this.panther(cart[1]);
+  }
+  else if (cart.length == 2 && head == 'group') {
+    this.vulture(cart[1], 'charms');
   }
   else if (cart.length > 1 && head == '-ac') {
     cart.shift();
