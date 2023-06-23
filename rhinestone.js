@@ -482,6 +482,50 @@ Panopolis.sentinel = function(args) {
 
 
 /*
+ * Takes zero arguments and returns null.
+ * Prints template literal of command options.
+ */
+Panopolis.tutorial = function() {
+  var cmd = 'js rhinestone.js';
+
+  console.log(`
+  Usage: ${cmd} [option [process [arguments]]]
+
+  Options:
+    -h  	This help message
+    -ac 	Ascii characters
+    -dc 	Deck of cards
+    -lt 	Latin metallic
+    -zh 	Hanzi characters
+
+  Processes:
+    group 	Correlate key signatures by tonal function.
+    query 	Search available key signatures by pattern.
+    tonal 	Correlate tonal functions by encoding flag.
+
+  Samples:
+		${cmd}
+
+		${cmd} n0 j36
+
+		${cmd} -dc n0 j36
+
+		${cmd} group yq
+
+		${cmd} -lt group NpFe
+
+		${cmd} query j2
+
+		${cmd} tonal
+
+		${cmd} -zh tonal
+  `);
+
+  return;
+}
+
+
+/*
  * Takes string array argument and returns null.
  * Parse arguments and facilitate conditional branching.
  * Application entry point.
@@ -493,6 +537,9 @@ Panopolis.entryway = function(args) {
 
   if (cart.length < 1) {
     this.selections();
+  }
+  else if (cart.length == 1 && head == '-h') {
+    this.tutorial();
   }
   else if (cart.length == 1 && head == 'gamut') {
     this.dumpster();
