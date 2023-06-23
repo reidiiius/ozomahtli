@@ -499,6 +499,7 @@ Panopolis.tutorial = function() {
     -zh 	Hanzi characters
 
   Processes:
+    gamut 	Prints all records tabulated.
     group 	Correlate key signatures by tonal function.
     query 	Search available key signatures by pattern.
     tonal 	Correlate tonal functions by encoding flag.
@@ -519,6 +520,10 @@ Panopolis.tutorial = function() {
 		${cmd} tonal
 
 		${cmd} -zh tonal
+
+		${cmd} gamut
+
+		${cmd} -dc gamut
   `);
 
   return;
