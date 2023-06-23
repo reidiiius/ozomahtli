@@ -64,6 +64,18 @@ command-line
 
 :
 
+    js rhinestone.js -lt group NpFe
+
+:
+
+    js rhinestone.js -zh group 镎铁
+
+:
+
+    js rhinestone.js -dc group Q4
+
+:
+
     js rhinestone.js query 56
 
 :
@@ -73,14 +85,6 @@ command-line
 :
 
     js rhinestone.js -lt gamut | sensible-pager
-
-or filter with grep
-
-    js rhinestone.js gamut | grep -B2 -A14 k56 | sensible-pager
-
-:
-
-    js rhinestone.js -lt gamut | grep -B2 -A14 k56 | sensible-pager
 
 ---
 

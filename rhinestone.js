@@ -546,6 +546,26 @@ Panopolis.entryway = function(args) {
   else if (cart.length == 2 && head == 'group') {
     this.vulture(cart[1], 'charms');
   }
+  else if (cart.length == 3 && cart[1] == 'group') {
+    switch(head) {
+      case '-ac':
+        mask = 'charms';
+        break;
+      case '-dc':
+        mask = 'arcane';
+        break;
+      case '-lt':
+        mask = 'metals';
+        break;
+      case '-zh':
+        mask = 'glyphs';
+        break;
+      default:
+        mask = 'charms';
+    }
+
+    this.vulture(cart[2], mask);
+  }
   else if (cart.length > 1 && head == '-ac') {
     cart.shift();
     this.retriever(head, cart);
