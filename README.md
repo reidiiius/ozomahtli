@@ -20,6 +20,10 @@ command-line
 
 :
 
+    js rhinestone.js -h
+
+:
+
     js rhinestone.js n0 j3
 
 :
