@@ -11,11 +11,32 @@ if (! Object.entries(Panopolis).length ) {
 }
 
 const Elapida = {
-  format: "\n\tFailed: %d, Passed: %d, Tested: %d\n",
+  format: "\n\tErrors: %d, Failed: %d, Passed: %d, Tested: %d\n",
+  errors: 0,
   failed: 0,
   passed: 0,
   tested: 0,
 };
+
+Elapida.diagnose = function(moniker, anomaly) {
+  console.count('caught-exceptions');
+  console.log("where: %s", moniker);
+  console.log(anomaly);
+
+  ++this.errors;
+  return;
+}
+
+Elapida.scorecard = function(bool) {
+  if (bool) {
+    ++this.passed;
+  } else {
+    ++this.failed;
+  }
+
+  ++this.tested;
+  return;
+}
 
 console.time('timeline');
 
@@ -29,18 +50,13 @@ try {
 
   console.assert(bool, "%s", 'dumpster returns null');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: dumpster 1');
-  console.log(anomaly);
+  let moniker = 'dumpster-1';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -53,18 +69,13 @@ try {
 
   console.assert(bool, "%s", 'dumpster returns null');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: dumpster 2');
-  console.log(anomaly);
+  let moniker = 'dumpster-2';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -76,18 +87,13 @@ try {
 
   console.assert(bool, "%s", 'zosimos is object');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: zosimos');
-  console.log(anomaly);
+  let moniker = 'zosimos';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -99,18 +105,13 @@ try {
 
   console.assert(bool, "%s", 'quintet is object');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: quintet');
-  console.log(anomaly);
+  let moniker = 'quintet';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -122,18 +123,13 @@ try {
 
   console.assert(bool, "%s", 'triplet is object');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: triplet');
-  console.log(anomaly);
+  let moniker = 'triplet';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -145,18 +141,13 @@ try {
 
   console.assert(bool, "%s", 'pitches is object');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: pitches');
-  console.log(anomaly);
+  let moniker = 'pitches';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -168,18 +159,13 @@ try {
 
   console.assert(bool, "%s", 'arcane is object');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: arcane');
-  console.log(anomaly);
+  let moniker = 'arcane';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -191,18 +177,13 @@ try {
 
   console.assert(bool, "%s", 'charms is object');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: charms');
-  console.log(anomaly);
+  let moniker = 'charms';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -214,18 +195,13 @@ try {
 
   console.assert(bool, "%s", 'glyphs is object');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: glyphs');
-  console.log(anomaly);
+  let moniker = 'glyphs';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -237,18 +213,13 @@ try {
 
   console.assert(bool, "%s", 'regexs is object');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: regexps');
-  console.log(anomaly);
+  let moniker = 'regexps';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -260,18 +231,13 @@ try {
 
   console.assert(bool, "%s", 'keyhole is object');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: keyhole');
-  console.log(anomaly);
+  let moniker = 'keyhole';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -283,18 +249,13 @@ try {
 
   console.assert(bool, "%s", 'signatures is object');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: signature');
-  console.log(anomaly);
+  let moniker = 'signatures';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -306,18 +267,13 @@ try {
 
   console.assert(bool, "%s", 'volume is number');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: volume');
-  console.log(anomaly);
+  let moniker = 'volume';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -329,18 +285,13 @@ try {
 
   console.assert(bool, "%s", 'serialStamp is string');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: serialStamp');
-  console.log(anomaly);
+  let moniker = 'serialStamp';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -354,18 +305,13 @@ try {
 
   console.assert(bool, "%s", 'crucible returns a string');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: crucible');
-  console.log(anomaly);
+  let moniker = 'crucible';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -378,18 +324,13 @@ try {
 
   console.assert(bool, "%s", 'distillate returns null');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: distillate 1');
-  console.log(anomaly);
+  let moniker = 'distillate-1';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -402,18 +343,13 @@ try {
 
   console.assert(bool, "%s", 'distillate returns null');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: distillate 2');
-  console.log(anomaly);
+  let moniker = 'distillate-2';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -427,18 +363,13 @@ try {
 
   console.assert(bool, "%s", 'pegbox returns a string');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: pegbox');
-  console.log(anomaly);
+  let moniker = 'pegbox';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -452,18 +383,13 @@ try {
 
   console.assert(bool, "%s", 'fingerboard returns null');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: fingerboard');
-  console.log(anomaly);
+  let moniker = 'fingerboard';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -476,18 +402,13 @@ try {
 
   console.assert(bool, "%s", 'panther returns null');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: panther');
-  console.log(anomaly);
+  let moniker = 'panther';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -501,18 +422,13 @@ try {
 
   console.assert(bool, "%s", 'vulture returns null');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: vulture 1');
-  console.log(anomaly);
+  let moniker = 'vulture-1';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -526,18 +442,13 @@ try {
 
   console.assert(bool, "%s", 'vulture returns null');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: vulture 2');
-  console.log(anomaly);
+  let moniker = 'vulture-2';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -549,18 +460,13 @@ try {
 
   console.assert(bool, "%s", 'selections returns null');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: selections');
-  console.log(anomaly);
+  let moniker = 'selections';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -574,18 +480,13 @@ try {
 
   console.assert(bool, "%s", 'retriever returns null');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: retriever');
-  console.log(anomaly);
+  let moniker = 'retriever';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -598,18 +499,13 @@ try {
 
   console.assert(bool, "%s", 'sentinel returns object');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: sentinel');
-  console.log(anomaly);
+  let moniker = 'sentinel';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -621,18 +517,13 @@ try {
 
   console.assert(bool, "%s", 'tutorial returns null');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: tutorial');
-  console.log(anomaly);
+  let moniker = 'tutorial';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -644,18 +535,13 @@ try {
 
   console.assert(bool, "%s", 'entryway returns null');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: entryway 1');
-  console.log(anomaly);
+  let moniker = 'entryway-1';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
@@ -667,22 +553,18 @@ try {
 
   console.assert(bool, "%s", 'entryway returns null');
 
-  if (bool) {
-    ++Elapida.passed;
-  } else {
-    ++Elapida.failed;
-  }
-  ++Elapida.tested;
+  Elapida.scorecard(bool);
 
   console.count('test-completed');
 } catch (anomaly) {
-  console.count('caught-exceptions');
-  console.log('where: entryway 2');
-  console.log(anomaly);
+  let moniker = 'entryway-2';
+
+  Elapida.diagnose(moniker, anomaly);
 }
 
 console.timeLog('timeline');
 
-console.log(Elapida.format, Elapida.failed, Elapida.passed, Elapida.tested)
+console.log(Elapida.format,
+  Elapida.errors, Elapida.failed, Elapida.passed, Elapida.tested)
 
 
