@@ -112,6 +112,8 @@ console.time('timeline'); // start timer
 
 Elapida.examine_returned(null, 'dumpster', undefined);
 
+Elapida.examine_returned(null, 'dumpster', 'nought');
+
 Elapida.examine_returned(null, 'dumpster', 'arcane');
 
 Elapida.examine_datatype('object', 'zosimos');
@@ -141,25 +143,45 @@ Elapida.examine_datatype('string', 'serialStamp');
 Elapida.examine_typified('string', 'crucible',
   Panopolis.zosimos['n0'], Panopolis.quintet['cn']);
 
+Elapida.examine_typified('string', 'crucible', '', []);
+
 Elapida.examine_returned(null, 'distillate', undefined);
+
+Elapida.examine_returned(null, 'distillate', 'nought');
 
 Elapida.examine_returned(null, 'distillate', 'charms');
 
 Elapida.examine_typified('string', 'pegbox',
   Panopolis.zosimos['n0'], Panopolis.quintet['cn']);
 
+Elapida.examine_typified('string', 'pegbox', '', []);
+
 Elapida.examine_returned(null, 'fingerboard', 'quintet',
   Panopolis.zosimos['n0']);
+
+Elapida.examine_returned(null, 'fingerboard', 'triplet',
+  Panopolis.zosimos['n0']);
+
+Elapida.examine_returned(null, 'panther', 'k99');
 
 Elapida.examine_returned(null, 'panther', 'j56');
 
 Elapida.examine_returned(null, 'vulture', undefined, undefined);
 
+Elapida.examine_returned(null, 'vulture', 'mh', 'nought');
+
+Elapida.examine_returned(null, 'vulture', 'yq', 'nought');
+
 Elapida.examine_returned(null, 'vulture', 'yq', 'charms');
 
 Elapida.examine_returned(null, 'selections', undefined);
 
+Elapida.examine_returned(null, 'retriever', undefined, undefined);
+
 Elapida.examine_returned(null, 'retriever', '-zh', ['k1', 'j0k9', 'k15']);
+
+Elapida.examine_typified('object', 'sentinel',
+  Array(Panopolis.volume + 1).fill(0));
 
 Elapida.examine_typified('object', 'sentinel',
   Array(Panopolis.volume).fill('k2j56y7h'));
@@ -168,7 +190,15 @@ Elapida.examine_returned(null, 'tutorial', undefined);
 
 Elapida.examine_returned(null, 'entryway', []);
 
+Elapida.examine_returned(null, 'entryway', [null, null, 'k9']);
+
 Elapida.examine_returned(null, 'entryway', [null, null, 'n0']);
+
+Elapida.examine_returned(null, 'entryway', [null, null, 'tonal']);
+
+Elapida.examine_returned(null, 'entryway', [null, null, '-zh', 'tonal']);
+
+Elapida.examine_returned(null, 'entryway', [null, null, '-dc', 'group', 'R4']);
 
 console.log(Elapida.format,
   Elapida.errors, Elapida.failed, Elapida.passed, Elapida.tested

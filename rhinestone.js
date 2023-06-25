@@ -218,6 +218,7 @@ Panopolis.distillate = function(mask = 'charms') {
     if (mask == 'metals') {
       crow = bank[sign].trim();
     } else {
+      if (! this[mask]) mask = 'charms';
       crow = this.crucible(bank[sign], this[mask]).trim();
     }
 
@@ -316,6 +317,7 @@ Panopolis.vulture = function(kind, mask = 'charms') {
     if (mask == 'metals') {
       crow = bank[sign].trim();
     } else {
+      if (! this[mask]) mask = 'charms';
       crow = this.crucible(bank[sign], this[mask]).trim();
     }
 
@@ -387,6 +389,7 @@ Panopolis.dumpster = function(mask = 'charms') {
             kind = '-zh';
             break;
           default:
+            mask = 'charms';
             kind = '-ac';
         }
 
@@ -409,7 +412,7 @@ Panopolis.dumpster = function(mask = 'charms') {
  * Formats and prints selected records tabulated,
  * afterwards returns null.
  */
-Panopolis.retriever = function(kind, cart) {
+Panopolis.retriever = function(kind, cart = []) {
   var bank = this.zosimos;
   var mask, veil, yarn;
 
