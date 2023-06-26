@@ -492,20 +492,20 @@ Panopolis.tutorial = function() {
   var cmd = 'js rhinestone.js';
 
   console.log(`
-  Usage: ${cmd} [option [process [arguments]]]
+  Usage: ${cmd} [option [process [tonality | signatures]]]
 
   Options:
-    -h  	This help message
-    -ac 	Ascii characters
-    -dc 	Deck of cards
-    -lt 	Latin metallic
-    -zh 	Hanzi characters
+    -h  	Prints this user guide
+    -ac 	ASCII characters [o-z]
+    -dc		Standard deck of cards
+    -lt 	Latin chemical symbols
+    -zh 	Hanzi chemical symbols
 
   Processes:
-    gamut 	Prints all records tabulated.
-    group 	Correlate key signatures by tonal function.
-    query 	Search available key signatures by pattern.
-    tonal 	Correlate tonal functions by encoding flag.
+    gamut 	Print records tabulated with optional flag
+    group 	Correlate key signatures by tonal function
+    query 	Search available key signatures by pattern
+    tonal 	Correlate tonal functions by optional flag
 
   Samples:
 		${cmd}
