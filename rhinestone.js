@@ -2,7 +2,7 @@
 
 "use strict";
 
-const Panopolis = new Object();
+const Panopolis = Object.create(null);
 
 Panopolis.zosimos = {
       i0: "____ ".repeat(12),
@@ -161,19 +161,19 @@ Panopolis.glyphs = [
 ];
 
 Panopolis.regexps = [
-  /__/g,
-  /Ti/g,
-  /Mn/g,
-  /Fe/g,
-  /Cu/g,
-  /Ag/g,
-  /Sn/g,
-  /Au/g,
-  /Hg/g,
-  /Pb/g,
-  /Ur/g,
-  /Np/g,
-  /Pu/g,
+  '__',
+  'Ti',
+  'Mn',
+  'Fe',
+  'Cu',
+  'Ag',
+  'Sn',
+  'Au',
+  'Hg',
+  'Pb',
+  'Ur',
+  'Np',
+  'Pu',
 ];
 
 Panopolis.keyhole = /^([i|j|k|n][0-7]{1,3}){1,2}([x|y][1-7]{1,2})?[h|i]?$/;
@@ -192,9 +192,11 @@ Panopolis.serialStamp = String(new Date().getTime());
  */
 Panopolis.crucible = function(cord, subs) {
   var wire = cord.slice(0);
+  var rexp = new RegExp('##', 'g');
 
   for (var ndx = 0; ndx < this.regexps.length; ndx++) {
-    wire = wire.replace(this.regexps[ndx], subs[ndx]);
+    rexp = new RegExp(this.regexps[ndx], 'g');
+    wire = wire.replace(rexp, subs[ndx]);
   }
 
   return wire;
@@ -414,12 +416,13 @@ Panopolis.dumpster = function(mask = 'charms') {
  */
 Panopolis.retriever = function(kind, cart = []) {
   var bank = this.zosimos;
+  var rexp = new RegExp(this.keyhole, 'i');
   var mask, veil, yarn;
 
   console.log();
 
   cart.forEach(sign => {
-    if (sign.match(this.keyhole) && sign in bank) {
+    if (sign.match(rexp) && sign in bank) {
 
       if (kind == '-lt') {
         yarn = bank[sign];
