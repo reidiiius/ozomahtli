@@ -204,7 +204,7 @@ Panopolis.crucible = function(cord, subs) {
 
 
 /*
- * Takes a string argument and returns null.
+ * Takes a string argument and returns undefined.
  * Formats and prints table of unique tonalities.
  */
 Panopolis.distillate = function(mask = 'charms') {
@@ -265,7 +265,7 @@ Panopolis.pegbox = function(crow, gear) {
 
 
 /*
- * Takes two string arguments and returns null.
+ * Takes two string arguments and returns undefined.
  * The first argument designates character style.
  * The second is a string to be mutated and printed
  * according to the string array of tuning pitches.
@@ -281,7 +281,7 @@ Panopolis.fingerboard = function(kind, crow) {
 
 
 /*
- * Takes a string argument and returns null.
+ * Takes a string argument and returns undefined.
  * Formats and prints table of found keys.
  */
 Panopolis.panther = function(kind) {
@@ -306,7 +306,7 @@ Panopolis.panther = function(kind) {
 
 
 /*
- * Takes two string arguments and returns null.
+ * Takes two string arguments and returns undefined.
  * Formats and prints table of found tones.
  */
 Panopolis.vulture = function(kind, mask = 'charms') {
@@ -344,7 +344,7 @@ Panopolis.vulture = function(kind, mask = 'charms') {
 
 
 /*
- * Takes zero arguments and returns null.
+ * Takes zero arguments and returns undefined.
  * Formats and prints menu of key signatures.
  */
 Panopolis.selections = function() {
@@ -360,7 +360,7 @@ Panopolis.selections = function() {
 
 
 /*
- * Takes a string argument and returns null.
+ * Takes a string argument and returns undefined.
  * Formats and prints all records tabulated.
  */
 Panopolis.dumpster = function(mask = 'charms') {
@@ -412,7 +412,7 @@ Panopolis.dumpster = function(mask = 'charms') {
 /*
  * Takes two arguments, string and string array.
  * Formats and prints selected records tabulated,
- * afterwards returns null.
+ * afterwards returns undefined.
  */
 Panopolis.retriever = function(kind, cart = []) {
   var bank = this.zosimos;
@@ -488,14 +488,16 @@ Panopolis.sentinel = function(args) {
 
 
 /*
- * Takes zero arguments and returns null.
+ * Takes zero arguments and returns undefined.
  * Prints template literal of command options.
  */
 Panopolis.tutorial = function() {
-  var cmd = 'js rhinestone.js';
+  var executor = process.argv0;
+  var pathways = process.argv[1].split('/');
+  var commands = `${executor} ${pathways.pop()}`;
 
   console.log(`
-  Usage: ${cmd} [option [process [tonality | signatures]]]
+  Usage: ${commands} [option [process [tonality | signatures]]]
 
   Options:
     -h  	Prints this user guide
@@ -511,25 +513,25 @@ Panopolis.tutorial = function() {
     tonal 	Correlate tonal functions by optional flag
 
   Samples:
-		${cmd}
+		${commands}
 
-		${cmd} n0 j36
+		${commands} n0 j36
 
-		${cmd} -dc n0 j36
+		${commands} -dc n0 j36
 
-		${cmd} group yq
+		${commands} group yq
 
-		${cmd} -lt group NpFe
+		${commands} -lt group NpFe
 
-		${cmd} query j2
+		${commands} query j2
 
-		${cmd} tonal
+		${commands} tonal
 
-		${cmd} -zh tonal
+		${commands} -zh tonal
 
-		${cmd} gamut
+		${commands} gamut
 
-		${cmd} -dc gamut
+		${commands} -dc gamut
   `);
 
   return;
@@ -537,7 +539,7 @@ Panopolis.tutorial = function() {
 
 
 /*
- * Takes string array argument and returns null.
+ * Takes string array argument and returns undefined.
  * Parse arguments and facilitate conditional branching.
  * Application entry point.
  */
