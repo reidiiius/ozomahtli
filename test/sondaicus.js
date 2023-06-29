@@ -71,6 +71,34 @@ Elapida.examine_datatype = function(moniker, genus) {
 };
 
 
+Elapida.check_codepoints = function(moniker) {
+  try {
+    console.count('test-initiated');
+
+    let slots = Object.keys(Panopolis[moniker]);
+    let value;
+    let boole;
+
+    for (let item = 0; item < slots.length; item++) {
+      value = Panopolis[moniker][slots[item]];
+
+      boole = ('number' === typeof(value) && value <= 65535);
+
+      console.assert(boole, "%s[%s] is codepoint", moniker, slots[item]);
+
+      Elapida.scorecard(boole);
+    }
+
+  } catch (anomaly) {
+    Elapida.diagnose(moniker, anomaly);
+  } finally {
+    Elapida.tailgate(moniker);
+  }
+
+  return;
+};
+
+
 Elapida.examine_records = function(moniker, genus, width) {
   try {
     console.count('test-initiated');
@@ -168,15 +196,15 @@ Elapida.examine_records('pitches', 'string',  2);
 
 Elapida.examine_datatype('arcane', 'object');
 
-Elapida.examine_records('arcane' , 'string',  1);
+Elapida.check_codepoints('arcane');
 
 Elapida.examine_datatype('charms', 'object');
 
-Elapida.examine_records('charms' , 'string',  1);
+Elapida.check_codepoints('charms');
 
 Elapida.examine_datatype('glyphs', 'object');
 
-Elapida.examine_records('glyphs' , 'string',  1);
+Elapida.check_codepoints('glyphs');
 
 Elapida.examine_datatype('regexps', 'object');
 

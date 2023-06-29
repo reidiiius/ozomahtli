@@ -137,27 +137,27 @@ Panopolis.pitches = [
 ];
 
 Panopolis.arcane = [
-  '_', '2', '3', '4', '5', '6', '7', '8', '9', 'N', 'P', 'Q', 'R'
+  95, 50, 51, 52, 53, 54, 55, 56, 57, 78, 80, 81, 82
 ];
 
 Panopolis.charms = [
-  '_', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+  95, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122
 ];
 
 Panopolis.glyphs = [
-  "\u{4E00}",
-  "\u{9492}",
-  "\u{9530}",
-  "\u{94C1}",
-  "\u{94DC}",
-  "\u{94F6}",
-  "\u{9521}",
-  "\u{91D1}",
-  "\u{6C5E}",
-  "\u{94C5}",
-  "\u{94C0}",
-  "\u{954E}",
-  "\u{949A}",
+  19968,
+  38034,
+  38192,
+  38081,
+  38108,
+  38134,
+  38177,
+  37329,
+  27742,
+  38085,
+  38080,
+  38222,
+  38042,
 ];
 
 Panopolis.regexps = [
@@ -196,7 +196,7 @@ Panopolis.crucible = function(cord, subs) {
 
   for (let ndx = 0; ndx < this.regexps.length; ndx++) {
     rexp = new RegExp(this.regexps[ndx], 'g');
-    wire = wire.replace(rexp, subs[ndx]);
+    wire = wire.replace(rexp, String.fromCharCode(subs[ndx]));
   }
 
   return wire;
@@ -317,6 +317,7 @@ Panopolis.vulture = function(kind, mask = 'charms') {
   var cart = this.signatures;
   var bank = this.zosimos;
   var crow = new String();
+  var rexp = new RegExp(kind);
   var gems = new Array();
 
   cart.forEach(sign => {
@@ -327,7 +328,7 @@ Panopolis.vulture = function(kind, mask = 'charms') {
       crow = this.crucible(bank[sign], this[mask]).trim();
     }
 
-    if (crow.match(kind)) {
+    if (rexp.test(crow)) {
       gems.push(sign);
     }
   });
@@ -426,7 +427,7 @@ Panopolis.retriever = function(kind, cart = []) {
   console.log();
 
   cart.forEach(sign => {
-    if (sign.match(rexp) && sign in bank) {
+    if (rexp.test(sign) && sign in bank) {
 
       if (kind === '-lt') {
         yarn = bank[sign];
