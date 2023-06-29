@@ -71,23 +71,47 @@ Elapida.examine_datatype = function(moniker, genus) {
 };
 
 
-Elapida.check_codepoints = function(moniker) {
+Elapida.measure_carriage = function(moniker) {
   try {
     console.count('test-initiated');
 
-    let slots = Object.keys(Panopolis[moniker]);
-    let value;
+    let units = Panopolis[moniker];
+    let slots = Panopolis.regexps.length;
     let boole;
 
-    for (let item = 0; item < slots.length; item++) {
-      value = Panopolis[moniker][slots[item]];
+    if (! Array.isArray(units)) {
+      throw new TypeError(`${moniker} is not an array`);
+    }
 
-      boole = ('number' === typeof(value) && value <= 65535);
+    boole = (units.length === slots);
 
-      console.assert(boole, "%s[%s] is codepoint", moniker, slots[item]);
+    console.assert(boole, "%s length not equal %d", moniker, slots);
+
+    Elapida.scorecard(boole);
+  } catch (anomaly) {
+    Elapida.diagnose(moniker, anomaly);
+  } finally {
+    Elapida.tailgate(moniker);
+  }
+
+  return;
+};
+
+
+Elapida.check_code_units = function(moniker) {
+  try {
+    console.count('test-initiated');
+
+    let units = Panopolis[moniker];
+    let value, boole;
+
+    units.forEach(value => {
+      boole = (Number.isInteger(value) && value > 31 && value < 65519);
+
+      console.assert(boole, "%s[%s] is code unit", moniker, value);
 
       Elapida.scorecard(boole);
-    }
+    });
 
   } catch (anomaly) {
     Elapida.diagnose(moniker, anomaly);
@@ -182,33 +206,47 @@ Elapida.examine_datatype('zosimos', 'object');
 
 Elapida.examine_records('zosimos', 'string', 60);
 
+
 Elapida.examine_datatype('quintet', 'object');
 
 Elapida.examine_records('quintet', 'object',  2);
+
 
 Elapida.examine_datatype('triplet', 'object');
 
 Elapida.examine_records('triplet', 'object',  2);
 
+
 Elapida.examine_datatype('pitches', 'object');
 
 Elapida.examine_records('pitches', 'string',  2);
 
+
 Elapida.examine_datatype('arcane', 'object');
 
-Elapida.check_codepoints('arcane');
+Elapida.measure_carriage('arcane');
+
+Elapida.check_code_units('arcane');
+
 
 Elapida.examine_datatype('charms', 'object');
 
-Elapida.check_codepoints('charms');
+Elapida.measure_carriage('charms');
+
+Elapida.check_code_units('charms');
+
 
 Elapida.examine_datatype('glyphs', 'object');
 
-Elapida.check_codepoints('glyphs');
+Elapida.measure_carriage('glyphs');
+
+Elapida.check_code_units('glyphs');
+
 
 Elapida.examine_datatype('regexps', 'object');
 
 Elapida.examine_records('regexps', 'string',  2);
+
 
 Elapida.examine_datatype('keyhole', 'object');
 
@@ -244,9 +282,11 @@ Elapida.examine_returned(undefined, 'fingerboard', 'quintet',
 Elapida.examine_returned(undefined, 'fingerboard', 'triplet',
   Panopolis.zosimos['n0']);
 
+
 Elapida.examine_returned(undefined, 'panther', 'k99');
 
 Elapida.examine_returned(undefined, 'panther', 'j56');
+
 
 Elapida.examine_returned(undefined, 'vulture', undefined, undefined);
 
@@ -256,7 +296,9 @@ Elapida.examine_returned(undefined, 'vulture', 'yq', 'nought');
 
 Elapida.examine_returned(undefined, 'vulture', 'yq', 'charms');
 
+
 Elapida.examine_returned(undefined, 'selections', undefined);
+
 
 Elapida.examine_returned(undefined, 'retriever', undefined, undefined);
 
@@ -272,18 +314,52 @@ Elapida.examine_typified('object', 'sentinel',
 
 Elapida.examine_returned(undefined, 'tutorial', undefined);
 
+
 Elapida.examine_returned(undefined, 'entryway', []);
+
+Elapida.examine_returned(undefined, 'entryway', [null, null, '-h']);
+
+Elapida.examine_returned(undefined, 'entryway', [null, null, '-i']);
 
 Elapida.examine_returned(undefined, 'entryway', [null, null, 'k9']);
 
-Elapida.examine_returned(undefined, 'entryway', [null, null, 'n0']);
+Elapida.examine_returned(undefined, 'entryway', [null, null, 'n0', 'j3']);
+
+Elapida.examine_returned(undefined, 'entryway', [null, null, '-ac', 'j3']);
+
+Elapida.examine_returned(undefined, 'entryway', [null, null, '-dc', 'j3']);
+
+Elapida.examine_returned(undefined, 'entryway', [null, null, '-lt', 'j3']);
+
+Elapida.examine_returned(undefined, 'entryway', [null, null, '-zh', 'j3']);
 
 Elapida.examine_returned(undefined, 'entryway', [null, null, 'tonal']);
 
+Elapida.examine_returned(undefined, 'entryway', [null, null, '-ac', 'tonal']);
+
+Elapida.examine_returned(undefined, 'entryway', [null, null, '-dc', 'tonal']);
+
+Elapida.examine_returned(undefined, 'entryway', [null, null, '-lt', 'tonal']);
+
 Elapida.examine_returned(undefined, 'entryway', [null, null, '-zh', 'tonal']);
+
+Elapida.examine_returned(undefined, 'entryway', [null, null, 'group', 'zq']);
+
+Elapida.examine_returned(undefined, 'entryway',
+  [null, null, '-ac', 'group', 'R4']);
 
 Elapida.examine_returned(undefined, 'entryway',
   [null, null, '-dc', 'group', 'R4']);
+
+Elapida.examine_returned(undefined, 'entryway',
+  [null, null, '-lt', 'group', 'PuFe']);
+
+Elapida.examine_returned(undefined, 'entryway',
+  [null, null, '-zh', 'group', '钚铁']);
+
+Elapida.examine_returned(undefined, 'entryway', [null, null, 'query', 'k9']);
+
+Elapida.examine_returned(undefined, 'entryway', [null, null, 'query', 'k2']);
 
 
 console.log(Elapida.format,
