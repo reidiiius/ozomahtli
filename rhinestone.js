@@ -192,9 +192,9 @@ Panopolis.serialStamp = String(new Date().getTime());
  */
 Panopolis.crucible = function(cord, subs) {
   var wire = cord.slice(0);
-  var rexp = new RegExp('##', 'g');
+  var rexp = new RegExp();
 
-  for (var ndx = 0; ndx < this.regexps.length; ndx++) {
+  for (let ndx = 0; ndx < this.regexps.length; ndx++) {
     rexp = new RegExp(this.regexps[ndx], 'g');
     wire = wire.replace(rexp, subs[ndx]);
   }
@@ -217,7 +217,7 @@ Panopolis.distillate = function(mask = 'charms') {
   for (let ndx in this.signatures) {
     sign = this.signatures[ndx];
 
-    if (mask == 'metals') {
+    if (mask === 'metals') {
       crow = bank[sign].trim();
     } else {
       if (! this[mask]) mask = 'charms';
@@ -244,7 +244,7 @@ Panopolis.distillate = function(mask = 'charms') {
   star.sort();
 
   for (let ndx = 0; ndx < star.length; ndx++) {
-    if (ndx % 7 == 0) process.stdout.write('\n');
+    if (ndx % 7 === 0) process.stdout.write('\n');
 
     process.stdout.write('  ' + star[ndx]);
   }
@@ -260,7 +260,11 @@ Panopolis.distillate = function(mask = 'charms') {
  * Returns a mutated string the same length as the one pasted.
  */
 Panopolis.pegbox = function(crow, gear) {
-  return crow.slice(gear[0], gear[1]).concat(crow.slice(0, gear[0]));
+  var head = crow.slice(gear[0], gear[1]);
+  var tail = crow.slice(0, gear[0]);
+  var wire = head.concat(tail);
+
+  return wire;
 };
 
 
@@ -292,7 +296,7 @@ Panopolis.panther = function(kind) {
 
   if (gems.length) {
     for (let ndx in gems) {
-      if (ndx % 7 == 0) process.stdout.write('\n');
+      if (ndx % 7 === 0) process.stdout.write('\n');
 
       process.stdout.write('\t' + gems[ndx]);
     }
@@ -312,11 +316,11 @@ Panopolis.panther = function(kind) {
 Panopolis.vulture = function(kind, mask = 'charms') {
   var cart = this.signatures;
   var bank = this.zosimos;
-  var gems = new Array();
   var crow = new String();
+  var gems = new Array();
 
   cart.forEach(sign => {
-    if (mask == 'metals') {
+    if (mask === 'metals') {
       crow = bank[sign].trim();
     } else {
       if (! this[mask]) mask = 'charms';
@@ -330,7 +334,7 @@ Panopolis.vulture = function(kind, mask = 'charms') {
 
   if (gems.length) {
     for (let ndx in gems) {
-      if (ndx % 7 == 0) process.stdout.write('\n');
+      if (ndx % 7 === 0) process.stdout.write('\n');
 
       process.stdout.write('\t' + gems[ndx]);
     }
@@ -349,7 +353,7 @@ Panopolis.vulture = function(kind, mask = 'charms') {
  */
 Panopolis.selections = function() {
   for (let ndx in this.signatures) {
-    if (ndx % 7 == 0) process.stdout.write('\n');
+    if (ndx % 7 === 0) process.stdout.write('\n');
 
     process.stdout.write('\t' + this.signatures[ndx]);
   }
@@ -365,17 +369,17 @@ Panopolis.selections = function() {
  */
 Panopolis.dumpster = function(mask = 'charms') {
   var sign = new String();
+  var kind = new String();
   var bank = this.zosimos;
-  var kind;
 
   console.log();
 
   for (let ndx in this.signatures) {
     sign = this.signatures[ndx];
 
-    if (sign in bank && typeof bank[sign] == 'string') {
+    if (sign in bank && typeof bank[sign] === 'string') {
 
-      if (mask == 'metals') {
+      if (mask === 'metals') {
         console.log('\n\t' + sign + '-lt' + this.serialStamp);
         this.fingerboard('quintet', bank[sign]);
         console.log();
@@ -415,8 +419,8 @@ Panopolis.dumpster = function(mask = 'charms') {
  * afterwards returns undefined.
  */
 Panopolis.retriever = function(kind, cart = []) {
+  var rexp = new RegExp(this.keyhole);
   var bank = this.zosimos;
-  var rexp = new RegExp(this.keyhole, 'i');
   var mask, veil, yarn;
 
   console.log();
@@ -424,7 +428,7 @@ Panopolis.retriever = function(kind, cart = []) {
   cart.forEach(sign => {
     if (sign.match(rexp) && sign in bank) {
 
-      if (kind == '-lt') {
+      if (kind === '-lt') {
         yarn = bank[sign];
       } else {
         switch(kind) {
@@ -444,7 +448,7 @@ Panopolis.retriever = function(kind, cart = []) {
         yarn = this.crucible(bank[sign], this[mask]);
       }
 
-      if (typeof yarn == 'string') {
+      if (typeof(yarn) === 'string') {
 
         if (yarn.length > 36) {
           veil = 'quintet';
@@ -492,12 +496,12 @@ Panopolis.sentinel = function(args) {
  * Prints template literal of command options.
  */
 Panopolis.tutorial = function() {
-  var executor = process.argv0;
-  var pathways = process.argv[1].split('/');
-  var commands = `${executor} ${pathways.pop()}`;
+  var exec = process.argv0;
+  var path = process.argv[1].split('/');
+  var cmds = `${exec} ${path.pop()}`;
 
   console.log(`
-  Usage: ${commands} [option [process [tonality | signatures]]]
+  Usage: ${cmds} [option [process [tonality | signatures]]]
 
   Options:
     -h  	Prints this user guide
@@ -513,25 +517,25 @@ Panopolis.tutorial = function() {
     tonal 	Correlate tonal functions by optional flag
 
   Samples:
-		${commands}
+		${cmds}
 
-		${commands} n0 j36
+		${cmds} n0 j36
 
-		${commands} -dc n0 j36
+		${cmds} -dc n0 j36
 
-		${commands} group yq
+		${cmds} group yq
 
-		${commands} -lt group NpFe
+		${cmds} -lt group NpFe
 
-		${commands} query j2
+		${cmds} query j2
 
-		${commands} tonal
+		${cmds} tonal
 
-		${commands} -zh tonal
+		${cmds} -zh tonal
 
-		${commands} gamut
+		${cmds} gamut
 
-		${commands} -dc gamut
+		${cmds} -dc gamut
   `);
 
   return;
@@ -551,16 +555,16 @@ Panopolis.entryway = function(args) {
   if (cart.length < 1) {
     this.selections();
   }
-  else if (cart.length == 1 && head == '-h') {
+  else if (cart.length === 1 && head === '-h') {
     this.tutorial();
   }
-  else if (cart.length == 1 && head == 'gamut') {
+  else if (cart.length === 1 && head === 'gamut') {
     this.dumpster();
   }
-  else if (cart.length == 1 && head == 'tonal') {
+  else if (cart.length === 1 && head === 'tonal') {
     this.distillate();
   }
-  else if (cart.length == 2 && cart[1] == 'gamut') {
+  else if (cart.length === 2 && cart[1] === 'gamut') {
     switch(head) {
       case '-ac':
         mask = 'charms';
@@ -580,7 +584,7 @@ Panopolis.entryway = function(args) {
 
     this.dumpster(mask);
   }
-  else if (cart.length == 2 && cart[1] == 'tonal') {
+  else if (cart.length === 2 && cart[1] === 'tonal') {
     switch(head) {
       case '-ac':
         mask = 'charms';
@@ -600,13 +604,13 @@ Panopolis.entryway = function(args) {
 
     this.distillate(mask);
   }
-  else if (cart.length == 2 && head == 'query') {
+  else if (cart.length === 2 && head === 'query') {
     this.panther(cart[1]);
   }
-  else if (cart.length == 2 && head == 'group') {
+  else if (cart.length === 2 && head === 'group') {
     this.vulture(cart[1], 'charms');
   }
-  else if (cart.length == 3 && cart[1] == 'group') {
+  else if (cart.length === 3 && cart[1] === 'group') {
     switch(head) {
       case '-ac':
         mask = 'charms';
@@ -626,24 +630,24 @@ Panopolis.entryway = function(args) {
 
     this.vulture(cart[2], mask);
   }
-  else if (cart.length > 1 && head == '-ac') {
+  else if (cart.length > 1 && head === '-ac') {
     cart.shift();
     this.retriever(head, cart);
   }
-  else if (cart.length > 1 && head == '-dc') {
+  else if (cart.length > 1 && head === '-dc') {
     cart.shift();
     this.retriever(head, cart);
   }
-  else if (cart.length > 1 && head == '-lt') {
+  else if (cart.length > 1 && head === '-lt') {
     cart.shift();
     this.retriever(head, cart);
   }
-  else if (cart.length > 1 && head == '-zh') {
+  else if (cart.length > 1 && head === '-zh') {
     cart.shift();
     this.retriever(head, cart);
   }
   else {
-    if (head.charAt(0) == '-') cart.shift();
+    if (head.charAt(0) === '-') cart.shift();
 
     if (cart.length) {
       this.retriever('-ac', cart);
