@@ -161,19 +161,7 @@ Panopolis.glyphs = [
 ];
 
 Panopolis.regexps = [
-  '__',
-  'Ti',
-  'Mn',
-  'Fe',
-  'Cu',
-  'Ag',
-  'Sn',
-  'Au',
-  'Hg',
-  'Pb',
-  'Ur',
-  'Np',
-  'Pu',
+  '__', 'Ti', 'Mn', 'Fe', 'Cu', 'Ag', 'Sn', 'Au', 'Hg', 'Pb', 'Ur', 'Np', 'Pu'
 ];
 
 Panopolis.keyhole = /^([i|j|k|n][0-7]{1,3}){1,2}([x|y][1-7]{1,2})?[h|i]?$/;

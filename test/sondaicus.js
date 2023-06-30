@@ -51,6 +51,9 @@ Elapida.scorecard = function(bool) {
 };
 
 
+/*
+ * Compares moniker type with genus string.
+ */
 Elapida.examine_datatype = function(moniker, genus) {
   try {
     console.count('test-initiated');
@@ -71,6 +74,9 @@ Elapida.examine_datatype = function(moniker, genus) {
 };
 
 
+/*
+ * Checks equality of moniker and regexps length.
+ */
 Elapida.measure_carriage = function(moniker) {
   try {
     console.count('test-initiated');
@@ -98,6 +104,9 @@ Elapida.measure_carriage = function(moniker) {
 };
 
 
+/*
+ * Confirms moniker member values are integers and within range.
+ */
 Elapida.check_code_units = function(moniker) {
   try {
     console.count('test-initiated');
@@ -123,6 +132,10 @@ Elapida.check_code_units = function(moniker) {
 };
 
 
+/*
+ * Compares type of moniker member with genus,
+ * and compares member length to width quantity.
+ */
 Elapida.examine_records = function(moniker, genus, width) {
   try {
     console.count('test-initiated');
@@ -152,6 +165,9 @@ Elapida.examine_records = function(moniker, genus, width) {
 };
 
 
+/*
+ * Compares genus with type returned from moniker.
+ */
 Elapida.examine_typified = function(genus, moniker, ...args) {
   try {
     console.count('test-initiated');
@@ -172,6 +188,9 @@ Elapida.examine_typified = function(genus, moniker, ...args) {
 };
 
 
+/*
+ * Compares genus with value returned from moniker.
+ */
 Elapida.examine_returned = function(genus, moniker, ...args) {
   try {
     console.count('test-initiated');
@@ -346,7 +365,7 @@ Elapida.examine_returned(undefined, 'entryway', [null, null, '-zh', 'tonal']);
 Elapida.examine_returned(undefined, 'entryway', [null, null, 'group', 'zq']);
 
 Elapida.examine_returned(undefined, 'entryway',
-  [null, null, '-ac', 'group', 'R4']);
+  [null, null, '-ac', 'group', 'zq']);
 
 Elapida.examine_returned(undefined, 'entryway',
   [null, null, '-dc', 'group', 'R4']);
