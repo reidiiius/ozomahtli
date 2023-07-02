@@ -131,6 +131,8 @@ Panopolis.triplet = {
   ak: [30, 36],
 };
 
+Panopolis.vexillar = ['-ac', '-dc', '-lt', '-zh'];
+
 Panopolis.pitches = [
   'fn', 'cn', 'gn', 'dn', 'an', 'en',
   'bn', 'fk', 'ck', 'gk', 'dk', 'ak',
@@ -192,12 +194,41 @@ Panopolis.crucible = function(cord, subs) {
 
 
 /*
+ * Takes a string argument and returns a string.
+ * Parses flag and assigns name to returned mask.
+ */
+Panopolis.masquerade = function(kind) {
+  var mask = new String();
+
+  switch(kind) {
+    case '-ac':
+      mask = 'charms';
+      break;
+    case '-dc':
+      mask = 'arcane';
+      break;
+    case '-lt':
+      mask = 'metals';
+      break;
+    case '-zh':
+      mask = 'glyphs';
+      break;
+    default:
+      mask = 'charms';
+  }
+
+  return mask;
+};
+
+
+/*
  * Takes a string argument and returns undefined.
  * Formats and prints table of unique tonalities.
  */
-Panopolis.distillate = function(mask = 'charms') {
+Panopolis.distillate = function(kind) {
   var bank = this.zosimos;
   var sign = new String();
+  var mask = this.masquerade(kind);
   var crow = new String();
   var star = new Array();
   var duos = new Set();
@@ -208,7 +239,6 @@ Panopolis.distillate = function(mask = 'charms') {
     if (mask === 'metals') {
       crow = bank[sign].trim();
     } else {
-      if (! this[mask]) mask = 'charms';
       crow = this.crucible(bank[sign], this[mask]).trim();
     }
 
@@ -301,18 +331,18 @@ Panopolis.panther = function(kind) {
  * Takes two string arguments and returns undefined.
  * Formats and prints table of found tones.
  */
-Panopolis.vulture = function(kind, mask = 'charms') {
+Panopolis.vulture = function(kind, spat) {
   var cart = this.signatures;
+  var mask = this.masquerade(kind);
   var bank = this.zosimos;
   var crow = new String();
-  var rexp = new RegExp(kind);
+  var rexp = new RegExp(spat);
   var gems = new Array();
 
   cart.forEach(sign => {
     if (mask === 'metals') {
       crow = bank[sign].trim();
     } else {
-      if (! this[mask]) mask = 'charms';
       crow = this.crucible(bank[sign], this[mask]).trim();
     }
 
@@ -328,7 +358,7 @@ Panopolis.vulture = function(kind, mask = 'charms') {
       process.stdout.write('\t' + gems[ndx]);
     }
   } else {
-    process.stdout.write('\n\t' + kind + ' ?');
+    process.stdout.write('\n\t' + spat + ' ?');
   }
 
   console.log('\n');
@@ -356,42 +386,29 @@ Panopolis.selections = function() {
  * Takes a string argument and returns undefined.
  * Formats and prints all records tabulated.
  */
-Panopolis.dumpster = function(mask = 'charms') {
+Panopolis.dumpster = function(kind='-ac') {
   var sign = new String();
-  var kind = new String();
   var bank = this.zosimos;
+  var mask = this.masquerade(kind);
+
+  // ensure value consistency of kind
+  if (! this.vexillar.includes(kind)) kind = '-ac';
 
   console.log();
 
   for (let ndx in this.signatures) {
     sign = this.signatures[ndx];
 
-    if (sign in bank && typeof bank[sign] === 'string') {
+    if (sign in bank && typeof(bank[sign]) === 'string') {
+      console.log('\n\t' + sign + kind + this.serialStamp);
 
       if (mask === 'metals') {
-        console.log('\n\t' + sign + '-lt' + this.serialStamp);
         this.fingerboard('quintet', bank[sign]);
-        console.log();
       } else {
-        switch(mask) {
-          case 'charms':
-            kind = '-ac';
-            break;
-          case 'arcane':
-            kind = '-dc';
-            break;
-          case 'glyphs':
-            kind = '-zh';
-            break;
-          default:
-            mask = 'charms';
-            kind = '-ac';
-        }
-
-        console.log('\n\t' + sign + kind + this.serialStamp);
         this.fingerboard('triplet', this.crucible(bank[sign], this[mask]));
-        console.log();
       }
+
+      console.log();
     } else {
       console.log('\n\t' + 'zosimos: ' + sign + ' ?\n');
     }
@@ -403,14 +420,16 @@ Panopolis.dumpster = function(mask = 'charms') {
 
 
 /*
- * Takes two arguments, string and string array.
+ * Takes two string and one string array for arguments.
  * Formats and prints selected records tabulated,
  * afterwards returns undefined.
  */
-Panopolis.retriever = function(kind, cart = []) {
+Panopolis.retriever = function(kind, cart=[]) {
   var rexp = new RegExp(this.keyhole);
   var bank = this.zosimos;
-  var mask, veil, yarn;
+  var yarn = new String();
+  var mask = this.masquerade(kind);
+  var veil = new String();
 
   console.log();
 
@@ -420,20 +439,6 @@ Panopolis.retriever = function(kind, cart = []) {
       if (kind === '-lt') {
         yarn = bank[sign];
       } else {
-        switch(kind) {
-          case '-ac':
-            mask = 'charms';
-            break;
-          case '-dc':
-            mask = 'arcane';
-            break;
-          case '-zh':
-            mask = 'glyphs';
-            break;
-          default:
-            mask = 'charms';
-        }
-
         yarn = this.crucible(bank[sign], this[mask]);
       }
 
@@ -532,116 +537,101 @@ Panopolis.tutorial = function() {
 
 
 /*
- * Takes string array argument and returns undefined.
- * Parse arguments and facilitate conditional branching.
- * Application entry point.
+ * Argument list cart without member of vexillar.
  */
-Panopolis.entryway = function(args) {
-  var cart = this.sentinel(args);
-  var head = cart[0];
-  var mask;
-
-  if (cart.length < 1) {
-    this.selections();
-  }
-  else if (cart.length === 1 && head === '-h') {
-    this.tutorial();
-  }
-  else if (cart.length === 1 && head === 'gamut') {
-    this.dumpster();
-  }
-  else if (cart.length === 1 && head === 'tonal') {
-    this.distillate();
-  }
-  else if (cart.length === 2 && cart[1] === 'gamut') {
+Panopolis.monoglot = function(head='-h', cart=[]) {
+  if (cart.length === 1) {
     switch(head) {
-      case '-ac':
-        mask = 'charms';
+      case '-h':
+        this.tutorial();
         break;
-      case '-dc':
-        mask = 'arcane';
+      case 'gamut':
+        this.dumpster();
         break;
-      case '-lt':
-        mask = 'metals';
-        break;
-      case '-zh':
-        mask = 'glyphs';
+      case 'tonal':
+        this.distillate();
         break;
       default:
-        mask = 'charms';
+        this.retriever('-ac', cart);
     }
-
-    this.dumpster(mask);
-  }
-  else if (cart.length === 2 && cart[1] === 'tonal') {
+  } else if (cart.length === 2) {
     switch(head) {
-      case '-ac':
-        mask = 'charms';
+      case 'group':
+        this.vulture('-ac', cart[1]);
         break;
-      case '-dc':
-        mask = 'arcane';
-        break;
-      case '-lt':
-        mask = 'metals';
-        break;
-      case '-zh':
-        mask = 'glyphs';
+      case 'query':
+        this.panther(cart[1]);
         break;
       default:
-        mask = 'charms';
-    }
+        if (head.charAt(0) === '-') cart.shift();
 
-    this.distillate(mask);
-  }
-  else if (cart.length === 2 && head === 'query') {
-    this.panther(cart[1]);
-  }
-  else if (cart.length === 2 && head === 'group') {
-    this.vulture(cart[1], 'charms');
-  }
-  else if (cart.length === 3 && cart[1] === 'group') {
-    switch(head) {
-      case '-ac':
-        mask = 'charms';
-        break;
-      case '-dc':
-        mask = 'arcane';
-        break;
-      case '-lt':
-        mask = 'metals';
-        break;
-      case '-zh':
-        mask = 'glyphs';
-        break;
-      default:
-        mask = 'charms';
+        this.retriever('-ac', cart);
     }
-
-    this.vulture(cart[2], mask);
-  }
-  else if (cart.length > 1 && head === '-ac') {
-    cart.shift();
-    this.retriever(head, cart);
-  }
-  else if (cart.length > 1 && head === '-dc') {
-    cart.shift();
-    this.retriever(head, cart);
-  }
-  else if (cart.length > 1 && head === '-lt') {
-    cart.shift();
-    this.retriever(head, cart);
-  }
-  else if (cart.length > 1 && head === '-zh') {
-    cart.shift();
-    this.retriever(head, cart);
-  }
-  else {
+  } else {
     if (head.charAt(0) === '-') cart.shift();
 
     if (cart.length) {
       this.retriever('-ac', cart);
     } else {
       this.selections();
+    }
+  }
+
+  return;
+}
+
+
+/*
+ * Argument list cart begins with member of vexillar.
+ */
+Panopolis.polyglot = function(head, cart=[null]) {
+  if (cart.length === 1) {
+    this.tutorial();
+  } else if (cart.length === 2) {
+    switch(cart[1]) {
+      case 'gamut':
+        this.dumpster(head);
+        break;
+      case 'tonal':
+        this.distillate(head);
+        break;
+      default:
+        cart.shift();
+        this.retriever(head, cart);
+    }
+  } else if (cart.length === 3) {
+    if (cart[1] === 'group') {
+      this.vulture(head, cart[2]);
+    } else {
+      cart.shift();
+      this.retriever(head, cart);
+    }
+  } else {
+    cart.shift();
+    this.retriever(head, cart);
+  }
+
+  return;
+}
+
+
+/*
+ * Takes string array argument and returns undefined.
+ * Parse arguments and facilitate conditional branching.
+ * Application entry point.
+ */
+Panopolis.entryway = function(args) {
+  var cart = this.sentinel(args);
+  var head = cart[0]; // archived for queue shifts
+  var mask = new String();
+
+  if (cart.length < 1) {
+    this.selections();
+  } else {
+    if (this.vexillar.includes(head)) {
+      this.polyglot(head, cart);
+    } else {
+      this.monoglot(head, cart);
     }
   }
 

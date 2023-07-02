@@ -134,9 +134,9 @@ Elapida.check_code_units = function(moniker) {
 
 /*
  * Compares type of moniker member with genus,
- * and compares member length to width quantity.
+ * and compares member length to span quantity.
  */
-Elapida.examine_records = function(moniker, genus, width) {
+Elapida.examine_records = function(moniker, genus, span) {
   try {
     console.count('test-initiated');
 
@@ -147,10 +147,10 @@ Elapida.examine_records = function(moniker, genus, width) {
     for (let item = 0; item < datum.length; item++) {
       value = Panopolis[moniker][datum[item]];
 
-      boole = (genus === typeof(value) && value.length === width);
+      boole = (genus === typeof(value) && value.length === span);
 
       console.assert(boole, "%s.%s is %s of length: %d",
-        moniker, datum[item], genus, width);
+        moniker, datum[item], genus, span);
 
       Elapida.scorecard(boole);
     }
@@ -216,9 +216,9 @@ console.time('timeline'); // start timer
 
 Elapida.examine_returned(undefined, 'dumpster', undefined);
 
-Elapida.examine_returned(undefined, 'dumpster', 'nought');
+Elapida.examine_returned(undefined, 'dumpster', '-lt');
 
-Elapida.examine_returned(undefined, 'dumpster', 'arcane');
+Elapida.examine_returned(undefined, 'dumpster', '-zh');
 
 
 Elapida.examine_datatype('zosimos', 'object');
@@ -228,17 +228,20 @@ Elapida.examine_records('zosimos', 'string', 60);
 
 Elapida.examine_datatype('quintet', 'object');
 
-Elapida.examine_records('quintet', 'object',  2);
+Elapida.examine_records('quintet', 'object', 2);
 
 
 Elapida.examine_datatype('triplet', 'object');
 
-Elapida.examine_records('triplet', 'object',  2);
+Elapida.examine_records('triplet', 'object', 2);
+
+
+Elapida.examine_datatype('vexillar', 'object');
 
 
 Elapida.examine_datatype('pitches', 'object');
 
-Elapida.examine_records('pitches', 'string',  2);
+Elapida.examine_records('pitches', 'string', 2);
 
 
 Elapida.examine_datatype('arcane', 'object');
@@ -264,7 +267,7 @@ Elapida.check_code_units('glyphs');
 
 Elapida.examine_datatype('regexps', 'object');
 
-Elapida.examine_records('regexps', 'string',  2);
+Elapida.examine_records('regexps', 'string', 2);
 
 
 Elapida.examine_datatype('keyhole', 'object');
@@ -282,11 +285,18 @@ Elapida.examine_typified('string', 'crucible',
 Elapida.examine_typified('string', 'crucible', '', []);
 
 
+Elapida.examine_typified('string', 'masquerade', undefined);
+
+Elapida.examine_typified('string', 'masquerade', '-xi');
+
+Elapida.examine_typified('string', 'masquerade', '-zh');
+
+
 Elapida.examine_returned(undefined, 'distillate', undefined);
 
-Elapida.examine_returned(undefined, 'distillate', 'nought');
+Elapida.examine_returned(undefined, 'distillate', '-bb');
 
-Elapida.examine_returned(undefined, 'distillate', 'charms');
+Elapida.examine_returned(undefined, 'distillate', '-zh');
 
 
 Elapida.examine_typified('string', 'pegbox',
@@ -307,19 +317,19 @@ Elapida.examine_returned(undefined, 'panther', 'k99');
 Elapida.examine_returned(undefined, 'panther', 'j56');
 
 
-Elapida.examine_returned(undefined, 'vulture', undefined, undefined);
+Elapida.examine_returned(undefined, 'vulture', undefined, 'yq');
 
-Elapida.examine_returned(undefined, 'vulture', 'mh', 'nought');
+Elapida.examine_returned(undefined, 'vulture', '-bb', 'yq');
 
-Elapida.examine_returned(undefined, 'vulture', 'yq', 'nought');
+Elapida.examine_returned(undefined, 'vulture', '-lt', 'NpFe');
 
-Elapida.examine_returned(undefined, 'vulture', 'yq', 'charms');
+Elapida.examine_returned(undefined, 'vulture', '-zh', '镎铁');
 
 
 Elapida.examine_returned(undefined, 'selections', undefined);
 
 
-Elapida.examine_returned(undefined, 'retriever', undefined, undefined);
+Elapida.examine_returned(undefined, 'retriever', '-mh', ['n0', 'j9']);
 
 Elapida.examine_returned(undefined, 'retriever', '-zh', ['k1', 'j0k9', 'k15']);
 
@@ -332,6 +342,11 @@ Elapida.examine_typified('object', 'sentinel',
 
 
 Elapida.examine_returned(undefined, 'tutorial', undefined);
+
+
+Elapida.examine_returned(undefined, 'monoglot', undefined, undefined);
+
+Elapida.examine_returned(undefined, 'polyglot', undefined, undefined);
 
 
 Elapida.examine_returned(undefined, 'entryway', []);
