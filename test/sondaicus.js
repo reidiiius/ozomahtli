@@ -353,51 +353,33 @@ Elapida.examine_returned(undefined, 'polyglot', undefined);
 Elapida.examine_returned(undefined, 'polyglot', ['-lt', 'group', 'NpFe']);
 
 
-Elapida.examine_returned(undefined, 'entryway', []);
+Elapida.entryway_cyclist = [
+  [],
+  [null, null, '-h'],
+  [null, null, '-i'],
+  [null, null, 'k9'],
+  [null, null, 'n0', 'j3'],
+  [null, null, '-ac', 'j3'],
+  [null, null, '-dc', 'j3'],
+  [null, null, '-lt', 'j3'],
+  [null, null, '-zh', 'j3'],
+  [null, null, 'tonal'],
+  [null, null, '-ac', 'tonal'],
+  [null, null, '-dc', 'tonal'],
+  [null, null, '-lt', 'tonal'],
+  [null, null, '-zh', 'tonal'],
+  [null, null, 'group', 'zq'],
+  [null, null, '-ac', 'group', 'zq'],
+  [null, null, '-dc', 'group', 'R4'],
+  [null, null, '-lt', 'group', 'PuFe'],
+  [null, null, '-zh', 'group', '钚铁'],
+  [null, null, 'query', 'k9'],
+  [null, null, 'query', 'k2'],
+];
 
-Elapida.examine_returned(undefined, 'entryway', [null, null, '-h']);
-
-Elapida.examine_returned(undefined, 'entryway', [null, null, '-i']);
-
-Elapida.examine_returned(undefined, 'entryway', [null, null, 'k9']);
-
-Elapida.examine_returned(undefined, 'entryway', [null, null, 'n0', 'j3']);
-
-Elapida.examine_returned(undefined, 'entryway', [null, null, '-ac', 'j3']);
-
-Elapida.examine_returned(undefined, 'entryway', [null, null, '-dc', 'j3']);
-
-Elapida.examine_returned(undefined, 'entryway', [null, null, '-lt', 'j3']);
-
-Elapida.examine_returned(undefined, 'entryway', [null, null, '-zh', 'j3']);
-
-Elapida.examine_returned(undefined, 'entryway', [null, null, 'tonal']);
-
-Elapida.examine_returned(undefined, 'entryway', [null, null, '-ac', 'tonal']);
-
-Elapida.examine_returned(undefined, 'entryway', [null, null, '-dc', 'tonal']);
-
-Elapida.examine_returned(undefined, 'entryway', [null, null, '-lt', 'tonal']);
-
-Elapida.examine_returned(undefined, 'entryway', [null, null, '-zh', 'tonal']);
-
-Elapida.examine_returned(undefined, 'entryway', [null, null, 'group', 'zq']);
-
-Elapida.examine_returned(undefined, 'entryway',
-  [null, null, '-ac', 'group', 'zq']);
-
-Elapida.examine_returned(undefined, 'entryway',
-  [null, null, '-dc', 'group', 'R4']);
-
-Elapida.examine_returned(undefined, 'entryway',
-  [null, null, '-lt', 'group', 'PuFe']);
-
-Elapida.examine_returned(undefined, 'entryway',
-  [null, null, '-zh', 'group', '钚铁']);
-
-Elapida.examine_returned(undefined, 'entryway', [null, null, 'query', 'k9']);
-
-Elapida.examine_returned(undefined, 'entryway', [null, null, 'query', 'k2']);
+Elapida.entryway_cyclist.forEach(star => {
+  Elapida.examine_returned(undefined, 'entryway', star);
+});
 
 
 console.log(Elapida.format,

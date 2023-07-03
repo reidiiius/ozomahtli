@@ -298,6 +298,7 @@ Panopolis.fingerboard = function(kind, crow) {
       this.pegbox(crow, this[kind][this.pitches[item]])
     );
   }
+
   return;
 };
 
@@ -627,7 +628,6 @@ Panopolis.polyglot = function(cart=['-ac']) {
  */
 Panopolis.entryway = function(args) {
   var cart = this.sentinel(args);
-  var mask = new String();
 
   if (cart.length < 1) {
     this.selections();
