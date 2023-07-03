@@ -344,9 +344,13 @@ Elapida.examine_typified('object', 'sentinel',
 Elapida.examine_returned(undefined, 'tutorial', undefined);
 
 
-Elapida.examine_returned(undefined, 'monoglot', undefined, undefined);
+Elapida.examine_returned(undefined, 'monoglot', undefined);
 
-Elapida.examine_returned(undefined, 'polyglot', undefined, undefined);
+Elapida.examine_returned(undefined, 'monoglot', ['group', 'yq']);
+
+Elapida.examine_returned(undefined, 'polyglot', undefined);
+
+Elapida.examine_returned(undefined, 'polyglot', ['-lt', 'group', 'NpFe']);
 
 
 Elapida.examine_returned(undefined, 'entryway', []);

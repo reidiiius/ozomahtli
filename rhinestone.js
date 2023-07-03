@@ -131,12 +131,12 @@ Panopolis.triplet = {
   ak: [30, 36],
 };
 
-Panopolis.vexillar = ['-ac', '-dc', '-lt', '-zh'];
-
 Panopolis.pitches = [
   'fn', 'cn', 'gn', 'dn', 'an', 'en',
   'bn', 'fk', 'ck', 'gk', 'dk', 'ak',
 ];
+
+Panopolis.vexillar = ['-ac', '-dc', '-lt', '-zh'];
 
 Panopolis.arcane = [
   95, 50, 51, 52, 53, 54, 55, 56, 57, 78, 80, 81, 82
@@ -537,11 +537,17 @@ Panopolis.tutorial = function() {
 
 
 /*
- * Argument list cart without member of vexillar.
+ * Takes string array argument and returns undefined.
+ * Value of cart[0] is not a member of vexillar.
+ * Parse cart length then cart[0] value.
  */
-Panopolis.monoglot = function(head='-h', cart=[]) {
-  if (cart.length === 1) {
-    switch(head) {
+Panopolis.monoglot = function(cart=['-h']) {
+  var head = new String();
+
+  if (cart.length === 0) {
+    this.selections();
+  } else if (cart.length === 1) {
+    switch(cart[0]) {
       case '-h':
         this.tutorial();
         break;
@@ -555,7 +561,7 @@ Panopolis.monoglot = function(head='-h', cart=[]) {
         this.retriever('-ac', cart);
     }
   } else if (cart.length === 2) {
-    switch(head) {
+    switch(cart[0]) {
       case 'group':
         this.vulture('-ac', cart[1]);
         break;
@@ -563,18 +569,16 @@ Panopolis.monoglot = function(head='-h', cart=[]) {
         this.panther(cart[1]);
         break;
       default:
-        if (head.charAt(0) === '-') cart.shift();
-
+        if (cart[0].charAt(0) === '-') {
+          head = cart.shift();
+        }
         this.retriever('-ac', cart);
     }
   } else {
-    if (head.charAt(0) === '-') cart.shift();
-
-    if (cart.length) {
-      this.retriever('-ac', cart);
-    } else {
-      this.selections();
+    if (cart[0].charAt(0) === '-') {
+      head = cart.shift();
     }
+    this.retriever('-ac', cart);
   }
 
   return;
@@ -582,13 +586,17 @@ Panopolis.monoglot = function(head='-h', cart=[]) {
 
 
 /*
- * Argument list cart begins with member of vexillar.
+ * Takes string array argument and returns undefined.
+ * Value of head is a current member of vexillar.
+ * Parse shifted cart length then cart[0] value.
  */
-Panopolis.polyglot = function(head, cart=[null]) {
-  if (cart.length === 1) {
-    this.tutorial();
-  } else if (cart.length === 2) {
-    switch(cart[1]) {
+Panopolis.polyglot = function(cart=['-ac']) {
+  var head = cart.shift();
+
+  if (cart.length === 0) {
+    this.selections();
+  } else if (cart.length === 1) {
+    switch(cart[0]) {
       case 'gamut':
         this.dumpster(head);
         break;
@@ -596,18 +604,15 @@ Panopolis.polyglot = function(head, cart=[null]) {
         this.distillate(head);
         break;
       default:
-        cart.shift();
         this.retriever(head, cart);
     }
-  } else if (cart.length === 3) {
-    if (cart[1] === 'group') {
-      this.vulture(head, cart[2]);
+  } else if (cart.length === 2) {
+    if (cart[0] === 'group') {
+      this.vulture(head, cart[1]);
     } else {
-      cart.shift();
       this.retriever(head, cart);
     }
   } else {
-    cart.shift();
     this.retriever(head, cart);
   }
 
@@ -622,16 +627,15 @@ Panopolis.polyglot = function(head, cart=[null]) {
  */
 Panopolis.entryway = function(args) {
   var cart = this.sentinel(args);
-  var head = cart[0]; // archived for queue shifts
   var mask = new String();
 
   if (cart.length < 1) {
     this.selections();
   } else {
-    if (this.vexillar.includes(head)) {
-      this.polyglot(head, cart);
+    if (this.vexillar.includes(cart[0])) {
+      this.polyglot(cart);
     } else {
-      this.monoglot(head, cart);
+      this.monoglot(cart);
     }
   }
 
