@@ -16,6 +16,7 @@ const Elapida = {
   failed: 0,
   passed: 0,
   tested: 0,
+  worker: {},
 };
 
 
@@ -54,7 +55,7 @@ Elapida.scorecard = function(bool) {
 /*
  * Compares moniker type with genus string.
  */
-Elapida.examine_datatype = function(moniker, genus) {
+Elapida.worker.datatype = function(moniker, genus) {
   try {
     console.count('test-initiated');
 
@@ -77,7 +78,7 @@ Elapida.examine_datatype = function(moniker, genus) {
 /*
  * Checks equality of moniker and regexps length.
  */
-Elapida.measure_carriage = function(moniker) {
+Elapida.worker.carriage = function(moniker) {
   try {
     console.count('test-initiated');
 
@@ -107,7 +108,7 @@ Elapida.measure_carriage = function(moniker) {
 /*
  * Confirms moniker member values are integers and within range.
  */
-Elapida.check_code_units = function(moniker) {
+Elapida.worker.charisma = function(moniker) {
   try {
     console.count('test-initiated');
 
@@ -136,7 +137,7 @@ Elapida.check_code_units = function(moniker) {
  * Compares type of moniker member with genus,
  * and compares member length to span quantity.
  */
-Elapida.examine_records = function(moniker, genus, span) {
+Elapida.worker.recorded = function(moniker, genus, span) {
   try {
     console.count('test-initiated');
 
@@ -168,7 +169,7 @@ Elapida.examine_records = function(moniker, genus, span) {
 /*
  * Compares genus with type returned from moniker.
  */
-Elapida.examine_typified = function(genus, moniker, ...args) {
+Elapida.worker.typified = function(genus, moniker, ...args) {
   try {
     console.count('test-initiated');
 
@@ -191,7 +192,7 @@ Elapida.examine_typified = function(genus, moniker, ...args) {
 /*
  * Compares genus with value returned from moniker.
  */
-Elapida.examine_returned = function(genus, moniker, ...args) {
+Elapida.worker.returned = function(genus, moniker, ...args) {
   try {
     console.count('test-initiated');
 
@@ -211,176 +212,408 @@ Elapida.examine_returned = function(genus, moniker, ...args) {
 };
 
 
+Elapida.worker.dumpster = function() {
+  const cyclist = [
+    undefined,
+    '-ac',
+    '-dc',
+    '-lt',
+    '-zh',
+  ];
+
+  cyclist.forEach(star => {
+    this.returned(undefined, 'dumpster', star);
+  });
+
+  return;
+};
+
+
+Elapida.worker.zosimos = function() {
+  this.datatype('zosimos', 'object');
+
+  this.recorded('zosimos', 'string', 60);
+
+  return;
+};
+
+
+Elapida.worker.quintet = function() {
+  this.datatype('quintet', 'object');
+
+  this.recorded('quintet', 'object', 2);
+
+  return;
+};
+
+
+Elapida.worker.triplet = function() {
+  this.datatype('triplet', 'object');
+
+  this.recorded('triplet', 'object', 2);
+
+  return;
+};
+
+
+Elapida.worker.vexillar = function() {
+  this.datatype('vexillar', 'object');
+
+  return;
+};
+
+
+Elapida.worker.pitches = function() {
+  this.datatype('pitches', 'object');
+
+  this.recorded('pitches', 'string', 2);
+
+  return;
+};
+
+
+Elapida.worker.arcane = function() {
+  this.datatype('arcane', 'object');
+
+  this.carriage('arcane');
+
+  this.charisma('arcane');
+
+  return;
+};
+
+
+Elapida.worker.charms = function() {
+  this.datatype('charms', 'object');
+
+  this.carriage('charms');
+
+  this.charisma('charms');
+
+  return;
+};
+
+
+Elapida.worker.glyphs = function() {
+  this.datatype('glyphs', 'object');
+
+  this.carriage('glyphs');
+
+  this.charisma('glyphs');
+
+  return;
+};
+
+
+Elapida.worker.regexps = function() {
+  this.datatype('regexps', 'object');
+
+  this.recorded('regexps', 'string', 2);
+
+  return;
+};
+
+
+Elapida.worker.keyhole = function() {
+  this.datatype('keyhole', 'object');
+
+  return;
+};
+
+
+Elapida.worker.signatures = function() {
+  this.datatype('signatures', 'object');
+
+  return;
+};
+
+
+Elapida.worker.volume = function() {
+  this.datatype('volume', 'number');
+
+  return;
+};
+
+
+Elapida.worker.serialStamp = function() {
+  this.datatype('serialStamp', 'string');
+
+  return;
+};
+
+
+Elapida.worker.crucible = function() {
+  const strand = Panopolis.zosimos['n0'];
+  const points = Panopolis.glyphs;
+
+  const cyclist = [
+    ['stunted', []],
+    [strand, points],
+  ];
+
+  cyclist.forEach(star => {
+    this.typified('string', 'crucible',  star[0], star[1]);
+  });
+
+  return;
+};
+
+
+Elapida.worker.masquerade = function() {
+  const cyclist = [
+    undefined,
+    '-ac',
+    '-dc',
+    '-lt',
+    '-xi',
+    '-zh',
+  ];
+
+  cyclist.forEach(star => {
+    this.typified('string', 'masquerade', star);
+  });
+
+  return;
+};
+
+
+Elapida.worker.distillate = function() {
+  const cyclist = [
+    undefined,
+    '-bb',
+    '-zh',
+  ];
+
+  cyclist.forEach(star => {
+    this.returned(undefined, 'distillate', star);
+  });
+
+  return;
+};
+
+
+Elapida.worker.pegbox = function() {
+  const strand = Panopolis.zosimos['n0'];
+  const ranges = Panopolis.quintet['cn'];
+
+  const cyclist = [
+    [strand, ranges],
+    ['strange', []],
+  ];
+
+  cyclist.forEach(star => {
+    this.typified('string', 'pegbox', star[0], star[1]);
+  });
+
+  return;
+};
+
+
+Elapida.worker.fingerboard = function() {
+  const strand = Panopolis.zosimos['n0'];
+
+  const cyclist = [
+    ['quintet', strand],
+    ['triplet', strand],
+  ];
+
+  cyclist.forEach(star => {
+    this.returned(undefined, 'fingerboard', star[0], star[1]);
+  });
+
+  return;
+};
+
+
+Elapida.worker.panther = function() {
+  const cyclist = [
+    'j\\dy',
+    '26',
+    '[89]',
+    '[jk]56',
+  ];
+
+  cyclist.forEach(star => {
+    this.returned(undefined, 'panther', star);
+  });
+
+  return;
+};
+
+
+Elapida.worker.vulture = function() {
+  const cyclist = [
+    [undefined, 'yq'],
+    ['-bb', 'yq'],
+    ['-lt', 'NpFe'],
+    ['-zh', '镎铁'],
+  ];
+
+  cyclist.forEach(star => {
+    this.returned(undefined, 'vulture', star[0], star[1]);
+  });
+
+  return;
+};
+
+
+Elapida.worker.selections = function() {
+  this.returned(undefined, 'selections');
+
+  return;
+};
+
+
+Elapida.worker.retriever = function() {
+  const argots = ['k1', 'j0k9', 'k15'];
+
+  const cyclist = [
+    ['-xx', argots],
+    ['-ac', argots],
+    ['-dc', argots],
+    ['-lt', argots],
+    ['-zh', argots],
+  ];
+
+  cyclist.forEach(star => {
+    this.returned(undefined, 'retriever', star[0], star[1]);
+  });
+
+  return;
+};
+
+
+Elapida.worker.sentinel = function() {
+  const cyclist = [
+    Array(Panopolis.volume + 1).fill(0),
+    Array(Panopolis.volume).fill('k2j56y7h'),
+  ];
+
+  cyclist.forEach(star => {
+    this.typified('object', 'sentinel', star);
+  });
+
+  return;
+};
+
+
+Elapida.worker.tutorial = function() {
+  const cyclist = [
+    undefined,
+  ];
+
+  cyclist.forEach(star => {
+    this.returned(undefined, 'tutorial', star);
+  });
+
+  return;
+};
+
+
+Elapida.worker.monoglot = function() {
+  const cyclist = [
+    undefined,
+    ['group', 'yq'],
+  ];
+
+  cyclist.forEach(star => {
+    this.returned(undefined, 'monoglot', star);
+  });
+
+  return;
+};
+
+
+Elapida.worker.polyglot = function() {
+  const cyclist = [
+    undefined,
+    ['-lt', 'group', 'NpFe'],
+  ];
+
+  cyclist.forEach(star => {
+    this.returned(undefined, 'polyglot', star);
+  });
+
+  return;
+};
+
+
+Elapida.worker.entryway = function() {
+  const cyclist = [
+    [],
+    [null, null, '-h'],
+    [null, null, '-i'],
+    [null, null, 'k9'],
+    [null, null, 'n0', 'j3'],
+    [null, null, '-ac', 'j3'],
+    [null, null, '-dc', 'j3'],
+    [null, null, '-lt', 'j3'],
+    [null, null, '-zh', 'j3'],
+    [null, null, 'tonal'],
+    [null, null, '-ac', 'tonal'],
+    [null, null, '-dc', 'tonal'],
+    [null, null, '-lt', 'tonal'],
+    [null, null, '-zh', 'tonal'],
+    [null, null, 'group', 'zq'],
+    [null, null, '-ac', 'group', 'zq'],
+    [null, null, '-dc', 'group', 'R4'],
+    [null, null, '-lt', 'group', 'PuFe'],
+    [null, null, '-zh', 'group', '钚铁'],
+    [null, null, 'query', 'k9'],
+    [null, null, 'query', 'k2'],
+  ];
+
+  cyclist.forEach(star => {
+    this.returned(undefined, 'entryway', star);
+  });
+
+  return;
+};
+
+
+Elapida.runabout = function() {
+  const cyclist = [
+    'dumpster',
+    'zosimos',
+    'quintet',
+    'triplet',
+    'vexillar',
+    'pitches',
+    'arcane',
+    'charms',
+    'glyphs',
+    'regexps',
+    'keyhole',
+    'signatures',
+    'volume',
+    'serialStamp',
+    'crucible',
+    'masquerade',
+    'distillate',
+    'pegbox',
+    'fingerboard',
+    'panther',
+    'vulture',
+    'selections',
+    'retriever',
+    'sentinel',
+    'tutorial',
+    'monoglot',
+    'polyglot',
+    'entryway',
+  ];
+
+  cyclist.forEach(name => {
+    this.worker[name]();
+  });
+
+  return;
+};
+
+
 console.time('timeline'); // start timer
 
-
-Elapida.examine_returned(undefined, 'dumpster', undefined);
-
-Elapida.examine_returned(undefined, 'dumpster', '-lt');
-
-Elapida.examine_returned(undefined, 'dumpster', '-zh');
-
-
-Elapida.examine_datatype('zosimos', 'object');
-
-Elapida.examine_records('zosimos', 'string', 60);
-
-
-Elapida.examine_datatype('quintet', 'object');
-
-Elapida.examine_records('quintet', 'object', 2);
-
-
-Elapida.examine_datatype('triplet', 'object');
-
-Elapida.examine_records('triplet', 'object', 2);
-
-
-Elapida.examine_datatype('vexillar', 'object');
-
-
-Elapida.examine_datatype('pitches', 'object');
-
-Elapida.examine_records('pitches', 'string', 2);
-
-
-Elapida.examine_datatype('arcane', 'object');
-
-Elapida.measure_carriage('arcane');
-
-Elapida.check_code_units('arcane');
-
-
-Elapida.examine_datatype('charms', 'object');
-
-Elapida.measure_carriage('charms');
-
-Elapida.check_code_units('charms');
-
-
-Elapida.examine_datatype('glyphs', 'object');
-
-Elapida.measure_carriage('glyphs');
-
-Elapida.check_code_units('glyphs');
-
-
-Elapida.examine_datatype('regexps', 'object');
-
-Elapida.examine_records('regexps', 'string', 2);
-
-
-Elapida.examine_datatype('keyhole', 'object');
-
-Elapida.examine_datatype('signatures', 'object');
-
-Elapida.examine_datatype('volume', 'number');
-
-Elapida.examine_datatype('serialStamp', 'string');
-
-
-Elapida.examine_typified('string', 'crucible',
-  Panopolis.zosimos['n0'], Panopolis.quintet['cn']);
-
-Elapida.examine_typified('string', 'crucible', '', []);
-
-
-Elapida.examine_typified('string', 'masquerade', undefined);
-
-Elapida.examine_typified('string', 'masquerade', '-xi');
-
-Elapida.examine_typified('string', 'masquerade', '-zh');
-
-
-Elapida.examine_returned(undefined, 'distillate', undefined);
-
-Elapida.examine_returned(undefined, 'distillate', '-bb');
-
-Elapida.examine_returned(undefined, 'distillate', '-zh');
-
-
-Elapida.examine_typified('string', 'pegbox',
-  Panopolis.zosimos['n0'], Panopolis.quintet['cn']);
-
-Elapida.examine_typified('string', 'pegbox', '', []);
-
-
-Elapida.examine_returned(undefined, 'fingerboard', 'quintet',
-  Panopolis.zosimos['n0']);
-
-Elapida.examine_returned(undefined, 'fingerboard', 'triplet',
-  Panopolis.zosimos['n0']);
-
-
-Elapida.examine_returned(undefined, 'panther', 'k99');
-
-Elapida.examine_returned(undefined, 'panther', 'j56');
-
-
-Elapida.examine_returned(undefined, 'vulture', undefined, 'yq');
-
-Elapida.examine_returned(undefined, 'vulture', '-bb', 'yq');
-
-Elapida.examine_returned(undefined, 'vulture', '-lt', 'NpFe');
-
-Elapida.examine_returned(undefined, 'vulture', '-zh', '镎铁');
-
-
-Elapida.examine_returned(undefined, 'selections', undefined);
-
-
-Elapida.examine_returned(undefined, 'retriever', '-mh', ['n0', 'j9']);
-
-Elapida.examine_returned(undefined, 'retriever', '-zh', ['k1', 'j0k9', 'k15']);
-
-
-Elapida.examine_typified('object', 'sentinel',
-  Array(Panopolis.volume + 1).fill(0));
-
-Elapida.examine_typified('object', 'sentinel',
-  Array(Panopolis.volume).fill('k2j56y7h'));
-
-
-Elapida.examine_returned(undefined, 'tutorial', undefined);
-
-
-Elapida.examine_returned(undefined, 'monoglot', undefined);
-
-Elapida.examine_returned(undefined, 'monoglot', ['group', 'yq']);
-
-Elapida.examine_returned(undefined, 'polyglot', undefined);
-
-Elapida.examine_returned(undefined, 'polyglot', ['-lt', 'group', 'NpFe']);
-
-
-Elapida.entryway_cyclist = [
-  [],
-  [null, null, '-h'],
-  [null, null, '-i'],
-  [null, null, 'k9'],
-  [null, null, 'n0', 'j3'],
-  [null, null, '-ac', 'j3'],
-  [null, null, '-dc', 'j3'],
-  [null, null, '-lt', 'j3'],
-  [null, null, '-zh', 'j3'],
-  [null, null, 'tonal'],
-  [null, null, '-ac', 'tonal'],
-  [null, null, '-dc', 'tonal'],
-  [null, null, '-lt', 'tonal'],
-  [null, null, '-zh', 'tonal'],
-  [null, null, 'group', 'zq'],
-  [null, null, '-ac', 'group', 'zq'],
-  [null, null, '-dc', 'group', 'R4'],
-  [null, null, '-lt', 'group', 'PuFe'],
-  [null, null, '-zh', 'group', '钚铁'],
-  [null, null, 'query', 'k9'],
-  [null, null, 'query', 'k2'],
-];
-
-Elapida.entryway_cyclist.forEach(star => {
-  Elapida.examine_returned(undefined, 'entryway', star);
-});
-
+Elapida.runabout();
 
 console.log(Elapida.format,
   Elapida.errors, Elapida.failed, Elapida.passed, Elapida.tested
