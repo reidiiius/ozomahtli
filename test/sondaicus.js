@@ -53,16 +53,16 @@ Elapida.scorecard = function(bool) {
 
 
 /*
- * Compares moniker type with genus string.
+ * Confirms property moniker is an array.
  */
-Elapida.worker.datatype = function(moniker, genus) {
+Elapida.worker.arraigned = function(moniker) {
   try {
     console.count('test-initiated');
 
     const value = Panopolis[moniker];
-    const boole = (genus === typeof(value));
+    const boole = Array.isArray(value);
 
-    console.assert(boole, "%s is %s", moniker, genus);
+    console.assert(boole, "%s is array", moniker);
 
     Elapida.scorecard(boole);
   } catch (anomaly) {
@@ -138,6 +138,57 @@ Elapida.worker.charisma = function(moniker) {
 
 
 /*
+ * Confirms members of moniker are arrays.
+ */
+Elapida.worker.collars = function(moniker) {
+  try {
+    const datum = Object.keys(Panopolis[moniker]);
+    const niter = datum.values();
+    let value, boole;
+
+    for (const item of niter) {
+      value = Panopolis[moniker][item];
+
+      boole = Array.isArray(value);
+
+      console.assert(boole, "%s[%s] is array", moniker, item);
+
+      Elapida.scorecard(boole);
+    }
+  } catch (anomaly) {
+    Elapida.diagnose(moniker, anomaly);
+  } finally {
+    Elapida.tailgate(moniker);
+  }
+
+  return;
+};
+
+
+/*
+ * Compares moniker type with genus string.
+ */
+Elapida.worker.datatype = function(moniker, genus) {
+  try {
+    console.count('test-initiated');
+
+    const value = Panopolis[moniker];
+    const boole = (genus === typeof(value));
+
+    console.assert(boole, "%s is %s", moniker, genus);
+
+    Elapida.scorecard(boole);
+  } catch (anomaly) {
+    Elapida.diagnose(moniker, anomaly);
+  } finally {
+    Elapida.tailgate(moniker);
+  }
+
+  return;
+};
+
+
+/*
  * Compares type of moniker member with genus,
  * and compares member length to span quantity.
  */
@@ -171,16 +222,16 @@ Elapida.worker.recorded = function(moniker, genus, span) {
 
 
 /*
- * Compares genus with type returned from moniker.
+ * Compares genus with value returned from moniker.
  */
-Elapida.worker.typified = function(genus, moniker, ...args) {
+Elapida.worker.returned = function(genus, moniker, ...args) {
   try {
     console.count('test-initiated');
 
     const value = Panopolis[moniker](...args);
-    const boole = (genus === typeof(value));
+    const boole = (genus === value);
 
-    console.assert(boole, "%s is %s", moniker, genus);
+    console.assert(boole, "%s returns %s", moniker, genus);
 
     Elapida.scorecard(boole);
   } catch (anomaly) {
@@ -194,16 +245,16 @@ Elapida.worker.typified = function(genus, moniker, ...args) {
 
 
 /*
- * Compares genus with value returned from moniker.
+ * Compares genus with type returned from moniker.
  */
-Elapida.worker.returned = function(genus, moniker, ...args) {
+Elapida.worker.typified = function(genus, moniker, ...args) {
   try {
     console.count('test-initiated');
 
     const value = Panopolis[moniker](...args);
-    const boole = (genus === value);
+    const boole = (genus === typeof(value));
 
-    console.assert(boole, "%s returns %s", moniker, genus);
+    console.assert(boole, "%s is %s", moniker, genus);
 
     Elapida.scorecard(boole);
   } catch (anomaly) {
@@ -234,6 +285,8 @@ Elapida.worker.quintet = function() {
 
   this.recorded(named, 'object', 2);
 
+  this.collars(named);
+
   return;
 };
 
@@ -245,6 +298,8 @@ Elapida.worker.triplet = function() {
 
   this.recorded(named, 'object', 2);
 
+  this.collars(named);
+
   return;
 };
 
@@ -254,6 +309,8 @@ Elapida.worker.pitches = function() {
 
   this.datatype(named, 'object');
 
+  this.arraigned(named);
+
   this.recorded(named, 'string', 2);
 
   return;
@@ -261,7 +318,11 @@ Elapida.worker.pitches = function() {
 
 
 Elapida.worker.vexillar = function() {
-  this.datatype('vexillar', 'object');
+  const named = 'vexillar';
+
+  this.datatype(named, 'object');
+
+  this.arraigned(named);
 
   return;
 };
@@ -271,6 +332,8 @@ Elapida.worker.arcane = function() {
   const named = 'arcane';
 
   this.datatype(named, 'object');
+
+  this.arraigned(named);
 
   this.carriage(named);
 
@@ -285,6 +348,8 @@ Elapida.worker.charms = function() {
 
   this.datatype(named, 'object');
 
+  this.arraigned(named);
+
   this.carriage(named);
 
   this.charisma(named);
@@ -297,6 +362,8 @@ Elapida.worker.glyphs = function() {
   const named = 'glyphs';
 
   this.datatype(named, 'object');
+
+  this.arraigned(named);
 
   this.carriage(named);
 
@@ -354,8 +421,12 @@ Elapida.worker.crucible = function() {
     [strand, points],
   ];
 
+  const named = 'crucible';
+
+  this.datatype(named, 'function');
+
   cyclist.forEach(star => {
-    this.typified('string', 'crucible',  star[0], star[1]);
+    this.typified('string', named,  star[0], star[1]);
   });
 
   return;
@@ -372,8 +443,12 @@ Elapida.worker.masquerade = function() {
     '-zh',
   ];
 
+  const named = 'masquerade';
+
+  this.datatype(named, 'function');
+
   cyclist.forEach(star => {
-    this.typified('string', 'masquerade', star);
+    this.typified('string', named, star);
   });
 
   return;
@@ -387,8 +462,12 @@ Elapida.worker.distillate = function() {
     '-zh',
   ];
 
+  const named = 'distillate';
+
+  this.datatype(named, 'function');
+
   cyclist.forEach(star => {
-    this.returned(undefined, 'distillate', star);
+    this.returned(undefined, named, star);
   });
 
   return;
@@ -404,8 +483,12 @@ Elapida.worker.pegbox = function() {
     ['strange', []],
   ];
 
+  const named = 'pegbox';
+
+  this.datatype(named, 'function');
+
   cyclist.forEach(star => {
-    this.typified('string', 'pegbox', star[0], star[1]);
+    this.typified('string', named, star[0], star[1]);
   });
 
   return;
@@ -420,8 +503,12 @@ Elapida.worker.fingerboard = function() {
     ['triplet', strand],
   ];
 
+  const named = 'fingerboard';
+
+  this.datatype(named, 'function');
+
   cyclist.forEach(star => {
-    this.returned(undefined, 'fingerboard', star[0], star[1]);
+    this.returned(undefined, named, star[0], star[1]);
   });
 
   return;
@@ -436,8 +523,12 @@ Elapida.worker.panther = function() {
     '[jk]56',
   ];
 
+  const named = 'panther';
+
+  this.datatype(named, 'function');
+
   cyclist.forEach(star => {
-    this.returned(undefined, 'panther', star);
+    this.returned(undefined, named, star);
   });
 
   return;
@@ -452,8 +543,12 @@ Elapida.worker.vulture = function() {
     ['-zh', '镎铁'],
   ];
 
+  const named = 'vulture';
+
+  this.datatype(named, 'function');
+
   cyclist.forEach(star => {
-    this.returned(undefined, 'vulture', star[0], star[1]);
+    this.returned(undefined, named, star[0], star[1]);
   });
 
   return;
@@ -461,7 +556,11 @@ Elapida.worker.vulture = function() {
 
 
 Elapida.worker.selections = function() {
-  this.returned(undefined, 'selections');
+  const named = 'selections';
+
+  this.datatype(named, 'function');
+
+  this.returned(undefined, named);
 
   return;
 };
@@ -476,8 +575,12 @@ Elapida.worker.dumpster = function() {
     '-zh',
   ];
 
+  const named = 'dumpster';
+
+  this.datatype(named, 'function');
+
   cyclist.forEach(star => {
-    this.returned(undefined, 'dumpster', star);
+    this.returned(undefined, named, star);
   });
 
   return;
@@ -495,8 +598,12 @@ Elapida.worker.retriever = function() {
     ['-zh', argots],
   ];
 
+  const named = 'retriever';
+
+  this.datatype(named, 'function');
+
   cyclist.forEach(star => {
-    this.returned(undefined, 'retriever', star[0], star[1]);
+    this.returned(undefined, named, star[0], star[1]);
   });
 
   return;
@@ -511,8 +618,12 @@ Elapida.worker.sentinel = function() {
     Array(slots).fill('k2j56y7h'),
   ];
 
+  const named = 'sentinel';
+
+  this.datatype(named, 'function');
+
   cyclist.forEach(star => {
-    this.typified('object', 'sentinel', star);
+    this.typified('object', named, star);
   });
 
   return;
@@ -520,7 +631,11 @@ Elapida.worker.sentinel = function() {
 
 
 Elapida.worker.tutorial = function() {
-  this.returned(undefined, 'tutorial');
+  const named = 'tutorial';
+
+  this.datatype(named, 'function');
+
+  this.returned(undefined, named);
 
   return;
 };
@@ -532,8 +647,12 @@ Elapida.worker.monoglot = function() {
     ['group', 'yq'],
   ];
 
+  const named = 'monoglot';
+
+  this.datatype(named, 'function');
+
   cyclist.forEach(star => {
-    this.returned(undefined, 'monoglot', star);
+    this.returned(undefined, named, star);
   });
 
   return;
@@ -546,8 +665,12 @@ Elapida.worker.polyglot = function() {
     ['-lt', 'group', 'NpFe'],
   ];
 
+  const named = 'polyglot';
+
+  this.datatype(named, 'function');
+
   cyclist.forEach(star => {
-    this.returned(undefined, 'polyglot', star);
+    this.returned(undefined, named, star);
   });
 
   return;
@@ -579,8 +702,12 @@ Elapida.worker.entryway = function() {
     [null, null, 'query', 'k2'],
   ];
 
+  const named = 'entryway';
+
+  this.datatype(named, 'function');
+
   cyclist.forEach(star => {
-    this.returned(undefined, 'entryway', star);
+    this.returned(undefined, named, star);
   });
 
   return;
