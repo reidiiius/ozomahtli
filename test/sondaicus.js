@@ -212,45 +212,45 @@ Elapida.worker.returned = function(genus, moniker, ...args) {
 };
 
 
-Elapida.worker.dumpster = function() {
-  const cyclist = [
-    undefined,
-    '-ac',
-    '-dc',
-    '-lt',
-    '-zh',
-  ];
-
-  cyclist.forEach(star => {
-    this.returned(undefined, 'dumpster', star);
-  });
-
-  return;
-};
-
-
 Elapida.worker.zosimos = function() {
-  this.datatype('zosimos', 'object');
+  const named = 'zosimos';
 
-  this.recorded('zosimos', 'string', 60);
+  this.datatype(named, 'object');
+
+  this.recorded(named, 'string', 60);
 
   return;
 };
 
 
 Elapida.worker.quintet = function() {
-  this.datatype('quintet', 'object');
+  const named = 'quintet';
 
-  this.recorded('quintet', 'object', 2);
+  this.datatype(named, 'object');
+
+  this.recorded(named, 'object', 2);
 
   return;
 };
 
 
 Elapida.worker.triplet = function() {
-  this.datatype('triplet', 'object');
+  const named ='triplet';
 
-  this.recorded('triplet', 'object', 2);
+  this.datatype(named, 'object');
+
+  this.recorded(named, 'object', 2);
+
+  return;
+};
+
+
+Elapida.worker.pitches = function() {
+  const named = 'pitches';
+
+  this.datatype(named, 'object');
+
+  this.recorded(named, 'string', 2);
 
   return;
 };
@@ -263,52 +263,51 @@ Elapida.worker.vexillar = function() {
 };
 
 
-Elapida.worker.pitches = function() {
-  this.datatype('pitches', 'object');
-
-  this.recorded('pitches', 'string', 2);
-
-  return;
-};
-
-
 Elapida.worker.arcane = function() {
-  this.datatype('arcane', 'object');
+  const named = 'arcane';
 
-  this.carriage('arcane');
+  this.datatype(named, 'object');
 
-  this.charisma('arcane');
+  this.carriage(named);
+
+  this.charisma(named);
 
   return;
 };
 
 
 Elapida.worker.charms = function() {
-  this.datatype('charms', 'object');
+  const named = 'charms';
 
-  this.carriage('charms');
+  this.datatype(named, 'object');
 
-  this.charisma('charms');
+  this.carriage(named);
+
+  this.charisma(named);
 
   return;
 };
 
 
 Elapida.worker.glyphs = function() {
-  this.datatype('glyphs', 'object');
+  const named = 'glyphs';
 
-  this.carriage('glyphs');
+  this.datatype(named, 'object');
 
-  this.charisma('glyphs');
+  this.carriage(named);
+
+  this.charisma(named);
 
   return;
 };
 
 
 Elapida.worker.regexps = function() {
-  this.datatype('regexps', 'object');
+  const named = 'regexps';
 
-  this.recorded('regexps', 'string', 2);
+  this.datatype(named, 'object');
+
+  this.recorded(named, 'string', 2);
 
   return;
 };
@@ -464,6 +463,23 @@ Elapida.worker.selections = function() {
 };
 
 
+Elapida.worker.dumpster = function() {
+  const cyclist = [
+    undefined,
+    '-ac',
+    '-dc',
+    '-lt',
+    '-zh',
+  ];
+
+  cyclist.forEach(star => {
+    this.returned(undefined, 'dumpster', star);
+  });
+
+  return;
+};
+
+
 Elapida.worker.retriever = function() {
   const argots = ['k1', 'j0k9', 'k15'];
 
@@ -484,9 +500,11 @@ Elapida.worker.retriever = function() {
 
 
 Elapida.worker.sentinel = function() {
+  const slots = Panopolis.volume;
+
   const cyclist = [
-    Array(Panopolis.volume + 1).fill(0),
-    Array(Panopolis.volume).fill('k2j56y7h'),
+    Array(slots + 1).fill(0),
+    Array(slots).fill('k2j56y7h'),
   ];
 
   cyclist.forEach(star => {
@@ -498,13 +516,7 @@ Elapida.worker.sentinel = function() {
 
 
 Elapida.worker.tutorial = function() {
-  const cyclist = [
-    undefined,
-  ];
-
-  cyclist.forEach(star => {
-    this.returned(undefined, 'tutorial', star);
-  });
+  this.returned(undefined, 'tutorial');
 
   return;
 };
@@ -577,8 +589,8 @@ Elapida.runabout = function() {
     'zosimos',
     'quintet',
     'triplet',
-    'vexillar',
     'pitches',
+    'vexillar',
     'arcane',
     'charms',
     'glyphs',
@@ -603,8 +615,15 @@ Elapida.runabout = function() {
     'entryway',
   ];
 
-  cyclist.forEach(name => {
-    this.worker[name]();
+  cyclist.forEach(moniker => {
+    try {
+      this.worker[moniker]();
+    } catch (anomaly) {
+      console.error(moniker);
+      console.error(anomaly);
+
+      ++this.errors;
+    }
   });
 
   return;

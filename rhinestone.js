@@ -623,7 +623,6 @@ Panopolis.polyglot = function(cart=['-ac']) {
 
 /*
  * Takes string array argument and returns undefined.
- * Parse arguments and facilitate conditional branching.
  * Application entry point.
  */
 Panopolis.entryway = function(args) {
