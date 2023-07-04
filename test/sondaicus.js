@@ -378,6 +378,8 @@ Elapida.worker.regexps = function() {
 
   this.datatype(named, 'object');
 
+  this.arraigned(named);
+
   this.recorded(named, 'string', 2);
 
   return;
@@ -392,7 +394,11 @@ Elapida.worker.keyhole = function() {
 
 
 Elapida.worker.signatures = function() {
-  this.datatype('signatures', 'object');
+  const named = 'signatures';
+
+  this.datatype(named, 'object');
+
+  this.arraigned(named);
 
   return;
 };
@@ -418,6 +424,8 @@ Elapida.worker.crucible = function() {
 
   const cyclist = [
     ['stunted', []],
+    ['stunted', points],
+    [strand, []],
     [strand, points],
   ];
 
@@ -458,7 +466,10 @@ Elapida.worker.masquerade = function() {
 Elapida.worker.distillate = function() {
   const cyclist = [
     undefined,
-    '-bb',
+    '-ac',
+    '-dc',
+    '-lt',
+    '-xi',
     '-zh',
   ];
 
@@ -479,8 +490,10 @@ Elapida.worker.pegbox = function() {
   const ranges = Panopolis.quintet['cn'];
 
   const cyclist = [
-    [strand, ranges],
     ['strange', []],
+    ['strange', ranges],
+    [strand, []],
+    [strand, ranges],
   ];
 
   const named = 'pegbox';
@@ -498,8 +511,12 @@ Elapida.worker.pegbox = function() {
 Elapida.worker.fingerboard = function() {
   const strand = Panopolis.zosimos['n0'];
 
+  const span = 6;
+
   const cyclist = [
+    ['quintet', '---- '.repeat(span)],
     ['quintet', strand],
+    ['triplet', '---- '.repeat(span)],
     ['triplet', strand],
   ];
 
@@ -538,7 +555,10 @@ Elapida.worker.panther = function() {
 Elapida.worker.vulture = function() {
   const cyclist = [
     [undefined, 'yq'],
+    ['-ac', undefined],
     ['-bb', 'yq'],
+    ['-ac', 'yq'],
+    ['-dc', 'Q4'],
     ['-lt', 'NpFe'],
     ['-zh', '镎铁'],
   ];
@@ -572,6 +592,7 @@ Elapida.worker.dumpster = function() {
     '-ac',
     '-dc',
     '-lt',
+    '-xi',
     '-zh',
   ];
 
@@ -644,7 +665,10 @@ Elapida.worker.tutorial = function() {
 Elapida.worker.monoglot = function() {
   const cyclist = [
     undefined,
+    ['-h', null],
+    ['tonal', null],
     ['group', 'yq'],
+    ['group', 'mm'],
   ];
 
   const named = 'monoglot';
@@ -662,7 +686,14 @@ Elapida.worker.monoglot = function() {
 Elapida.worker.polyglot = function() {
   const cyclist = [
     undefined,
+    ['-ac', 'tonal', null],
+    ['-dc', 'tonal', null],
+    ['-lt', 'tonal', null],
+    ['-zh', 'tonal', null],
+    ['-ac', 'group', 'yq'],
+    ['-dc', 'group', 'Q4'],
     ['-lt', 'group', 'NpFe'],
+    ['-zh', 'group', '镎铁'],
   ];
 
   const named = 'polyglot';
@@ -678,8 +709,11 @@ Elapida.worker.polyglot = function() {
 
 
 Elapida.worker.entryway = function() {
+  const maximal = Panopolis.volume;
+
   const cyclist = [
     [],
+    [null],
     [null, null, '-h'],
     [null, null, '-i'],
     [null, null, 'k9'],
@@ -700,6 +734,8 @@ Elapida.worker.entryway = function() {
     [null, null, '-zh', 'group', '钚铁'],
     [null, null, 'query', 'k9'],
     [null, null, 'query', 'k2'],
+    Array(maximal).fill('k26j56y7h'),
+    Array(maximal + 1).fill(null),
   ];
 
   const named = 'entryway';
