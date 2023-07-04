@@ -181,8 +181,8 @@ Panopolis.serialStamp = String(new Date().getTime());
  * Returns a new string with replacements.
  */
 Panopolis.crucible = function(cord, subs) {
-  var wire = cord.slice(0);
-  var rexp = new RegExp();
+  let wire = cord.slice(0);
+  let rexp = new RegExp();
 
   for (let ndx = 0; ndx < this.regexps.length; ndx++) {
     rexp = new RegExp(this.regexps[ndx], 'g');
@@ -198,7 +198,7 @@ Panopolis.crucible = function(cord, subs) {
  * Parses flag and assigns name to returned mask.
  */
 Panopolis.masquerade = function(kind) {
-  var mask = new String();
+  let mask = new String();
 
   switch(kind) {
     case '-ac':
@@ -226,15 +226,14 @@ Panopolis.masquerade = function(kind) {
  * Formats and prints table of unique tonalities.
  */
 Panopolis.distillate = function(kind) {
-  var bank = this.zosimos;
-  var sign = new String();
-  var mask = this.masquerade(kind);
-  var crow = new String();
-  var star = new Array();
-  var duos = new Set();
+  const iter = this.signatures.values();
+  const mask = this.masquerade(kind);
+  const bank = this.zosimos;
+  const duos = new Set();
+  let crow = new String();
+  let star = new Array();
 
-  for (let ndx in this.signatures) {
-    sign = this.signatures[ndx];
+  for (const sign of iter) {
 
     if (mask === 'metals') {
       crow = bank[sign].trim();
@@ -278,9 +277,9 @@ Panopolis.distillate = function(kind) {
  * Returns a mutated string the same length as the one pasted.
  */
 Panopolis.pegbox = function(crow, gear) {
-  var head = crow.slice(gear[0], gear[1]);
-  var tail = crow.slice(0, gear[0]);
-  var wire = head.concat(tail);
+  const head = crow.slice(gear[0], gear[1]);
+  const tail = crow.slice(0, gear[0]);
+  const wire = head.concat(tail);
 
   return wire;
 };
@@ -293,7 +292,7 @@ Panopolis.pegbox = function(crow, gear) {
  * according to the string array of tuning pitches.
  */
 Panopolis.fingerboard = function(kind, crow) {
-  for (let item in this.pitches) {
+  for (const item in this.pitches) {
     console.log('\t' +
       this.pegbox(crow, this[kind][this.pitches[item]])
     );
@@ -308,13 +307,11 @@ Panopolis.fingerboard = function(kind, crow) {
  * Formats and prints table of found keys.
  */
 Panopolis.panther = function(kind) {
-  var cart = this.signatures;
-  var gems = new Array();
-
-  gems = cart.filter(sign => sign.match(kind));
+  const cart = this.signatures;
+  const gems = cart.filter(sign => sign.match(kind));
 
   if (gems.length) {
-    for (let ndx in gems) {
+    for (const ndx in gems) {
       if (ndx % 7 === 0) process.stdout.write('\n');
 
       process.stdout.write('\t' + gems[ndx]);
@@ -333,12 +330,12 @@ Panopolis.panther = function(kind) {
  * Formats and prints table of found tones.
  */
 Panopolis.vulture = function(kind, spat) {
-  var cart = this.signatures;
-  var mask = this.masquerade(kind);
-  var bank = this.zosimos;
-  var crow = new String();
-  var rexp = new RegExp(spat);
-  var gems = new Array();
+  const cart = this.signatures;
+  const mask = this.masquerade(kind);
+  const bank = this.zosimos;
+  const rexp = new RegExp(spat);
+  const gems = new Array();
+  let crow = new String();
 
   cart.forEach(sign => {
     if (mask === 'metals') {
@@ -353,7 +350,7 @@ Panopolis.vulture = function(kind, spat) {
   });
 
   if (gems.length) {
-    for (let ndx in gems) {
+    for (const ndx in gems) {
       if (ndx % 7 === 0) process.stdout.write('\n');
 
       process.stdout.write('\t' + gems[ndx]);
@@ -372,7 +369,7 @@ Panopolis.vulture = function(kind, spat) {
  * Formats and prints menu of key signatures.
  */
 Panopolis.selections = function() {
-  for (let ndx in this.signatures) {
+  for (const ndx in this.signatures) {
     if (ndx % 7 === 0) process.stdout.write('\n');
 
     process.stdout.write('\t' + this.signatures[ndx]);
@@ -388,17 +385,16 @@ Panopolis.selections = function() {
  * Formats and prints all records tabulated.
  */
 Panopolis.dumpster = function(kind='-ac') {
-  var sign = new String();
-  var bank = this.zosimos;
-  var mask = this.masquerade(kind);
+  const iter = this.signatures.values();
+  const bank = this.zosimos;
+  const mask = this.masquerade(kind);
 
   // ensure value consistency of kind
   if (! this.vexillar.includes(kind)) kind = '-ac';
 
   console.log();
 
-  for (let ndx in this.signatures) {
-    sign = this.signatures[ndx];
+  for (const sign of iter) {
 
     if (sign in bank && typeof(bank[sign]) === 'string') {
       console.log('\n\t' + sign + kind + this.serialStamp);
@@ -426,11 +422,11 @@ Panopolis.dumpster = function(kind='-ac') {
  * afterwards returns undefined.
  */
 Panopolis.retriever = function(kind, cart=[]) {
-  var rexp = new RegExp(this.keyhole);
-  var bank = this.zosimos;
-  var yarn = new String();
-  var mask = this.masquerade(kind);
-  var veil = new String();
+  const rexp = new RegExp(this.keyhole);
+  const bank = this.zosimos;
+  const mask = this.masquerade(kind);
+  let yarn = new String();
+  let veil = new String();
 
   console.log();
 
@@ -472,7 +468,7 @@ Panopolis.retriever = function(kind, cart=[]) {
  * Sanitizes input arguments by limiting amount and word length.
  */
 Panopolis.sentinel = function(args) {
-  var cart = new Array();
+  let cart = new Array();
 
   if (args.length > this.volume) {
     cart = [String(args.length)];
@@ -491,9 +487,9 @@ Panopolis.sentinel = function(args) {
  * Prints template literal of command options.
  */
 Panopolis.tutorial = function() {
-  var exec = process.argv0;
-  var path = process.argv[1].split('/');
-  var cmds = `${exec} ${path.pop()}`;
+  const exec = process.argv0;
+  const path = process.argv[1].split('/');
+  const cmds = `${exec} ${path.pop()}`;
 
   console.log(`
   Usage: ${cmds} [option [process [tonality | signatures]]]
@@ -543,9 +539,9 @@ Panopolis.tutorial = function() {
  * Parse cart length then cart[0] value.
  */
 Panopolis.monoglot = function(cart=['-h']) {
-  var head = new String();
+  let head = new String();
 
-  if (cart.length === 0) {
+  if (! cart.length) {
     this.selections();
   } else if (cart.length === 1) {
     switch(cart[0]) {
@@ -592,9 +588,9 @@ Panopolis.monoglot = function(cart=['-h']) {
  * Parse shifted cart length then cart[0] value.
  */
 Panopolis.polyglot = function(cart=['-ac']) {
-  var head = cart.shift();
+  const head = cart.shift();
 
-  if (cart.length === 0) {
+  if (! cart.length) {
     this.selections();
   } else if (cart.length === 1) {
     switch(cart[0]) {
@@ -626,9 +622,9 @@ Panopolis.polyglot = function(cart=['-ac']) {
  * Application entry point.
  */
 Panopolis.entryway = function(args) {
-  var cart = this.sentinel(args);
+  const cart = this.sentinel(args);
 
-  if (cart.length < 1) {
+  if (! cart.length) {
     this.selections();
   } else {
     if (this.vexillar.includes(cart[0])) {

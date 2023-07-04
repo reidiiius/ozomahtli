@@ -59,8 +59,8 @@ Elapida.worker.datatype = function(moniker, genus) {
   try {
     console.count('test-initiated');
 
-    let value = Panopolis[moniker];
-    let boole = (genus === typeof(value));
+    const value = Panopolis[moniker];
+    const boole = (genus === typeof(value));
 
     console.assert(boole, "%s is %s", moniker, genus);
 
@@ -82,15 +82,14 @@ Elapida.worker.carriage = function(moniker) {
   try {
     console.count('test-initiated');
 
-    let units = Panopolis[moniker];
-    let slots = Panopolis.regexps.length;
-    let boole;
+    const units = Panopolis[moniker];
 
     if (! Array.isArray(units)) {
       throw new TypeError(`${moniker} is not an array`);
     }
 
-    boole = (units.length === slots);
+    const slots = Panopolis.regexps.length;
+    const boole = (units.length === slots);
 
     console.assert(boole, "%s length not equal %d", moniker, slots);
 
@@ -112,8 +111,13 @@ Elapida.worker.charisma = function(moniker) {
   try {
     console.count('test-initiated');
 
-    let units = Panopolis[moniker];
-    let value, boole;
+    const units = Panopolis[moniker];
+
+    if (! Array.isArray(units)) {
+      throw new TypeError(`${moniker} is not an array`);
+    }
+
+    let boole;
 
     units.forEach(value => {
       boole = (Number.isInteger(value) && value > 31 && value < 65519);
@@ -141,17 +145,17 @@ Elapida.worker.recorded = function(moniker, genus, span) {
   try {
     console.count('test-initiated');
 
-    let datum = Object.keys(Panopolis[moniker]);
-    let value;
-    let boole;
+    const datum = Object.keys(Panopolis[moniker]);
+    const niter = datum.values();
+    let value, boole;
 
-    for (let item = 0; item < datum.length; item++) {
-      value = Panopolis[moniker][datum[item]];
+    for (const item of niter) {
+      value = Panopolis[moniker][item];
 
       boole = (genus === typeof(value) && value.length === span);
 
-      console.assert(boole, "%s.%s is %s of length: %d",
-        moniker, datum[item], genus, span);
+      console.assert(boole, "%s[%s] is %s of length: %d",
+        moniker, item, genus, span);
 
       Elapida.scorecard(boole);
     }
@@ -173,8 +177,8 @@ Elapida.worker.typified = function(genus, moniker, ...args) {
   try {
     console.count('test-initiated');
 
-    let value = Panopolis[moniker](...args);
-    let boole = (genus === typeof(value));
+    const value = Panopolis[moniker](...args);
+    const boole = (genus === typeof(value));
 
     console.assert(boole, "%s is %s", moniker, genus);
 
@@ -196,8 +200,8 @@ Elapida.worker.returned = function(genus, moniker, ...args) {
   try {
     console.count('test-initiated');
 
-    let value = Panopolis[moniker](...args);
-    let boole = (genus === value);
+    const value = Panopolis[moniker](...args);
+    const boole = (genus === value);
 
     console.assert(boole, "%s returns %s", moniker, genus);
 
