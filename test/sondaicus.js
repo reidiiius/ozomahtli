@@ -229,7 +229,7 @@ Elapida.worker.returned = function(genus, moniker, ...args) {
     console.count('test-initiated');
 
     const value = Panopolis[moniker](...args);
-    const boole = (genus === value);
+    const boole = (genus === typeof(value));
 
     console.assert(boole, "%s returns %s", moniker, genus);
 
@@ -478,7 +478,7 @@ Elapida.worker.distillate = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned(undefined, named, star);
+    this.returned('string', named, star);
   });
 
   return;
@@ -525,7 +525,7 @@ Elapida.worker.fingerboard = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned(undefined, named, star[0], star[1]);
+    this.returned('string', named, star[0], star[1]);
   });
 
   return;
@@ -545,7 +545,7 @@ Elapida.worker.panther = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned(undefined, named, star);
+    this.returned('string', named, star);
   });
 
   return;
@@ -568,7 +568,7 @@ Elapida.worker.vulture = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned(undefined, named, star[0], star[1]);
+    this.returned('string', named, star[0], star[1]);
   });
 
   return;
@@ -580,7 +580,7 @@ Elapida.worker.selections = function() {
 
   this.datatype(named, 'function');
 
-  this.returned(undefined, named);
+  this.returned('string', named);
 
   return;
 };
@@ -601,7 +601,7 @@ Elapida.worker.dumpster = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned(undefined, named, star);
+    this.returned('string', named, star);
   });
 
   return;
@@ -624,7 +624,7 @@ Elapida.worker.retriever = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned(undefined, named, star[0], star[1]);
+    this.returned('string', named, star[0], star[1]);
   });
 
   return;
@@ -656,7 +656,7 @@ Elapida.worker.tutorial = function() {
 
   this.datatype(named, 'function');
 
-  this.returned(undefined, named);
+  this.returned('string', named);
 
   return;
 };
@@ -676,7 +676,7 @@ Elapida.worker.monoglot = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned(undefined, named, star);
+    this.returned('string', named, star);
   });
 
   return;
@@ -701,7 +701,7 @@ Elapida.worker.polyglot = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned(undefined, named, star);
+    this.returned('string', named, star);
   });
 
   return;
@@ -743,7 +743,7 @@ Elapida.worker.entryway = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned(undefined, named, star);
+    this.returned('number', named, star);
   });
 
   return;
@@ -752,7 +752,6 @@ Elapida.worker.entryway = function() {
 
 Elapida.runabout = function() {
   const cyclist = [
-    'dumpster',
     'zosimos',
     'quintet',
     'triplet',
@@ -774,6 +773,7 @@ Elapida.runabout = function() {
     'panther',
     'vulture',
     'selections',
+    'dumpster',
     'retriever',
     'sentinel',
     'tutorial',
