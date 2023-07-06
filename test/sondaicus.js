@@ -222,39 +222,16 @@ Elapida.worker.recorded = function(moniker, genus, span) {
 
 
 /*
- * Compares genus with value returned from moniker.
- */
-Elapida.worker.returned = function(genus, moniker, ...args) {
-  try {
-    console.count('test-initiated');
-
-    const value = Panopolis[moniker](...args);
-    const boole = (genus === typeof(value));
-
-    console.assert(boole, "%s returns %s", moniker, genus);
-
-    Elapida.scorecard(boole);
-  } catch (anomaly) {
-    Elapida.diagnose(moniker, anomaly);
-  } finally {
-    Elapida.tailgate(moniker);
-  }
-
-  return;
-};
-
-
-/*
  * Compares genus with type returned from moniker.
  */
-Elapida.worker.typified = function(genus, moniker, ...args) {
+Elapida.worker.teletype = function(genus, moniker, ...args) {
   try {
     console.count('test-initiated');
 
     const value = Panopolis[moniker](...args);
     const boole = (genus === typeof(value));
 
-    console.assert(boole, "%s is %s", moniker, genus);
+    console.assert(boole, "%s returns type %s", moniker, genus);
 
     Elapida.scorecard(boole);
   } catch (anomaly) {
@@ -434,7 +411,7 @@ Elapida.worker.crucible = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.typified('string', named,  star[0], star[1]);
+    this.teletype('string', named,  star[0], star[1]);
   });
 
   return;
@@ -456,7 +433,7 @@ Elapida.worker.masquerade = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.typified('string', named, star);
+    this.teletype('string', named, star);
   });
 
   return;
@@ -478,7 +455,7 @@ Elapida.worker.distillate = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned('string', named, star);
+    this.teletype('string', named, star);
   });
 
   return;
@@ -501,7 +478,7 @@ Elapida.worker.pegbox = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.typified('string', named, star[0], star[1]);
+    this.teletype('string', named, star[0], star[1]);
   });
 
   return;
@@ -525,7 +502,7 @@ Elapida.worker.fingerboard = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned('string', named, star[0], star[1]);
+    this.teletype('string', named, star[0], star[1]);
   });
 
   return;
@@ -545,7 +522,7 @@ Elapida.worker.panther = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned('string', named, star);
+    this.teletype('string', named, star);
   });
 
   return;
@@ -568,7 +545,7 @@ Elapida.worker.vulture = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned('string', named, star[0], star[1]);
+    this.teletype('string', named, star[0], star[1]);
   });
 
   return;
@@ -580,7 +557,7 @@ Elapida.worker.selections = function() {
 
   this.datatype(named, 'function');
 
-  this.returned('string', named);
+  this.teletype('string', named);
 
   return;
 };
@@ -601,7 +578,7 @@ Elapida.worker.dumpster = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned('string', named, star);
+    this.teletype('string', named, star);
   });
 
   return;
@@ -624,7 +601,7 @@ Elapida.worker.retriever = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned('string', named, star[0], star[1]);
+    this.teletype('string', named, star[0], star[1]);
   });
 
   return;
@@ -644,7 +621,7 @@ Elapida.worker.sentinel = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.typified('object', named, star);
+    this.teletype('object', named, star);
   });
 
   return;
@@ -656,7 +633,7 @@ Elapida.worker.tutorial = function() {
 
   this.datatype(named, 'function');
 
-  this.returned('string', named);
+  this.teletype('string', named);
 
   return;
 };
@@ -676,7 +653,7 @@ Elapida.worker.monoglot = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned('string', named, star);
+    this.teletype('string', named, star);
   });
 
   return;
@@ -701,7 +678,7 @@ Elapida.worker.polyglot = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned('string', named, star);
+    this.teletype('string', named, star);
   });
 
   return;
@@ -734,7 +711,7 @@ Elapida.worker.entryway = function() {
     [null, null, '-zh', 'group', '钚铁'],
     [null, null, 'query', 'k9'],
     [null, null, 'query', 'k2'],
-    Array(maximal).fill('k26j56y7h'),
+    Array(maximal).fill('0123456789ABCDEFG'),
     Array(maximal + 1).fill(null),
   ];
 
@@ -743,7 +720,7 @@ Elapida.worker.entryway = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.returned('number', named, star);
+    this.teletype('number', named, star);
   });
 
   return;

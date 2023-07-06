@@ -499,6 +499,7 @@ Panopolis.retriever = function(kind, cart=[]) {
  * Sanitizes input by limiting amount and word length of arguments.
  */
 Panopolis.sentinel = function(args) {
+  const limit = 16; // maximum characters
   let cart = new Array();
 
   if (args.length > this.volume) {
@@ -506,7 +507,7 @@ Panopolis.sentinel = function(args) {
   }
   else {
     cart = args.slice(2, args.length);
-    cart = cart.filter(sign => sign.length < 9);
+    cart = cart.filter(word => word.length <= limit);
   }
 
   return cart;
@@ -518,10 +519,10 @@ Panopolis.sentinel = function(args) {
  * User guide reference manual of command options.
  */
 Panopolis.tutorial = function() {
-  const cmds = "js rhinestone.js";
-  let wire = new String();
-
-  wire = `
+  const exec = process.argv0;
+  const path = process.argv[1].split('/');
+  const cmds = `${exec} ${path.pop()}`;
+  const wire = `
   Usage: ${cmds} [option [process [tonality | signatures]]]
 
   Options:
@@ -540,6 +541,8 @@ Panopolis.tutorial = function() {
   Samples:
 		${cmds}
 
+		${cmds} -h
+
 		${cmds} n0 j36
 
 		${cmds} -dc n0 j36
@@ -550,6 +553,8 @@ Panopolis.tutorial = function() {
 
 		${cmds} query j2
 
+		${cmds} query ^[jk]..$
+
 		${cmds} tonal
 
 		${cmds} -zh tonal
@@ -557,8 +562,7 @@ Panopolis.tutorial = function() {
 		${cmds} gamut
 
 		${cmds} -dc gamut
-
-  `;
+  \n`;
 
   return wire;
 }
