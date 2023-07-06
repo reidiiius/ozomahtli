@@ -76,7 +76,7 @@ Elapida.worker.arraigned = function(moniker) {
 
 
 /*
- * Checks equality of moniker and regexps length.
+ * Checks equality of moniker and exemplar length.
  */
 Elapida.worker.carriage = function(moniker) {
   try {
@@ -88,7 +88,7 @@ Elapida.worker.carriage = function(moniker) {
       throw new TypeError(`${moniker} is not an array`);
     }
 
-    const slots = Panopolis.regexps.length;
+    const slots = Panopolis.exemplar.length;
     const boole = (units.length === slots);
 
     console.assert(boole, "%s length not equal %d", moniker, slots);
@@ -350,8 +350,8 @@ Elapida.worker.glyphs = function() {
 };
 
 
-Elapida.worker.regexps = function() {
-  const named = 'regexps';
+Elapida.worker.exemplar = function() {
+  const named = 'exemplar';
 
   this.datatype(named, 'object');
 
@@ -370,8 +370,8 @@ Elapida.worker.keyhole = function() {
 };
 
 
-Elapida.worker.signatures = function() {
-  const named = 'signatures';
+Elapida.worker.signats = function() {
+  const named = 'signats';
 
   this.datatype(named, 'object');
 
@@ -418,7 +418,7 @@ Elapida.worker.crucible = function() {
 };
 
 
-Elapida.worker.masquerade = function() {
+Elapida.worker.garment = function() {
   const cyclist = [
     undefined,
     '-ac',
@@ -428,19 +428,40 @@ Elapida.worker.masquerade = function() {
     '-zh',
   ];
 
-  const named = 'masquerade';
+  const named = 'garment';
 
   this.datatype(named, 'function');
 
-  cyclist.forEach(star => {
-    this.teletype('string', named, star);
+  cyclist.forEach(item => {
+    this.teletype('string', named, item);
   });
 
   return;
 };
 
 
-Elapida.worker.distillate = function() {
+Elapida.worker.stonewall = function() {
+  const star = new Array();
+
+  let deca = 90;
+
+  while (deca > 64) {
+    star.push(String.fromCharCode(deca));
+
+    --deca;
+  }
+
+  const named = 'stonewall';
+
+  this.datatype(named, 'function');
+
+  this.teletype('string', named, star);
+
+  return;
+};
+
+
+Elapida.worker.distill = function() {
   const cyclist = [
     undefined,
     '-ac',
@@ -450,19 +471,19 @@ Elapida.worker.distillate = function() {
     '-zh',
   ];
 
-  const named = 'distillate';
+  const named = 'distill';
 
   this.datatype(named, 'function');
 
-  cyclist.forEach(star => {
-    this.teletype('string', named, star);
+  cyclist.forEach(item => {
+    this.teletype('string', named, item);
   });
 
   return;
 };
 
 
-Elapida.worker.pegbox = function() {
+Elapida.worker.machine = function() {
   const strand = Panopolis.zosimos['n0'];
   const ranges = Panopolis.quintet['cn'];
 
@@ -473,7 +494,7 @@ Elapida.worker.pegbox = function() {
     [strand, ranges],
   ];
 
-  const named = 'pegbox';
+  const named = 'machine';
 
   this.datatype(named, 'function');
 
@@ -485,7 +506,7 @@ Elapida.worker.pegbox = function() {
 };
 
 
-Elapida.worker.fingerboard = function() {
+Elapida.worker.lattice = function() {
   const strand = Panopolis.zosimos['n0'];
 
   const span = 6;
@@ -497,7 +518,7 @@ Elapida.worker.fingerboard = function() {
     ['triplet', strand],
   ];
 
-  const named = 'fingerboard';
+  const named = 'lattice';
 
   this.datatype(named, 'function');
 
@@ -521,8 +542,8 @@ Elapida.worker.panther = function() {
 
   this.datatype(named, 'function');
 
-  cyclist.forEach(star => {
-    this.teletype('string', named, star);
+  cyclist.forEach(item => {
+    this.teletype('string', named, item);
   });
 
   return;
@@ -552,8 +573,8 @@ Elapida.worker.vulture = function() {
 };
 
 
-Elapida.worker.selections = function() {
-  const named = 'selections';
+Elapida.worker.dashboard = function() {
+  const named = 'dashboard';
 
   this.datatype(named, 'function');
 
@@ -577,15 +598,29 @@ Elapida.worker.dumpster = function() {
 
   this.datatype(named, 'function');
 
-  cyclist.forEach(star => {
-    this.teletype('string', named, star);
+  cyclist.forEach(item => {
+    this.teletype('string', named, item);
   });
 
   return;
 };
 
 
-Elapida.worker.retriever = function() {
+Elapida.worker.composer = function() {
+  const timely = Panopolis.chronic;
+  const strand = Panopolis.zosimos['n0'];
+
+  const named = 'composer';
+
+  this.datatype(named, 'function');
+
+  this.teletype('string', named, timely, strand);
+
+  return;
+};
+
+
+Elapida.worker.retrieve = function() {
   const argots = ['k1', 'j0k9', 'k15'];
 
   const cyclist = [
@@ -596,7 +631,7 @@ Elapida.worker.retriever = function() {
     ['-zh', argots],
   ];
 
-  const named = 'retriever';
+  const named = 'retrieve';
 
   this.datatype(named, 'function');
 
@@ -738,21 +773,23 @@ Elapida.runabout = function() {
     'arcane',
     'charms',
     'glyphs',
-    'regexps',
+    'exemplar',
     'keyhole',
-    'signatures',
+    'signats',
     'volume',
     'chronic',
     'crucible',
-    'masquerade',
-    'distillate',
-    'pegbox',
-    'fingerboard',
+    'garment',
+    'stonewall',
+    'distill',
+    'machine',
+    'lattice',
     'panther',
     'vulture',
-    'selections',
+    'dashboard',
     'dumpster',
-    'retriever',
+    'composer',
+    'retrieve',
     'sentinel',
     'tutorial',
     'monoglot',
