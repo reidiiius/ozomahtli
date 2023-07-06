@@ -388,8 +388,8 @@ Elapida.worker.volume = function() {
 };
 
 
-Elapida.worker.serialStamp = function() {
-  this.datatype('serialStamp', 'string');
+Elapida.worker.chronic = function() {
+  this.datatype('chronic', 'string');
 
   return;
 };
@@ -711,6 +711,7 @@ Elapida.worker.entryway = function() {
     [null, null, '-zh', 'group', '钚铁'],
     [null, null, 'query', 'k9'],
     [null, null, 'query', 'k2'],
+    [null, null, 'query', '^[jk]\d{2}[xy].$'],
     Array(maximal).fill('0123456789ABCDEFG'),
     Array(maximal + 1).fill(null),
   ];
@@ -741,7 +742,7 @@ Elapida.runabout = function() {
     'keyhole',
     'signatures',
     'volume',
-    'serialStamp',
+    'chronic',
     'crucible',
     'masquerade',
     'distillate',

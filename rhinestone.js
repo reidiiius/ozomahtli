@@ -172,7 +172,7 @@ Panopolis.signatures = Object.keys(Panopolis.zosimos).sort();
 
 Panopolis.volume = Panopolis.signatures.length;
 
-Panopolis.serialStamp = String(new Date().getTime());
+Panopolis.chronic = String(new Date().getTime());
 
 
 /*
@@ -293,13 +293,16 @@ Panopolis.pegbox = function(crow, gear) {
  * The second argument is a string to be processed
  * according to the string array of tuning pitches.
  */
-Panopolis.fingerboard = function(kind, crow) {
+Panopolis.fingerboard = function(yarn) {
   const elms = new Array();
+  let veil = new String();
+
+  yarn.length > 36 ? veil = 'quintet' : veil = 'triplet';
 
   elms.push('\t');
 
   for (const item in this.pitches) {
-    elms.push(this.pegbox(crow, this[kind][this.pitches[item]]));
+    elms.push(this.pegbox(yarn, this[veil][this.pitches[item]]));
   }
 
   return elms.join('\n\t');
@@ -415,15 +418,14 @@ Panopolis.dumpster = function(kind='-ac') {
   for (const sign of iter) {
 
     if (sign in bank && typeof(bank[sign]) === 'string') {
-      stem = '\n\t' + sign + kind + this.serialStamp;
+      stem = '\n\t' + sign + kind + this.chronic;
 
       elms.push(stem);
 
       if (mask === 'metals') {
-        elms.push(this.fingerboard('quintet', bank[sign]));
+        elms.push(this.fingerboard(bank[sign]));
       } else {
-        elms.push(this.fingerboard('triplet',
-          this.crucible(bank[sign], this[mask])));
+        elms.push(this.fingerboard(this.crucible(bank[sign], this[mask])));
       }
 
       elms.push('\n');
@@ -451,7 +453,6 @@ Panopolis.retriever = function(kind, cart=[]) {
   const elms = new Array();
   let stem = new String();
   let yarn = new String();
-  let veil = new String();
   let flaw = new String();
 
   cart.forEach(sign => {
@@ -464,17 +465,10 @@ Panopolis.retriever = function(kind, cart=[]) {
       }
 
       if (typeof(yarn) === 'string') {
-
-        if (yarn.length > 36) {
-          veil = 'quintet';
-        } else {
-          veil = 'triplet';
-        }
-
-        stem = '\n\t' + sign + kind + this.serialStamp;
+        stem = '\n\t' + sign + kind + this.chronic;
 
         elms.push(stem);
-        elms.push(this.fingerboard(veil, yarn));
+        elms.push(this.fingerboard(yarn));
         elms.push('\n');
       } else {
         flaw = '\n\t' + 'zosimos: ' + sign + ' ?\n';
@@ -519,9 +513,9 @@ Panopolis.sentinel = function(args) {
  * User guide reference manual of command options.
  */
 Panopolis.tutorial = function() {
-  const exec = process.argv0;
-  const path = process.argv[1].split('/');
-  const cmds = `${exec} ${path.pop()}`;
+  const exec = process.title;
+  const path = 'rhinestone.js';
+  const cmds = `${exec} ${path}`;
   const wire = `
   Usage: ${cmds} [option [process [tonality | signatures]]]
 
@@ -553,7 +547,7 @@ Panopolis.tutorial = function() {
 
 		${cmds} query j2
 
-		${cmds} query ^[jk]..$
+		${cmds} query '^[jk]..$'
 
 		${cmds} tonal
 
