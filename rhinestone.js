@@ -497,8 +497,10 @@ Panopolis.retrieve = function(kind, cart=[]) {
   const rexp = new RegExp(this.keyhole);
   const bank = this.zosimos;
   const mask = this.garment(kind);
+  const elms = new Array();
   let yarn = new String();
   let stem = new String();
+  let flaw = new String();
   let rope = new String();
 
   cart.forEach(sign => {
@@ -513,17 +515,21 @@ Panopolis.retrieve = function(kind, cart=[]) {
       if (typeof(yarn) === 'string') {
         stem = '\n\t' + sign + kind + this.chronic;
 
-        rope = this.composer(stem, yarn);
+        elms.push(this.composer(stem, yarn));
       } else {
-        rope = '\n\t' + 'zosimos: ' + sign + ' ?\n';
+        flaw = '\n\t' + 'zosimos: ' + sign + ' ?\n';
+
+        elms.push(flaw);
       }
 
     } else {
-      rope = '\n\t' + sign + ' ?\n';
+      flaw = '\n\t' + sign + ' ?\n';
+
+      elms.push(flaw);
     }
   });
 
-  rope += '\n';
+  rope = elms.join('') + '\n';
 
   return rope;
 };
