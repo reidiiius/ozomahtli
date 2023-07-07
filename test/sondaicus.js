@@ -294,6 +294,17 @@ Elapida.worker.pitches = function() {
 };
 
 
+Elapida.worker.pegbox = function() {
+  const named ='pegbox';
+
+  this.datatype(named, 'object');
+
+  this.collars(named);
+
+  return;
+};
+
+
 Elapida.worker.vexillar = function() {
   const named = 'vexillar';
 
@@ -586,20 +597,21 @@ Elapida.worker.dashboard = function() {
 
 Elapida.worker.dumpster = function() {
   const cyclist = [
-    undefined,
-    '-ac',
-    '-dc',
-    '-lt',
-    '-xi',
-    '-zh',
+    [ undefined, undefined],
+    [ undefined, 'bfbfb'],
+    [ '-ac', 'cgdae'],
+    [ '-dc', 'eadgbe'],
+    [ '-lt', 'fkbjdn'],
+    [ '-xi', 'beadgcf'],
+    [ '-zh', 'fcgdaeb'],
   ];
 
   const named = 'dumpster';
 
   this.datatype(named, 'function');
 
-  cyclist.forEach(item => {
-    this.teletype('string', named, item);
+  cyclist.forEach(star => {
+    this.teletype('string', named, star[0], star[1]);
   });
 
   return;
@@ -730,10 +742,12 @@ Elapida.worker.entryway = function() {
     [null, null, '-i'],
     [null, null, 'k9'],
     [null, null, 'n0', 'j3'],
+    [null, null, 'eadgbe', 'n0', 'j3'],
     [null, null, '-ac', 'j3'],
     [null, null, '-dc', 'j3'],
     [null, null, '-lt', 'j3'],
     [null, null, '-zh', 'j3'],
+    [null, null, '-dc', 'cgdae', 'n0', 'j3'],
     [null, null, 'tonal'],
     [null, null, '-ac', 'tonal'],
     [null, null, '-dc', 'tonal'],
@@ -769,6 +783,7 @@ Elapida.runabout = function() {
     'quintet',
     'triplet',
     'pitches',
+    'pegbox',
     'vexillar',
     'arcane',
     'charms',

@@ -132,9 +132,16 @@ Panopolis.triplet = {
 };
 
 Panopolis.pitches = [
-  'fn', 'cn', 'gn', 'dn', 'an', 'en',
-  'bn', 'fk', 'ck', 'gk', 'dk', 'ak',
+  'cn', 'dj', 'dn', 'ej', 'en', 'fn', 'fk', 'gn', 'aj', 'an', 'ak', 'bn'
 ];
+
+Panopolis.pegbox = {
+  bfbfb: [11, 5, 11, 5, 11],
+  cgdae: [4, 9, 2, 7, 0],
+  eadgbe: [4, 11, 7, 2, 9, 4],
+  fkbjdn: [2, 10, 6, 2, 10, 6],
+  beadgcf: [5, 0, 7, 2, 9, 4, 11],
+};
 
 Panopolis.vexillar = ['-ac', '-dc', '-lt', '-zh'];
 
@@ -307,8 +314,9 @@ Panopolis.machine = function(crow, gear) {
  * The second argument is a string to be processed
  * according to the string array of tuning pitches.
  */
-Panopolis.lattice = function(yarn) {
+Panopolis.lattice = function(yarn, tune) {
   const elms = new Array();
+  let stock = new Array();
   let step = new String();
   let rope = new String();
 
@@ -316,8 +324,19 @@ Panopolis.lattice = function(yarn) {
 
   elms.push('\t');
 
-  for (const item in this.pitches) {
-    elms.push(this.machine(yarn, this[step][this.pitches[item]]));
+  switch(tune) {
+    case 'bfbfb':
+    case 'cgdae':
+    case 'eadgbe':
+    case 'fkbjdn':
+      stock = this.pegbox[tune];
+      break;
+    default:
+      stock = this.pegbox['beadgcf'];
+  }
+
+  for (let i = 0; i < stock.length; i++) {
+    elms.push(this.machine(yarn, this[step][this.pitches[stock[i]]]));
   }
 
   rope = elms.join('\n\t');
@@ -430,7 +449,7 @@ Panopolis.dashboard = function() {
  * Takes a string argument and returns a string.
  * Formats all records in zosimos tabulated.
  */
-Panopolis.dumpster = function(kind='-ac') {
+Panopolis.dumpster = function(kind='-ac', tune) {
   const iter = this.signats.values();
   const bank = this.zosimos;
   const mask = this.garment(kind);
@@ -450,9 +469,9 @@ Panopolis.dumpster = function(kind='-ac') {
       elms.push(stem);
 
       if (mask === 'metals') {
-        elms.push(this.lattice(bank[sign]));
+        elms.push(this.lattice(bank[sign], tune));
       } else {
-        elms.push(this.lattice(this.crucible(bank[sign], this[mask])));
+        elms.push(this.lattice(this.crucible(bank[sign], this[mask]), tune));
       }
 
       elms.push('\n');
@@ -475,12 +494,12 @@ Panopolis.dumpster = function(kind='-ac') {
  * Takes two strings arguments and returns a string.
  * Builds an array of formatted strings to be joined.
  */
-Panopolis.composer = function(stem, yarn) {
+Panopolis.composer = function(stem, yarn, tune) {
   const elms = new Array();
   let rope = new String();
 
   elms.push(stem);
-  elms.push(this.lattice(yarn));
+  elms.push(this.lattice(yarn, tune));
   elms.push('\n');
 
   rope = elms.join('');
@@ -499,9 +518,14 @@ Panopolis.retrieve = function(kind, cart=[]) {
   const mask = this.garment(kind);
   const elms = new Array();
   let yarn = new String();
+  let tune = new String();
   let stem = new String();
   let flaw = new String();
   let rope = new String();
+
+  if (cart[0] in this.pegbox) {
+    tune = cart.shift();
+  }
 
   cart.forEach(sign => {
     if (rexp.test(sign) && sign in bank) {
@@ -513,9 +537,10 @@ Panopolis.retrieve = function(kind, cart=[]) {
       }
 
       if (typeof(yarn) === 'string') {
+
         stem = '\n\t' + sign + kind + this.chronic;
 
-        elms.push(this.composer(stem, yarn));
+        elms.push(this.composer(stem, yarn, tune));
       } else {
         flaw = '\n\t' + 'zosimos: ' + sign + ' ?\n';
 
@@ -579,6 +604,12 @@ Panopolis.tutorial = function() {
     query 	Search available key signatures by pattern
     tonal 	Correlate tonal functions by optional flag
 
+  Tunings:
+    bfbfb 	Augmented fourths, Tritones
+    cgdae 	Fifths: Cello, Viola, Violin
+    eadgbe 	Standard Guitar
+    fkbjdn 	Major thirds
+
   Samples:
 		${cmds}
 
@@ -587,6 +618,10 @@ Panopolis.tutorial = function() {
 		${cmds} n0 j36
 
 		${cmds} -dc n0 j36
+
+		${cmds} cgdae n0 j36
+
+		${cmds} -zh cgdae n0 j36
 
 		${cmds} group yq
 
@@ -603,6 +638,8 @@ Panopolis.tutorial = function() {
 		${cmds} gamut
 
 		${cmds} -dc gamut
+
+		${cmds} -lt eadgbe gamut
   \n`;
 
   return wire;
@@ -616,6 +653,7 @@ Panopolis.tutorial = function() {
  */
 Panopolis.monoglot = function(cart=['-h']) {
   let head = new String();
+  let tune = new String();
   let wire = new String();
 
   if (! cart.length) {
@@ -632,10 +670,19 @@ Panopolis.monoglot = function(cart=['-h']) {
         wire = this.distill();
         break;
       default:
+        if (cart[0] in this.pegbox) {
+          cart.push(cart[0]);
+        }
         wire = this.retrieve('-ac', cart);
     }
   } else if (cart.length === 2) {
+    if (cart[0] in this.pegbox) {
+      tune = cart.shift();
+    }
     switch(cart[0]) {
+      case 'gamut':
+        wire = this.dumpster('-ac', tune);
+        break;
       case 'group':
         wire = this.vulture('-ac', cart[1]);
         break;
@@ -666,24 +713,28 @@ Panopolis.monoglot = function(cart=['-h']) {
  */
 Panopolis.polyglot = function(cart=['-ac']) {
   const head = cart.shift();
+  let tune = new String();
   let wire = new String();
 
   if (! cart.length) {
     wire = this.dashboard();
   } else if (cart.length === 1) {
-    switch(cart[0]) {
-      case 'gamut':
-        wire = this.dumpster(head);
-        break;
-      case 'tonal':
-        wire = this.distill(head);
-        break;
-      default:
-        wire = this.retrieve(head, cart);
+    if (cart[0] === 'gamut') {
+      wire = this.dumpster(head);
+    } else if (cart[0] === 'tonal') {
+      wire = this.distill(head);
+    } else {
+      if (cart[0] in this.pegbox) {
+        cart.push(cart[0]);
+      }
+      wire = this.retrieve(head, cart);
     }
   } else if (cart.length === 2) {
     if (cart[0] === 'group') {
       wire = this.vulture(head, cart[1]);
+    } else if (cart[0] in this.pegbox && cart[1] === 'gamut') {
+      tune = cart.shift();
+      wire = this.dumpster(head, tune);
     } else {
       wire = this.retrieve(head, cart);
     }
