@@ -667,19 +667,27 @@ Panopolis.monoglot = function(cart=[]) {
       case 'gamut':
         wire = this.dumpster();
         break;
+      case 'group':
       case 'tonal':
         wire = this.distill();
         break;
+      case 'query':
+        wire = this.dashboard();
+        break;
       default:
         if (cart[0] in this.pegbox) {
-          cart.push(cart[0]);
+          wire = this.dashboard();
+        } else {
+          wire = this.retrieve('-ac', cart);
         }
-        wire = this.retrieve('-ac', cart);
     }
   } else if (cart.length === 2) {
     if (cart[0] in this.pegbox && cart[1] === 'gamut') {
-      tune = cart.shift();
-      wire = this.dumpster('-ac', tune);
+      wire = this.dumpster('-ac', cart[0]);
+    } else if (cart[0] === 'gamut') {
+      wire = this.dumpster('-ac', 'beadgcf');
+    } else if (cart[0] === 'tonal') {
+      wire = this.distill();
     } else {
       switch(cart[0]) {
         case 'group':
@@ -693,8 +701,14 @@ Panopolis.monoglot = function(cart=[]) {
       }
     }
   } else {
-    cart = cart.filter(word => ! word.startsWith('-'));
-    wire = this.retrieve('-ac', cart);
+    if (cart[0] === 'gamut') {
+      wire = this.dumpster('-ac', 'beadgcf');
+    } else if (cart[0] === 'tonal') {
+      wire = this.distill();
+    } else {
+      cart = cart.filter(word => ! word.startsWith('-'));
+      wire = this.retrieve('-ac', cart);
+    }
   }
 
   return wire;
@@ -726,10 +740,13 @@ Panopolis.polyglot = function(cart=['-h']) {
     } else if (cart[1] in this.pegbox) {
       wire = this.dashboard();
     } else if (cart[1] === 'group' || cart[1] === 'query') {
-      wire = this.tutorial();
+      if (cart[1] === 'group') {
+        wire = this.distill(cart[0]);
+      } else {
+        wire = this.dashboard();
+      }
     } else if (cart[1] === 'tonal') {
-      head = cart.shift();
-      wire = this.distill(head);
+      wire = this.distill(cart[0]);
     } else {
       head = cart.shift();
       wire = this.retrieve(head, cart);
@@ -739,11 +756,15 @@ Panopolis.polyglot = function(cart=['-h']) {
       wire = this.tutorial();
     } else if (cart[1] === 'group') {
       wire = this.vulture(cart[0], cart[2]);
-    } else if (cart[1] in this.pegbox) {
-      head = cart.shift();
-      wire = this.retrieve(head, cart);
     } else if (cart[1] === 'query') {
       wire = this.panther(cart[2]);
+    } else if (cart[1] in this.pegbox) {
+      if (cart[2] === 'gamut') {
+        wire = this.dumpster(cart[0], cart[1]);
+      } else {
+        head = cart.shift();
+        wire = this.retrieve(head, cart);
+      }
     } else {
       head = cart.shift();
       wire = this.retrieve(head, cart);
