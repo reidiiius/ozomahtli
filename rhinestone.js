@@ -143,7 +143,7 @@ Panopolis.pegbox = {
   beadgcf: [5, 0, 7, 2, 9, 4, 11],
 };
 
-Panopolis.vexillar = ['-ac', '-dc', '-lt', '-zh'];
+Panopolis.vexillar = ['-ac', '-dc', '-h', '-lt', '-zh'];
 
 Panopolis.arcane = [
   95, 50, 51, 52, 53, 54, 55, 56, 57, 78, 80, 81, 82
@@ -589,7 +589,7 @@ Panopolis.tutorial = function() {
   const path = 'rhinestone.js';
   const cmds = `${exec} ${path}`;
   const wire = `
-  Usage: ${cmds} [option [process [tonality | ...key]]]
+  Usage: ${cmds} [option [utility | tuning [tone | ..key]]]
 
   Options:
     -h  	Prints this user guide
@@ -598,7 +598,7 @@ Panopolis.tutorial = function() {
     -lt 	Latin chemical symbols
     -zh 	Hanzi chemical symbols
 
-  Processes:
+  Utilities:
     gamut 	Print records tabulated with optional flag
     group 	Correlate key signatures by tonal function
     query 	Search available key signatures by pattern
@@ -651,18 +651,19 @@ Panopolis.tutorial = function() {
  * Value of cart[0] is not a member of vexillar.
  * Parse cart length then cart[0] value.
  */
-Panopolis.monoglot = function(cart=['-h']) {
+Panopolis.monoglot = function(cart=[]) {
   let head = new String();
   let tune = new String();
   let wire = new String();
+
+  if (cart.length && cart[0].startsWith('-')) {
+    head = cart.shift();
+  }
 
   if (! cart.length) {
     wire = this.dashboard();
   } else if (cart.length === 1) {
     switch(cart[0]) {
-      case '-h':
-        wire = this.tutorial();
-        break;
       case 'gamut':
         wire = this.dumpster();
         break;
@@ -676,29 +677,23 @@ Panopolis.monoglot = function(cart=['-h']) {
         wire = this.retrieve('-ac', cart);
     }
   } else if (cart.length === 2) {
-    if (cart[0] in this.pegbox) {
+    if (cart[0] in this.pegbox && cart[1] === 'gamut') {
       tune = cart.shift();
-    }
-    switch(cart[0]) {
-      case 'gamut':
-        wire = this.dumpster('-ac', tune);
-        break;
-      case 'group':
-        wire = this.vulture('-ac', cart[1]);
-        break;
-      case 'query':
-        wire = this.panther(cart[1]);
-        break;
-      default:
-        if (cart[0].charAt(0) === '-') {
-          head = cart.shift();
-        }
-        wire = this.retrieve('-ac', cart);
+      wire = this.dumpster('-ac', tune);
+    } else {
+      switch(cart[0]) {
+        case 'group':
+          wire = this.vulture('-ac', cart[1]);
+          break;
+        case 'query':
+          wire = this.panther(cart[1]);
+          break;
+        default:
+          wire = this.retrieve('-ac', cart);
+      }
     }
   } else {
-    if (cart[0].charAt(0) === '-') {
-      head = cart.shift();
-    }
+    cart = cart.filter(word => ! word.startsWith('-'));
     wire = this.retrieve('-ac', cart);
   }
 
@@ -711,34 +706,50 @@ Panopolis.monoglot = function(cart=['-h']) {
  * Value of head is a current member of vexillar.
  * Parse shifted cart length then cart[0] value.
  */
-Panopolis.polyglot = function(cart=['-ac']) {
-  const head = cart.shift();
-  let tune = new String();
+Panopolis.polyglot = function(cart=['-h']) {
   let wire = new String();
+  let head = new String();
+  let tune = new String();
 
-  if (! cart.length) {
-    wire = this.dashboard();
-  } else if (cart.length === 1) {
-    if (cart[0] === 'gamut') {
-      wire = this.dumpster(head);
-    } else if (cart[0] === 'tonal') {
-      wire = this.distill(head);
+  if (cart.length === 1) {
+    if (cart[0] === '-h') {
+      wire = this.tutorial();
     } else {
-      if (cart[0] in this.pegbox) {
-        cart.push(cart[0]);
-      }
-      wire = this.retrieve(head, cart);
+      wire = this.dashboard();
     }
   } else if (cart.length === 2) {
-    if (cart[0] === 'group') {
-      wire = this.vulture(head, cart[1]);
-    } else if (cart[0] in this.pegbox && cart[1] === 'gamut') {
-      tune = cart.shift();
+    if (cart[0] === '-h') {
+      wire = this.tutorial();
+    } else if (cart[1] === 'gamut') {
+      head = cart.shift();
       wire = this.dumpster(head, tune);
+    } else if (cart[1] in this.pegbox) {
+      wire = this.dashboard();
+    } else if (cart[1] === 'group' || cart[1] === 'query') {
+      wire = this.tutorial();
+    } else if (cart[1] === 'tonal') {
+      head = cart.shift();
+      wire = this.distill(head);
     } else {
+      head = cart.shift();
+      wire = this.retrieve(head, cart);
+    }
+  } else if (cart.length === 3) {
+    if (cart[0] === '-h') {
+      wire = this.tutorial();
+    } else if (cart[1] === 'group') {
+      wire = this.vulture(cart[0], cart[2]);
+    } else if (cart[1] in this.pegbox) {
+      head = cart.shift();
+      wire = this.retrieve(head, cart);
+    } else if (cart[1] === 'query') {
+      wire = this.panther(cart[2]);
+    } else {
+      head = cart.shift();
       wire = this.retrieve(head, cart);
     }
   } else {
+    head = cart.shift();
     wire = this.retrieve(head, cart);
   }
 
