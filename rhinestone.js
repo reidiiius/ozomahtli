@@ -145,6 +145,8 @@ Panopolis.pegbox = {
 
 Panopolis.vexillar = ['-ac', '-dc', '-h', '-lt', '-zh'];
 
+Panopolis.utensils = ['gamut', 'group', 'query', 'tonal'];
+
 Panopolis.arcane = [
   95, 50, 51, 52, 53, 54, 55, 56, 57, 78, 80, 81, 82
 ];
@@ -251,12 +253,12 @@ Panopolis.stonewall = function(star) {
 
 
 /*
- * Takes a string argument and returns a string.
+ * Takes an object argument and returns a string.
  * Sifts records to eliminate redundant tokens.
  */
-Panopolis.distill = function(kind) {
+Panopolis.distill = function(orcs) {
   const iter = this.signats.values();
-  const mask = this.garment(kind);
+  const mask = this.garment(orcs.kind);
   const bank = this.zosimos;
   const duos = new Set();
   let crow = new String();
@@ -346,12 +348,12 @@ Panopolis.lattice = function(yarn, tune) {
 
 
 /*
- * Takes a string argument and returns a string.
+ * Takes an object argument and returns a string.
  * Formats menu of found keys tabulated.
  */
-Panopolis.panther = function(kind) {
-  const cart = this.signats;
-  const gems = cart.filter(sign => sign.match(kind));
+Panopolis.panther = function(orcs) {
+  const sigs = this.signats;
+  const gems = sigs.filter(sign => sign.match(orcs.regx));
   const elms = new Array();
   let flaw = new String();
   let rope = new String();
@@ -363,7 +365,7 @@ Panopolis.panther = function(kind) {
       elms.push(gems[ndx]);
     }
   } else {
-    flaw = '\n\t' + kind + ' ?';
+    flaw = '\n\t' + orcs.regx + ' ?';
 
     elms.push(flaw);
   }
@@ -377,21 +379,21 @@ Panopolis.panther = function(kind) {
 
 
 /*
- * Takes two string arguments and returns a string.
+ * Takes an object argument and returns a string.
  * Formats menu of found tones tabulated.
  */
-Panopolis.vulture = function(kind, spat) {
-  const cart = this.signats;
-  const mask = this.garment(kind);
+Panopolis.vulture = function(orcs) {
+  const sigs = this.signats;
+  const mask = this.garment(orcs.kind);
   const bank = this.zosimos;
-  const rexp = new RegExp(spat);
+  const rexp = new RegExp(orcs.spat);
   const gems = new Array();
   const elms = new Array();
   let crow = new String();
   let flaw = new String();
   let rope = new String();
 
-  cart.forEach(sign => {
+  sigs.forEach(sign => {
     if (mask === 'metals') {
       crow = bank[sign].trim();
     } else {
@@ -410,7 +412,7 @@ Panopolis.vulture = function(kind, spat) {
       elms.push(gems[ndx]);
     }
   } else {
-    flaw = '\n\t' + spat + ' ?';
+    flaw = '\n\t' + orcs.spat + ' ?';
 
     elms.push(flaw);
   }
@@ -446,32 +448,29 @@ Panopolis.dashboard = function() {
 
 
 /*
- * Takes a string argument and returns a string.
+ * Takes an object argument and returns a string.
  * Formats all records in zosimos tabulated.
  */
-Panopolis.dumpster = function(kind='-ac', tune) {
+Panopolis.dumpster = function(orcs) {
   const iter = this.signats.values();
   const bank = this.zosimos;
-  const mask = this.garment(kind);
+  const mask = this.garment(orcs.kind);
   const elms = new Array();
   let stem = new String();
   let flaw = new String();
   let rope = new String();
 
-  // ensure value consistency of kind
-  if (! this.vexillar.includes(kind)) kind = '-ac';
-
   for (const sign of iter) {
 
     if (sign in bank && typeof(bank[sign]) === 'string') {
-      stem = '\n\t' + sign + kind + this.chronic;
+      stem = '\n\t' + sign + orcs.kind + this.chronic;
 
       elms.push(stem);
 
       if (mask === 'metals') {
-        elms.push(this.lattice(bank[sign], tune));
+        elms.push(this.lattice(bank[sign], orcs.tune));
       } else {
-        elms.push(this.lattice(this.crucible(bank[sign], this[mask]), tune));
+        elms.push(this.lattice(this.crucible(bank[sign], this[mask]), orcs.tune));
       }
 
       elms.push('\n');
@@ -509,28 +508,23 @@ Panopolis.composer = function(stem, yarn, tune) {
 
 
 /*
- * Takes two strings and one string array for arguments.
- * Formats selected records tabulated, returns a string.
+ * Takes an object argument and returns a string.
+ * Formats selected records tabulated.
  */
-Panopolis.retrieve = function(kind, cart=[]) {
+Panopolis.retrieve = function(orcs) {
   const rexp = new RegExp(this.keyhole);
   const bank = this.zosimos;
-  const mask = this.garment(kind);
+  const mask = this.garment(orcs.kind);
   const elms = new Array();
   let yarn = new String();
-  let tune = new String();
   let stem = new String();
   let flaw = new String();
   let rope = new String();
 
-  if (cart[0] in this.pegbox) {
-    tune = cart.shift();
-  }
-
-  cart.forEach(sign => {
+  orcs.cart.forEach(sign => {
     if (rexp.test(sign) && sign in bank) {
 
-      if (kind === '-lt') {
+      if (orcs.kind === '-lt') {
         yarn = bank[sign];
       } else {
         yarn = this.crucible(bank[sign], this[mask]);
@@ -538,9 +532,9 @@ Panopolis.retrieve = function(kind, cart=[]) {
 
       if (typeof(yarn) === 'string') {
 
-        stem = '\n\t' + sign + kind + this.chronic;
+        stem = '\n\t' + sign + orcs.kind + this.chronic;
 
-        elms.push(this.composer(stem, yarn, tune));
+        elms.push(this.composer(stem, yarn, orcs.tune));
       } else {
         flaw = '\n\t' + 'zosimos: ' + sign + ' ?\n';
 
@@ -589,7 +583,7 @@ Panopolis.tutorial = function() {
   const path = 'rhinestone.js';
   const cmds = `${exec} ${path}`;
   const wire = `
-  Usage: ${cmds} [option [utility | tuning [tone | ..key]]]
+  Usage: ${cmds} option tuning utility ^regex$ keys
 
   Options:
     -h  	Prints this user guide
@@ -647,153 +641,95 @@ Panopolis.tutorial = function() {
 
 
 /*
- * Takes string array argument and returns a string.
- * Value of cart[0] is not a member of vexillar.
- * Parse cart length then cart[0] value.
- */
-Panopolis.monoglot = function(cart=[]) {
-  let head = new String();
-  let tune = new String();
-  let wire = new String();
-
-  if (cart.length && cart[0].startsWith('-')) {
-    head = cart.shift();
-  }
-
-  if (! cart.length) {
-    wire = this.dashboard();
-  } else if (cart.length === 1) {
-    switch(cart[0]) {
-      case 'gamut':
-        wire = this.dumpster();
-        break;
-      case 'group':
-      case 'tonal':
-        wire = this.distill();
-        break;
-      case 'query':
-        wire = this.dashboard();
-        break;
-      default:
-        if (cart[0] in this.pegbox) {
-          wire = this.dashboard();
-        } else {
-          wire = this.retrieve('-ac', cart);
-        }
-    }
-  } else if (cart.length === 2) {
-    if (cart[0] in this.pegbox && cart[1] === 'gamut') {
-      wire = this.dumpster('-ac', cart[0]);
-    } else if (cart[0] === 'gamut') {
-      wire = this.dumpster('-ac', 'beadgcf');
-    } else if (cart[0] === 'tonal') {
-      wire = this.distill();
-    } else {
-      switch(cart[0]) {
-        case 'group':
-          wire = this.vulture('-ac', cart[1]);
-          break;
-        case 'query':
-          wire = this.panther(cart[1]);
-          break;
-        default:
-          wire = this.retrieve('-ac', cart);
-      }
-    }
-  } else {
-    if (cart[0] === 'gamut') {
-      wire = this.dumpster('-ac', 'beadgcf');
-    } else if (cart[0] === 'tonal') {
-      wire = this.distill();
-    } else {
-      cart = cart.filter(word => ! word.startsWith('-'));
-      wire = this.retrieve('-ac', cart);
-    }
-  }
-
-  return wire;
-}
-
-
-/*
- * Takes string array argument and returns a string.
- * Value of head is a current member of vexillar.
- * Parse shifted cart length then cart[0] value.
- */
-Panopolis.polyglot = function(cart=['-h']) {
-  let wire = new String();
-  let head = new String();
-  let tune = new String();
-
-  if (cart.length === 1) {
-    if (cart[0] === '-h') {
-      wire = this.tutorial();
-    } else {
-      wire = this.dashboard();
-    }
-  } else if (cart.length === 2) {
-    if (cart[0] === '-h') {
-      wire = this.tutorial();
-    } else if (cart[1] === 'gamut') {
-      head = cart.shift();
-      wire = this.dumpster(head, tune);
-    } else if (cart[1] in this.pegbox) {
-      wire = this.dashboard();
-    } else if (cart[1] === 'group' || cart[1] === 'query') {
-      if (cart[1] === 'group') {
-        wire = this.distill(cart[0]);
-      } else {
-        wire = this.dashboard();
-      }
-    } else if (cart[1] === 'tonal') {
-      wire = this.distill(cart[0]);
-    } else {
-      head = cart.shift();
-      wire = this.retrieve(head, cart);
-    }
-  } else if (cart.length === 3) {
-    if (cart[0] === '-h') {
-      wire = this.tutorial();
-    } else if (cart[1] === 'group') {
-      wire = this.vulture(cart[0], cart[2]);
-    } else if (cart[1] === 'query') {
-      wire = this.panther(cart[2]);
-    } else if (cart[1] in this.pegbox) {
-      if (cart[2] === 'gamut') {
-        wire = this.dumpster(cart[0], cart[1]);
-      } else {
-        head = cart.shift();
-        wire = this.retrieve(head, cart);
-      }
-    } else {
-      head = cart.shift();
-      wire = this.retrieve(head, cart);
-    }
-  } else {
-    head = cart.shift();
-    wire = this.retrieve(head, cart);
-  }
-
-  return wire;
-}
-
-
-/*
  * Takes string array argument and returns zero.
  * Application entry point.
  */
 Panopolis.entryway = function(args) {
-  const cart = this.sentinel(args);
+  const rexp = new RegExp(this.keyhole);
+  const pegs = Object.keys(this.pegbox);
+  const orcs = {
+    cart: new Array(),
+    kind: '-ac',
+    tune: 'beadgcf',
+    funk: new String(),
+    spat: new String(),
+    regx: new RegExp(),
+    arks: this.sentinel(args),
+  };
+
+  let spot = new Number();
   let wire = new String();
 
-  if (! cart.length) {
-    wire = this.dashboard();
-  } else {
-    if (this.vexillar.includes(cart[0])) {
-      wire = this.polyglot(cart);
-    } else {
-      wire = this.monoglot(cart);
+  if (orcs.arks.length) {
+    // signats
+    for (const clef of orcs.arks) {
+      if (rexp.test(clef)) {
+        orcs.cart.push(clef);
+      }
     }
+
+    // option
+    for (const opal of this.vexillar) {
+      spot = orcs.arks.indexOf(opal);
+      if (spot !== -1) break;
+    }
+
+    if (spot !== -1) {
+      orcs.kind = orcs.arks[spot];
+    }
+
+    // tuning
+    for (const harp of pegs) {
+      spot = orcs.arks.indexOf(harp);
+      if (spot !== -1) break;
+    }
+
+    if (spot !== -1) {
+      orcs.tune = orcs.arks[spot];
+    }
+
+    // routine
+    for (const rout of this.utensils) {
+      spot = orcs.arks.indexOf(rout);
+      if (spot !== -1) break;
+    }
+
+    if (spot !== -1) {
+      orcs.funk = orcs.arks[spot];
+    }
+
+    // group pattern
+    for (const tone of orcs.arks) {
+      if (/[^a-n]/.test(tone)) {
+        orcs.spat = tone;
+      }
+    }
+
+    // query pattern
+    for (const expr of orcs.arks) {
+      if (/^\^?.*\$?$/.test(expr)) {
+        orcs.regx = expr;
+      }
+    }
+
+  } else {
+    wire = this.dashboard();
+  }
+
+  if (orcs.kind === '-h') {
+    wire = this.tutorial();
+  } else if (orcs.cart.length) {
+    wire = this.retrieve(orcs);
+  } else if (orcs.funk === 'gamut') {
+    wire = this.dumpster(orcs);
+  } else if (orcs.funk === 'group') {
+    wire = this.vulture(orcs);
+  } else if (orcs.funk === 'query') {
+    wire = this.panther(orcs);
+  } else if (orcs.funk === 'tonal') {
+    wire = this.distill(orcs);
+  } else {
+    wire = this.dashboard();
   }
 
   process.stdout.write(wire);

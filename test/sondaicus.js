@@ -473,21 +473,31 @@ Elapida.worker.stonewall = function() {
 
 
 Elapida.worker.distill = function() {
+  const orcs = {
+    cart: new Array(),
+    kind: '-ac',
+    tune: 'beadgcf',
+    funk: new String(),
+    spat: new String(),
+    regx: new RegExp(),
+    arks: new Array(),
+  };
+
   const cyclist = [
-    undefined,
-    '-ac',
-    '-dc',
-    '-lt',
-    '-xi',
-    '-zh',
+    orcs.kind = undefined,
+    orcs.kind = '-ac',
+    orcs.kind = '-dc',
+    orcs.kind = '-lt',
+    orcs.kind = '-xi',
+    orcs.kind = '-zh',
   ];
 
   const named = 'distill';
 
   this.datatype(named, 'function');
 
-  cyclist.forEach(item => {
-    this.teletype('string', named, item);
+  cyclist.forEach(state => {
+    this.teletype('string', named, orcs);
   });
 
   return;
@@ -562,14 +572,25 @@ Elapida.worker.panther = function() {
 
 
 Elapida.worker.vulture = function() {
+  const orcs = {
+    cart: new Array(),
+    kind: '-ac',
+    tune: 'beadgcf',
+    funk: new String(),
+    spat: new String(),
+    regx: new RegExp(),
+    arks: new Array(),
+  };
+
+
   const cyclist = [
-    [undefined, 'yq'],
-    ['-ac', undefined],
-    ['-bb', 'yq'],
-    ['-ac', 'yq'],
-    ['-dc', 'Q4'],
-    ['-lt', 'NpFe'],
-    ['-zh', '镎铁'],
+    orcs.kind = undefined, orcs.spat = 'yq',
+    orcs.kind = '-ac', orcs.spat = undefined,
+    orcs.kind = '-bb', orcs.spat = 'yq',
+    orcs.kind = '-ac', orcs.spat = 'yq',
+    orcs.kind = '-dc', orcs.spat = 'Q4',
+    orcs.kind = '-lt', orcs.spat = 'NpFe',
+    orcs.kind = '-zh', orcs.spat = '镎铁',
   ];
 
   const named = 'vulture';
@@ -577,7 +598,7 @@ Elapida.worker.vulture = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.teletype('string', named, star[0], star[1]);
+    this.teletype('string', named, orcs);
   });
 
   return;
@@ -596,22 +617,32 @@ Elapida.worker.dashboard = function() {
 
 
 Elapida.worker.dumpster = function() {
+  const orcs = {
+    cart: new Array(),
+    kind: '-ac',
+    tune: 'beadgcf',
+    funk: new String(),
+    spat: new String(),
+    regx: new RegExp(),
+    arks: new Array(),
+  };
+
   const cyclist = [
-    [ undefined, undefined],
-    [ undefined, 'bfbfb'],
-    [ '-ac', 'cgdae'],
-    [ '-dc', 'eadgbe'],
-    [ '-lt', 'fkbjdn'],
-    [ '-xi', 'beadgcf'],
-    [ '-zh', 'fcgdaeb'],
+    orcs.kind = undefined, orcs.tune = undefined,
+    orcs.kind = undefined, orcs.tune = 'bfbfb',
+    orcs.kind = '-ac', orcs.tune = 'cgdae',
+    orcs.kind = '-dc', orcs.tune = 'eadgbe',
+    orcs.kind = '-lt', orcs.tune = 'fkbjdn',
+    orcs.kind = '-xi', orcs.tune = 'beadgcf',
+    orcs.kind = '-zh', orcs.tune = 'fcgdaeb',
   ];
 
   const named = 'dumpster';
 
   this.datatype(named, 'function');
 
-  cyclist.forEach(star => {
-    this.teletype('string', named, star[0], star[1]);
+  cyclist.forEach(state => {
+    this.teletype('string', named, orcs);
   });
 
   return;
@@ -633,22 +664,32 @@ Elapida.worker.composer = function() {
 
 
 Elapida.worker.retrieve = function() {
-  const argots = ['k1', 'j0k9', 'k15'];
+  const orcs = {
+    cart: new Array(),
+    kind: '-ac',
+    tune: 'beadgcf',
+    funk: new String(),
+    spat: new String(),
+    regx: new RegExp(),
+    arks: ['k1', 'j0k9', 'k15', 'n56', 'j2k5'],
+  };
 
   const cyclist = [
-    ['-xx', argots],
-    ['-ac', argots],
-    ['-dc', argots],
-    ['-lt', argots],
-    ['-zh', argots],
+    orcs.kind = '-zh', orcs.tune = undefined,
+    orcs.kind = undefined, orcs.tune = 'cgdae',
+    orcs.kind = '-xx', orcs.tune = 'beadgcf',
+    orcs.kind = '-ac', orcs.tune = 'bfbfb',
+    orcs.kind = '-dc', orcs.tune = 'cgdae',
+    orcs.kind = '-lt', orcs.tune = 'eadgbe',
+    orcs.kind = '-zh', orcs.tune = 'fkbjdn',
   ];
 
   const named = 'retrieve';
 
   this.datatype(named, 'function');
 
-  cyclist.forEach(star => {
-    this.teletype('string', named, star[0], star[1]);
+  cyclist.forEach(state => {
+    this.teletype('string', named, orcs);
   });
 
   return;
@@ -807,8 +848,8 @@ Elapida.runabout = function() {
     'retrieve',
     'sentinel',
     'tutorial',
-    'monoglot',
-    'polyglot',
+//    'monoglot',
+//    'polyglot',
     'entryway',
   ];
 
