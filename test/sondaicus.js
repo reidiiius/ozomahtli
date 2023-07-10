@@ -726,12 +726,46 @@ Elapida.worker.sentinel = function() {
 };
 
 
+Elapida.worker.estates = function() {
+  const named = 'estates';
+
+  const cart = ['-dc', 'cgdae', 'k15', 'group', 'Q4'];
+
+  this.datatype(named, 'function');
+
+  this.teletype('object', named, cart);
+
+  return;
+};
+
+
 Elapida.worker.tutorial = function() {
   const named = 'tutorial';
 
   this.datatype(named, 'function');
 
   this.teletype('string', named);
+
+  return;
+};
+
+
+Elapida.worker.inspector = function() {
+  const orcs = {
+    arks: new Array(),
+    cart: new Array(),
+    funk: new String(),
+    kind: '-ac',
+    regx: new RegExp(),
+    spat: new String(),
+    tune: 'beadgcf',
+  };
+
+  const named = 'inspector';
+
+  this.datatype(named, 'function');
+
+  this.teletype('number', named, orcs);
 
   return;
 };
@@ -812,7 +846,9 @@ Elapida.runabout = function() {
     'composer',
     'retrieve',
     'sentinel',
+    'estates',
     'tutorial',
+    'inspector',
     'entryway',
   ];
 

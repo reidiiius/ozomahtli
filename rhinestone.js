@@ -353,7 +353,7 @@ Panopolis.lattice = function(yarn, tune) {
  */
 Panopolis.panther = function(orcs) {
   const sigs = this.signats;
-  const gems = sigs.filter(sign => sign.match(orcs.regx));
+  const gems = sigs.filter(sign => sign.match(orcs.spat));
   const elms = new Array();
   let flaw = new String();
   let rope = new String();
@@ -365,7 +365,7 @@ Panopolis.panther = function(orcs) {
       elms.push(gems[ndx]);
     }
   } else {
-    flaw = '\n\t' + orcs.regx + ' ?';
+    flaw = '\n\t' + orcs.spat + ' ?';
 
     elms.push(flaw);
   }
@@ -575,6 +575,84 @@ Panopolis.sentinel = function(args) {
 
 
 /*
+ * Takes string array argument and returns an object.
+ * Parses argument list and reassigns property values.
+ */
+Panopolis.estates = function(args) {
+  const rexp = new RegExp(this.keyhole);
+  const pegs = Object.keys(this.pegbox);
+  const orcs = {
+    arks: new Array(),
+    cart: this.sentinel(args),
+    funk: new String(),
+    kind: '-ac',
+    spat: new String(),
+    tune: 'beadgcf',
+  };
+
+  let spot = new Number();
+
+  if (orcs.cart.length) {
+    // signats
+    for (const clef of orcs.cart) {
+      if (rexp.test(clef)) {
+        orcs.arks.push(clef);
+      }
+    }
+
+    // option
+    for (const opal of this.vexillar) {
+      spot = orcs.cart.indexOf(opal);
+      if (spot !== -1) break;
+    }
+
+    if (spot !== -1) {
+      orcs.kind = orcs.cart[spot];
+    }
+
+    // tuning
+    for (const harp of pegs) {
+      spot = orcs.cart.indexOf(harp);
+      if (spot !== -1) break;
+    }
+
+    if (spot !== -1) {
+      orcs.tune = orcs.cart[spot];
+    }
+
+    // routine
+    for (const rout of this.utensils) {
+      spot = orcs.cart.indexOf(rout);
+      if (spot !== -1) break;
+    }
+
+    if (spot !== -1) {
+      orcs.funk = orcs.cart[spot];
+    }
+
+    // pattern
+    for (const tone of orcs.cart) {
+      if (!this.vexillar.includes(tone) &&
+          !this.utensils.includes(tone) &&
+          !pegs.includes(tone)) {
+        orcs.spat = tone;
+      }
+    }
+
+  } else {
+    orcs.arks = [];
+    orcs.cart = [];
+    orcs.funk = "";
+    orcs.kind = "";
+    orcs.spat = "";
+    orcs.tune = "";
+  }
+
+  return orcs;
+}
+
+
+/*
  * Takes zero arguments and returns a string.
  * User guide reference manual of command options.
  */
@@ -583,7 +661,7 @@ Panopolis.tutorial = function() {
   const path = 'rhinestone.js';
   const cmds = `${exec} ${path}`;
   const wire = `
-  Usage: ${cmds} option tuning utility ^regex$ keys
+  Usage: ${cmds} option tuning keys utility pattern
 
   Options:
     -h  	Prints this user guide
@@ -641,82 +719,29 @@ Panopolis.tutorial = function() {
 
 
 /*
+ * Takes an object argument and returns zero.
+ * Expository helper for monitoring object state.
+ */
+Panopolis.inspector = function(orcs) {
+  for (const [key, val] of Object.entries(orcs)) {
+    console.log(`${key}: ${val}`);
+  }
+
+  return 0;
+};
+
+
+/*
  * Takes string array argument and returns zero.
  * Application entry point.
  */
 Panopolis.entryway = function(args) {
-  const rexp = new RegExp(this.keyhole);
-  const pegs = Object.keys(this.pegbox);
-  const orcs = {
-    arks: new Array(),
-    cart: this.sentinel(args),
-    funk: new String(),
-    kind: '-ac',
-    regx: new RegExp(),
-    spat: new String(),
-    tune: 'beadgcf',
-  };
-
-  let spot = new Number();
+  const orcs = this.estates(args);
   let wire = new String();
 
-  if (orcs.cart.length) {
-    // signats
-    for (const clef of orcs.cart) {
-      if (rexp.test(clef)) {
-        orcs.arks.push(clef);
-      }
-    }
-
-    // option
-    for (const opal of this.vexillar) {
-      spot = orcs.cart.indexOf(opal);
-      if (spot !== -1) break;
-    }
-
-    if (spot !== -1) {
-      orcs.kind = orcs.cart[spot];
-    }
-
-    // tuning
-    for (const harp of pegs) {
-      spot = orcs.cart.indexOf(harp);
-      if (spot !== -1) break;
-    }
-
-    if (spot !== -1) {
-      orcs.tune = orcs.cart[spot];
-    }
-
-    // routine
-    for (const rout of this.utensils) {
-      spot = orcs.cart.indexOf(rout);
-      if (spot !== -1) break;
-    }
-
-    if (spot !== -1) {
-      orcs.funk = orcs.cart[spot];
-    }
-
-    // group pattern
-    for (const tone of orcs.cart) {
-      if (/[^a-n]/.test(tone)) {
-        orcs.spat = tone;
-      }
-    }
-
-    // query pattern
-    for (const expr of orcs.cart) {
-      if (/^\^?.*\$?$/.test(expr)) {
-        orcs.regx = expr;
-      }
-    }
-
-  } else {
+  if (!orcs.cart.length) {
     wire = this.dashboard();
-  }
-
-  if (orcs.kind === '-h') {
+  } else if (orcs.kind === '-h') {
     wire = this.tutorial();
   } else if (orcs.funk === 'gamut') {
     wire = this.dumpster(orcs);
@@ -733,6 +758,8 @@ Panopolis.entryway = function(args) {
   }
 
   process.stdout.write(wire);
+
+//  this.inspector(orcs);
 
   return 0;
 };
