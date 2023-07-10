@@ -631,11 +631,11 @@ Panopolis.estates = function(args) {
     }
 
     // pattern
-    for (const tone of orcs.cart) {
-      if (!this.vexillar.includes(tone) &&
-          !this.utensils.includes(tone) &&
-          !pegs.includes(tone)) {
-        orcs.spat = tone;
+    for (const item of orcs.cart) {
+      if (!this.vexillar.includes(item) &&
+          !this.utensils.includes(item) &&
+          !pegs.includes(item)) {
+        orcs.spat = item;
       }
     }
 
@@ -650,6 +650,19 @@ Panopolis.estates = function(args) {
 
   return orcs;
 }
+
+
+/*
+ * Takes an object argument and returns zero.
+ * Expository helper for monitoring object state.
+ */
+Panopolis.inspecto = function(orcs) {
+  for (const [key, val] of Object.entries(orcs)) {
+    console.log(`${key}: ${val}`);
+  }
+
+  return 0;
+};
 
 
 /*
@@ -719,19 +732,6 @@ Panopolis.tutorial = function() {
 
 
 /*
- * Takes an object argument and returns zero.
- * Expository helper for monitoring object state.
- */
-Panopolis.inspector = function(orcs) {
-  for (const [key, val] of Object.entries(orcs)) {
-    console.log(`${key}: ${val}`);
-  }
-
-  return 0;
-};
-
-
-/*
  * Takes string array argument and returns zero.
  * Application entry point.
  */
@@ -759,7 +759,7 @@ Panopolis.entryway = function(args) {
 
   process.stdout.write(wire);
 
-//  this.inspector(orcs);
+//  this.inspecto(orcs);
 
   return 0;
 };

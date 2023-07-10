@@ -739,18 +739,7 @@ Elapida.worker.estates = function() {
 };
 
 
-Elapida.worker.tutorial = function() {
-  const named = 'tutorial';
-
-  this.datatype(named, 'function');
-
-  this.teletype('string', named);
-
-  return;
-};
-
-
-Elapida.worker.inspector = function() {
+Elapida.worker.inspecto = function() {
   const orcs = {
     arks: new Array(),
     cart: new Array(),
@@ -761,11 +750,22 @@ Elapida.worker.inspector = function() {
     tune: 'beadgcf',
   };
 
-  const named = 'inspector';
+  const named = 'inspecto';
 
   this.datatype(named, 'function');
 
   this.teletype('number', named, orcs);
+
+  return;
+};
+
+
+Elapida.worker.tutorial = function() {
+  const named = 'tutorial';
+
+  this.datatype(named, 'function');
+
+  this.teletype('string', named);
 
   return;
 };
@@ -847,8 +847,8 @@ Elapida.runabout = function() {
     'retrieve',
     'sentinel',
     'estates',
+    'inspecto',
     'tutorial',
-    'inspector',
     'entryway',
   ];
 
