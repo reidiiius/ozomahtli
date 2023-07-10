@@ -316,6 +316,17 @@ Elapida.worker.vexillar = function() {
 };
 
 
+Elapida.worker.utensils = function() {
+  const named = 'utensils';
+
+  this.datatype(named, 'object');
+
+  this.arraigned(named);
+
+  return;
+};
+
+
 Elapida.worker.arcane = function() {
   const named = 'arcane';
 
@@ -474,13 +485,13 @@ Elapida.worker.stonewall = function() {
 
 Elapida.worker.distill = function() {
   const orcs = {
-    cart: new Array(),
-    kind: '-ac',
-    tune: 'beadgcf',
-    funk: new String(),
-    spat: new String(),
-    regx: new RegExp(),
     arks: new Array(),
+    cart: new Array(),
+    funk: new String(),
+    kind: '-ac',
+    regx: new RegExp(),
+    spat: new String(),
+    tune: 'beadgcf',
   };
 
   const cyclist = [
@@ -573,15 +584,14 @@ Elapida.worker.panther = function() {
 
 Elapida.worker.vulture = function() {
   const orcs = {
-    cart: new Array(),
-    kind: '-ac',
-    tune: 'beadgcf',
-    funk: new String(),
-    spat: new String(),
-    regx: new RegExp(),
     arks: new Array(),
+    cart: new Array(),
+    funk: new String(),
+    kind: '-ac',
+    regx: new RegExp(),
+    spat: new String(),
+    tune: 'beadgcf',
   };
-
 
   const cyclist = [
     orcs.kind = undefined, orcs.spat = 'yq',
@@ -618,13 +628,13 @@ Elapida.worker.dashboard = function() {
 
 Elapida.worker.dumpster = function() {
   const orcs = {
-    cart: new Array(),
-    kind: '-ac',
-    tune: 'beadgcf',
-    funk: new String(),
-    spat: new String(),
-    regx: new RegExp(),
     arks: new Array(),
+    cart: new Array(),
+    funk: new String(),
+    kind: '-ac',
+    regx: new RegExp(),
+    spat: new String(),
+    tune: 'beadgcf',
   };
 
   const cyclist = [
@@ -665,13 +675,13 @@ Elapida.worker.composer = function() {
 
 Elapida.worker.retrieve = function() {
   const orcs = {
-    cart: new Array(),
-    kind: '-ac',
-    tune: 'beadgcf',
-    funk: new String(),
-    spat: new String(),
-    regx: new RegExp(),
     arks: ['k1', 'j0k9', 'k15', 'n56', 'j2k5'],
+    cart: new Array(),
+    funk: new String(),
+    kind: '-ac',
+    regx: new RegExp(),
+    spat: new String(),
+    tune: 'beadgcf',
   };
 
   const cyclist = [
@@ -722,52 +732,6 @@ Elapida.worker.tutorial = function() {
   this.datatype(named, 'function');
 
   this.teletype('string', named);
-
-  return;
-};
-
-
-Elapida.worker.monoglot = function() {
-  const cyclist = [
-    undefined,
-    ['-h', null],
-    ['tonal', null],
-    ['group', 'yq'],
-    ['group', 'mm'],
-  ];
-
-  const named = 'monoglot';
-
-  this.datatype(named, 'function');
-
-  cyclist.forEach(star => {
-    this.teletype('string', named, star);
-  });
-
-  return;
-};
-
-
-Elapida.worker.polyglot = function() {
-  const cyclist = [
-    undefined,
-    ['-ac', 'tonal', null],
-    ['-dc', 'tonal', null],
-    ['-lt', 'tonal', null],
-    ['-zh', 'tonal', null],
-    ['-ac', 'group', 'yq'],
-    ['-dc', 'group', 'Q4'],
-    ['-lt', 'group', 'NpFe'],
-    ['-zh', 'group', '镎铁'],
-  ];
-
-  const named = 'polyglot';
-
-  this.datatype(named, 'function');
-
-  cyclist.forEach(star => {
-    this.teletype('string', named, star);
-  });
 
   return;
 };
@@ -826,6 +790,7 @@ Elapida.runabout = function() {
     'pitches',
     'pegbox',
     'vexillar',
+    'utensils',
     'arcane',
     'charms',
     'glyphs',
@@ -848,8 +813,6 @@ Elapida.runabout = function() {
     'retrieve',
     'sentinel',
     'tutorial',
-//    'monoglot',
-//    'polyglot',
     'entryway',
   ];
 
