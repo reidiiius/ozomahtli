@@ -190,15 +190,15 @@ Panopolis.chronic = String(new Date().getTime());
  * Returns a new string with replacements.
  */
 Panopolis.crucible = function(cord, subs) {
-  let wire = cord.slice(0);
+  let yarn = cord.slice(0);
   let rexp = new RegExp();
 
   for (let ndx = 0; ndx < this.exemplar.length; ndx++) {
     rexp = new RegExp(this.exemplar[ndx], 'g');
-    wire = wire.replace(rexp, String.fromCharCode(subs[ndx]));
+    yarn = yarn.replace(rexp, String.fromCharCode(subs[ndx]));
   }
 
-  return wire;
+  return yarn;
 };
 
 
@@ -261,19 +261,19 @@ Panopolis.distill = function(orcs) {
   const mask = this.garment(orcs.kind);
   const bank = this.zosimos;
   const duos = new Set();
-  let crow = new String();
+  let yarn = new String();
   let star = new Array();
   let rope = new String();
 
   for (const sign of iter) {
 
     if (mask === 'metals') {
-      crow = bank[sign].trim();
+      yarn = bank[sign].trim();
     } else {
-      crow = this.crucible(bank[sign], this[mask]).trim();
+      yarn = this.crucible(bank[sign], this[mask]).trim();
     }
 
-    star = crow.split(' ')
+    star = yarn.split(' ')
       .filter(dyad =>
         ! dyad.startsWith("\x5F") &&
         ! dyad.startsWith("\u{4E00}")
@@ -301,12 +301,12 @@ Panopolis.distill = function(orcs) {
  * The two integers are indices to permute the received string.
  * Returns a new string the same length as the one pasted.
  */
-Panopolis.machine = function(crow, gear) {
-  const head = crow.slice(gear[0], gear[1]);
-  const tail = crow.slice(0, gear[0]);
-  const wire = head.concat(tail);
+Panopolis.machine = function(yarn, gear) {
+  const head = yarn.slice(gear[0], gear[1]);
+  const tail = yarn.slice(0, gear[0]);
+  const cord = head.concat(tail);
 
-  return wire;
+  return cord;
 };
 
 
@@ -320,6 +320,8 @@ Panopolis.lattice = function(yarn, tune) {
   const elms = new Array();
   let stock = new Array();
   let step = new String();
+  let gear = new Array();
+  let cord = new String();
   let rope = new String();
 
   yarn.length > 36 ? step = 'quintet' : step = 'triplet';
@@ -338,7 +340,9 @@ Panopolis.lattice = function(yarn, tune) {
   }
 
   for (let ndx = 0; ndx < stock.length; ndx++) {
-    elms.push(this.machine(yarn, this[step][this.pitches[stock[ndx]]]));
+    gear = this[step][this.pitches[stock[ndx]]];
+    cord = this.machine(yarn, gear);
+    elms.push(cord);
   }
 
   rope = elms.join('\n\t');
@@ -353,10 +357,12 @@ Panopolis.lattice = function(yarn, tune) {
  */
 Panopolis.panther = function(orcs) {
   const sigs = this.signats;
-  const gems = sigs.filter(sign => sign.match(orcs.spat));
   const elms = new Array();
+  let gems = new Array();
   let flaw = new String();
   let rope = new String();
+
+  gems = sigs.filter(sign => sign.match(orcs.spat));
 
   if (gems.length) {
     for (const ndx in gems) {
@@ -386,21 +392,20 @@ Panopolis.vulture = function(orcs) {
   const sigs = this.signats;
   const mask = this.garment(orcs.kind);
   const bank = this.zosimos;
-  const rexp = new RegExp(orcs.spat);
   const gems = new Array();
   const elms = new Array();
-  let crow = new String();
+  let yarn = new String();
   let flaw = new String();
   let rope = new String();
 
   sigs.forEach(sign => {
     if (mask === 'metals') {
-      crow = bank[sign].trim();
+      yarn = bank[sign].trim();
     } else {
-      crow = this.crucible(bank[sign], this[mask]).trim();
+      yarn = this.crucible(bank[sign], this[mask]).trim();
     }
 
-    if (rexp.test(crow)) {
+    if (yarn.includes(orcs.spat)) {
       gems.push(sign);
     }
   });
@@ -590,8 +595,6 @@ Panopolis.estates = function(args) {
     tune: 'beadgcf',
   };
 
-  let spot = new Number();
-
   if (orcs.cart.length) {
     // signats
     for (const clef of orcs.cart) {
@@ -600,34 +603,31 @@ Panopolis.estates = function(args) {
       }
     }
 
-    // option
+    let opted;
     for (const opal of this.vexillar) {
-      spot = orcs.cart.indexOf(opal);
-      if (spot !== -1) break;
+      opted = orcs.cart.find(item => item === opal);
+      if (opted) {
+        orcs.kind = opted;
+        break;
+      }
     }
 
-    if (spot !== -1) {
-      orcs.kind = orcs.cart[spot];
-    }
-
-    // tuning
+    let tuned;
     for (const harp of pegs) {
-      spot = orcs.cart.indexOf(harp);
-      if (spot !== -1) break;
+      tuned = orcs.cart.find(item => item === harp);
+      if (tuned) {
+        orcs.tune = tuned;
+        break;
+      }
     }
 
-    if (spot !== -1) {
-      orcs.tune = orcs.cart[spot];
-    }
-
-    // routine
-    for (const rout of this.utensils) {
-      spot = orcs.cart.indexOf(rout);
-      if (spot !== -1) break;
-    }
-
-    if (spot !== -1) {
-      orcs.funk = orcs.cart[spot];
+    let funky;
+    for (const proc of this.utensils) {
+      funky = orcs.cart.find(item => item === proc);
+      if (funky) {
+        orcs.funk = funky;
+        break;
+      }
     }
 
     // pattern
@@ -640,11 +640,7 @@ Panopolis.estates = function(args) {
     }
 
   } else {
-    orcs.arks = [];
-    orcs.cart = [];
-    orcs.funk = "";
     orcs.kind = "";
-    orcs.spat = "";
     orcs.tune = "";
   }
 
