@@ -251,6 +251,8 @@ Elapida.worker.zosimos = function() {
 
   this.recorded(named, 'string', 60);
 
+//  Panopolis.inspecto(Panopolis[named]);
+
   return;
 };
 
@@ -263,6 +265,8 @@ Elapida.worker.quintet = function() {
   this.recorded(named, 'object', 2);
 
   this.collars(named);
+
+//  Panopolis.inspecto(Panopolis[named]);
 
   return;
 };
@@ -277,6 +281,8 @@ Elapida.worker.triplet = function() {
 
   this.collars(named);
 
+//  Panopolis.inspecto(Panopolis[named]);
+
   return;
 };
 
@@ -290,6 +296,8 @@ Elapida.worker.pitches = function() {
 
   this.recorded(named, 'string', 2);
 
+//  console.log(Panopolis[named].toString());
+
   return;
 };
 
@@ -300,6 +308,8 @@ Elapida.worker.pegbox = function() {
   this.datatype(named, 'object');
 
   this.collars(named);
+
+//  Panopolis.inspecto(Panopolis[named]);
 
   return;
 };
@@ -312,6 +322,8 @@ Elapida.worker.vexillar = function() {
 
   this.arraigned(named);
 
+//  Panopolis.inspecto(Panopolis[named]);
+
   return;
 };
 
@@ -322,6 +334,8 @@ Elapida.worker.utensils = function() {
   this.datatype(named, 'object');
 
   this.arraigned(named);
+
+//  console.log(Panopolis[named].toString());
 
   return;
 };
@@ -338,6 +352,8 @@ Elapida.worker.arcane = function() {
 
   this.charisma(named);
 
+//  console.log(Panopolis[named].toString());
+
   return;
 };
 
@@ -352,6 +368,8 @@ Elapida.worker.charms = function() {
   this.carriage(named);
 
   this.charisma(named);
+
+//  console.log(Panopolis[named].toString());
 
   return;
 };
@@ -368,6 +386,8 @@ Elapida.worker.glyphs = function() {
 
   this.charisma(named);
 
+//  console.log(Panopolis[named].toString());
+
   return;
 };
 
@@ -381,12 +401,18 @@ Elapida.worker.exemplar = function() {
 
   this.recorded(named, 'string', 2);
 
+//  console.log(Panopolis[named].toString());
+
   return;
 };
 
 
 Elapida.worker.keyhole = function() {
-  this.datatype('keyhole', 'object');
+  const named = 'keyhole';
+
+  this.datatype(named, 'object');
+
+//  console.log(Panopolis[named].source);
 
   return;
 };
@@ -399,19 +425,29 @@ Elapida.worker.signats = function() {
 
   this.arraigned(named);
 
+//  process.stdout.write(Panopolis.stonewall(Panopolis[named]));
+
   return;
 };
 
 
 Elapida.worker.volume = function() {
-  this.datatype('volume', 'number');
+  const named = 'volume';
+
+  this.datatype(named, 'number');
+
+//  console.log(Panopolis[named].toString());
 
   return;
 };
 
 
 Elapida.worker.chronic = function() {
-  this.datatype('chronic', 'string');
+  const named = 'chronic';
+
+  this.datatype(named, 'string');
+
+//  console.log(Panopolis[named]);
 
   return;
 };
@@ -433,11 +469,12 @@ Elapida.worker.crucible = function() {
 
   cyclist.forEach(narc => {
     this.teletype('string', named,  cord, subs);
-
+/*
     subs = Panopolis[narc];
     yarn = Panopolis.crucible(cord, subs);
 
-    console.log('returned:', yarn);
+    console.log(yarn);
+*/
   });
 
   return;
@@ -460,10 +497,11 @@ Elapida.worker.garment = function() {
 
   cyclist.forEach(kind => {
     this.teletype('string', named, kind);
-
+/*
     mask = Panopolis.garment(kind);
 
-    console.log('returned:', mask);
+    console.log(mask);
+*/
   });
 
   return;
@@ -485,11 +523,11 @@ Elapida.worker.stonewall = function() {
   this.datatype(named, 'function');
 
   this.teletype('string', named, star);
-
+/*
   rope = Panopolis.stonewall(star);
 
-  process.stdout.write('returned: ' + rope);
-
+  process.stdout.write(rope);
+*/
   return;
 };
 
@@ -499,7 +537,7 @@ Elapida.worker.distill = function() {
   const orcs = {
     arks: new Array(),
     cart: new Array(),
-    funk: new String(),
+    funk: 'tonal',
     kind: '-ac',
     spat: new String(),
     tune: 'beadgcf',
@@ -523,9 +561,9 @@ Elapida.worker.distill = function() {
 
     this.teletype('string', named, orcs);
 
-    process.stdout.write(Panopolis.distill(orcs));
+//    process.stdout.write(Panopolis.distill(orcs));
 
-    Panopolis.inspecto(orcs);
+//    Panopolis.inspecto(orcs);
   });
 
   return;
@@ -545,10 +583,11 @@ Elapida.worker.machine = function() {
     gear = Panopolis.quintet[note];
 
     this.teletype('string', named, yarn, gear);
-
+/*
     cord = Panopolis.machine(yarn, gear);
 
-    console.log('returned:', cord);
+    console.log(cord);
+*/
   });
 
   return;
@@ -565,11 +604,12 @@ Elapida.worker.lattice = function() {
 
   cyclist.forEach(tune => {
     this.teletype('string', named, yarn, tune);
-
+/*
     rope = Panopolis.lattice(yarn, tune);
 
     console.log('tuning:', tune);
-    console.log('returned:', rope);
+    console.log(rope);
+*/
   });
 
   return;
@@ -581,7 +621,7 @@ Elapida.worker.panther = function() {
   const orcs = {
     arks: new Array(),
     cart: new Array(),
-    funk: new String(),
+    funk: 'query',
     kind: '-ac',
     spat: new String(),
     tune: 'beadgcf',
@@ -590,7 +630,7 @@ Elapida.worker.panther = function() {
   const cyclist = [
     'j\\dy',
     '26',
-    '[89]',
+    'k9',
     '[jk]56',
   ];
 
@@ -600,14 +640,15 @@ Elapida.worker.panther = function() {
 
   cyclist.forEach(item => {
     this.teletype('string', named, item);
-
+/*
     orcs.spat = item;
 
     rope = Panopolis.panther(orcs);
 
-    process.stdout.write('returned: ' + rope);
+    process.stdout.write(rope);
 
     Panopolis.inspecto(orcs);
+*/
   });
 
   return;
@@ -619,7 +660,7 @@ Elapida.worker.vulture = function() {
   const orcs = {
     arks: new Array(),
     cart: new Array(),
-    funk: new String(),
+    funk: 'group',
     kind: '-ac',
     spat: new String(),
     tune: 'beadgcf',
@@ -642,12 +683,13 @@ Elapida.worker.vulture = function() {
     orcs.spat = task[1];
 
     this.teletype('string', named, orcs);
-
+/*
     rope = Panopolis.vulture(orcs);
 
-    process.stdout.write('returned: ' + rope);
+    process.stdout.write(rope);
 
     Panopolis.inspecto(orcs);
+*/
   });
 
   return;
@@ -661,11 +703,11 @@ Elapida.worker.dashboard = function() {
   this.datatype(named, 'function');
 
   this.teletype('string', named);
-
+/*
   rope = Panopolis.dashboard();
 
-  process.stdout.write('returned: ' + rope);
-
+  process.stdout.write(rope);
+*/
   return;
 };
 
@@ -685,9 +727,10 @@ Elapida.worker.dumpster = function() {
     ['-ac', 'cgdae'],
     ['-dc', 'eadgbe'],
     ['-lt', 'fkbjdn'],
-    ['-xi', 'fcgdaeb'],
     ['-zh', 'beadgcf'],
   ];
+
+  let rope = new String();
 
   this.datatype(named, 'function');
 
@@ -695,8 +738,13 @@ Elapida.worker.dumpster = function() {
     orcs.kind = pair[0], orcs.tune = pair[1],
 
     this.teletype('string', named, orcs);
+/*
+    rope = Panopolis.dumpster(orcs);
+
+    process.stdout.write(rope);
 
     Panopolis.inspecto(orcs);
+*/
   });
 
   return;
@@ -716,11 +764,11 @@ Elapida.worker.composer = function() {
   this.datatype(named, 'function');
 
   this.teletype('string', named, stem, yarn, tune);
-
+/*
   rope = Panopolis.composer(stem, yarn, tune);
 
-  process.stdout.write('returned: ' + rope);
-
+  process.stdout.write(rope);
+*/
   return;
 };
 
@@ -752,12 +800,13 @@ Elapida.worker.retrieve = function() {
     orcs.kind = pair[0], orcs.tune = pair[1],
 
     this.teletype('string', named, orcs);
-
+/*
     rope = Panopolis.retrieve(orcs);
 
-    process.stdout.write('returned: ' + rope);
+    process.stdout.write(rope);
 
     Panopolis.inspecto(orcs);
+*/
   });
 
   return;
@@ -802,11 +851,11 @@ Elapida.worker.estates = function() {
   this.datatype(named, 'function');
 
   this.teletype('object', named, args);
-
+/*
   orcs = Panopolis.estates(args);
 
   Panopolis.inspecto(orcs);
-
+*/
   return;
 };
 
@@ -837,11 +886,11 @@ Elapida.worker.tutorial = function() {
   this.datatype(named, 'function');
 
   this.teletype('string', named);
-
+/*
   wire = Panopolis.tutorial();
 
-  process.stdout.write('returned: ' + wire);
-
+  process.stdout.write(wire);
+*/
   return;
 };
 
@@ -850,8 +899,7 @@ Elapida.worker.entryway = function() {
   const named = 'entryway';
   const maximal = Panopolis.volume;
   const cyclist = [
-    [],
-    [0],
+    [0, 0],
     [0, 0, '-h'],
     [0, 0, '-i'],
     [0, 0, 'k9'],
