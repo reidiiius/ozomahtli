@@ -790,10 +790,11 @@ Elapida.worker.dumpster = function() {
   };
 
   const cyclist = [
+    ['-zh', 'bfbfb'],
     ['-ac', 'cgdae'],
-    ['-dc', 'eadgbe'],
-    ['-lt', 'fkbjdn'],
-    ['-zh', 'beadgcf'],
+    ['-lt', 'eadgbe'],
+    ['-dc', 'fkbjdn'],
+    ['-lt', 'beadgcf'],
   ];
 
   let rope = String();
@@ -853,11 +854,11 @@ Elapida.worker.retrieve = function() {
   };
 
   const cyclist = [
-    ['-ac', 'beadgcf'],
-    ['-ac', 'bfbfb'],
-    ['-lt', 'cgdae'],
-    ['-zh', 'eadgbe'],
-    ['-ac', 'fkbjdn'],
+    ['-lt', 'beadgcf'],
+    ['-zh', 'bfbfb'],
+    ['-ac', 'cgdae'],
+    ['-lt', 'eadgbe'],
+    ['-dc', 'fkbjdn'],
   ];
 
   let rope = String();

@@ -584,8 +584,6 @@ Panopolis.sentinel = function(args) {
  * Parses argument list and reassigns property values.
  */
 Panopolis.estates = function(args) {
-  const rexp = new RegExp(this.keyhole);
-  const pegs = Object.keys(this.pegbox);
   const orcs = {
     arks: Array(),
     cart: this.sentinel(args),
@@ -596,16 +594,24 @@ Panopolis.estates = function(args) {
   };
 
   if (orcs.cart.length) {
-    // signats
+    const pegs = Object.keys(this.pegbox);
+    const rexp = new RegExp(this.keyhole);
+    const lyre = /^[^\-]([a-g][j-n]?)+[^0-9]$/;
+
+    let sign;
     for (const clef of orcs.cart) {
       if (rexp.test(clef)) {
-        orcs.arks.push(clef);
+        sign = this.signats.find(item => item === clef);
+
+        orcs.arks.push(sign);
       }
     }
 
     let opted;
     for (const opal of this.vexillar) {
-      opted = orcs.cart.find(item => item === opal);
+      opted = orcs.cart.find(item =>
+        item.startsWith('-') && item === opal);
+
       if (opted) {
         orcs.kind = opted;
         break;
@@ -614,7 +620,9 @@ Panopolis.estates = function(args) {
 
     let tuned;
     for (const harp of pegs) {
-      tuned = orcs.cart.find(item => item === harp);
+      tuned = orcs.cart.find(item =>
+        lyre.test(item) && item === harp);
+
       if (tuned) {
         orcs.tune = tuned;
         break;
@@ -623,16 +631,18 @@ Panopolis.estates = function(args) {
 
     let funky;
     for (const proc of this.utensils) {
-      funky = orcs.cart.find(item => item === proc);
+      funky = orcs.cart.find(item =>
+        !item.startsWith('-') && item === proc);
+
       if (funky) {
         orcs.funk = funky;
         break;
       }
     }
 
-    // pattern
     for (const item of orcs.cart) {
-      if (!this.vexillar.includes(item) &&
+      if (!item.startsWith('-') &&
+          !this.vexillar.includes(item) &&
           !this.utensils.includes(item) &&
           !pegs.includes(item)) {
         orcs.spat = item;
@@ -670,7 +680,7 @@ Panopolis.tutorial = function() {
   const path = 'rhinestone.js';
   const cmds = `${exec} ${path}`;
   const wire = `
-  Usage: ${cmds} option tuning keys utility pattern
+  Usage: ${cmds} [option [tuning keys [utility pattern]]]
 
   Options:
     -h  	Prints this user guide
