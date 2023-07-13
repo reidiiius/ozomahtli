@@ -642,7 +642,6 @@ Panopolis.estates = function(args) {
 
     for (const item of orcs.cart) {
       if (!item.startsWith('-') &&
-          !this.vexillar.includes(item) &&
           !this.utensils.includes(item) &&
           !pegs.includes(item)) {
         orcs.spat = item;
