@@ -76,6 +76,27 @@ Elapida.worker.arraigned = function(moniker) {
 
 
 /*
+ * Confirms function moniker returns an array.
+ */
+Elapida.worker.cabaret = function(moniker, ...args) {
+  try {
+    console.count('test-initiated');
+
+    let cargo = Panopolis[moniker](...args);
+    let boole = Array.isArray(cargo);
+
+    console.assert(boole, "%s returns array", moniker);
+
+    Elapida.scorecard(boole);
+  } catch (anomaly) {
+    Elapida.diagnose(moniker, anomaly);
+  } finally {
+    Elapida.tailgate(moniker);
+  }
+};
+
+
+/*
  * Checks equality of moniker and exemplar length.
  */
 Elapida.worker.carriage = function(moniker) {
@@ -491,8 +512,8 @@ Elapida.worker.chronic = function() {
 Elapida.worker.crucible = function() {
   const named = 'crucible';
   const cord = Panopolis.zosimos['n0'];
-  let subs = new Array();
-  let yarn = new String();
+  let subs = Array();
+  let yarn = String();
 
   const cyclist = [
     'charms',
@@ -527,7 +548,7 @@ Elapida.worker.garment = function() {
     '-zh',
   ];
 
-  let mask = new String();
+  let mask = String();
 
   this.datatype(named, 'function');
 
@@ -547,7 +568,7 @@ Elapida.worker.garment = function() {
 
 Elapida.worker.stonewall = function() {
   const named = 'stonewall';
-  const star = new Array();
+  const star = Array();
   let deca = 90;
 
   while (deca > 64) {
@@ -573,11 +594,11 @@ Elapida.worker.stonewall = function() {
 Elapida.worker.distill = function() {
   const named = 'distill';
   const orcs = {
-    arks: new Array(),
-    cart: new Array(),
+    arks: Array(),
+    cart: Array(),
     funk: 'tonal',
     kind: '-ac',
-    spat: new String(),
+    spat: String(),
     tune: 'beadgcf',
   };
 
@@ -614,8 +635,8 @@ Elapida.worker.machine = function() {
   const named = 'machine';
   const cyclist = Panopolis.pitches;
   const yarn = Panopolis.zosimos['n0'];
-  let cord = new String();
-  let gear = new Array();
+  let cord = String();
+  let gear = Array();
 
   this.datatype(named, 'function');
 
@@ -639,7 +660,7 @@ Elapida.worker.lattice = function() {
   const named = 'lattice';
   const yarn = Panopolis.zosimos['n0'];
   const cyclist = Object.keys(Panopolis.pegbox);
-  let rope = new String();
+  let rope = String();
 
   this.datatype(named, 'function');
 
@@ -661,11 +682,11 @@ Elapida.worker.lattice = function() {
 Elapida.worker.panther = function() {
   const named = 'panther';
   const orcs = {
-    arks: new Array(),
-    cart: new Array(),
+    arks: Array(),
+    cart: Array(),
     funk: 'query',
     kind: '-ac',
-    spat: new String(),
+    spat: String(),
     tune: 'beadgcf',
   };
 
@@ -676,7 +697,7 @@ Elapida.worker.panther = function() {
     '[jk]56',
   ];
 
-  let rope = new String();
+  let rope = String();
 
   this.datatype(named, 'function');
 
@@ -701,11 +722,11 @@ Elapida.worker.panther = function() {
 Elapida.worker.vulture = function() {
   const named = 'vulture';
   const orcs = {
-    arks: new Array(),
-    cart: new Array(),
+    arks: Array(),
+    cart: Array(),
     funk: 'group',
     kind: '-ac',
-    spat: new String(),
+    spat: String(),
     tune: 'beadgcf',
   };
 
@@ -717,7 +738,7 @@ Elapida.worker.vulture = function() {
     ['-zh', '镎铁'],
   ];
 
-  let rope = new String();
+  let rope = String();
 
   this.datatype(named, 'function');
 
@@ -760,11 +781,11 @@ Elapida.worker.dashboard = function() {
 Elapida.worker.dumpster = function() {
   const named = 'dumpster';
   const orcs = {
-    arks: new Array(),
-    cart: new Array(),
+    arks: Array(),
+    cart: Array(),
     funk: 'gamut',
     kind: '-ac',
-    spat: new String(),
+    spat: String(),
     tune: 'beadgcf',
   };
 
@@ -775,7 +796,7 @@ Elapida.worker.dumpster = function() {
     ['-zh', 'beadgcf'],
   ];
 
-  let rope = new String();
+  let rope = String();
 
   this.datatype(named, 'function');
 
@@ -824,10 +845,10 @@ Elapida.worker.retrieve = function() {
   const named = 'retrieve';
   const orcs = {
     arks: ['n0', 'k1'],
-    cart: new Array(),
-    funk: new String(),
+    cart: Array(),
+    funk: String(),
     kind: '-ac',
-    spat: new String(),
+    spat: String(),
     tune: 'beadgcf',
   };
 
@@ -839,7 +860,7 @@ Elapida.worker.retrieve = function() {
     ['-ac', 'fkbjdn'],
   ];
 
-  let rope = new String();
+  let rope = String();
 
   this.datatype(named, 'function');
 
@@ -869,28 +890,12 @@ Elapida.worker.sentinel = function() {
     Array(slots).fill('k2j56y7h'),
   ];
 
-  let cargo = new Array();
-  let boole;
-
   this.datatype(named, 'function');
 
   cyclist.forEach(args => {
     this.teletype('object', named, args);
 
-    try {
-      console.count('test-initiated');
-
-      cargo = Panopolis[named](args);
-      boole = Array.isArray(cargo);
-
-      console.assert(boole, "%s returns array", named);
-
-      Elapida.scorecard(boole);
-    } catch (anomaly) {
-      Elapida.diagnose(named, anomaly);
-    } finally {
-      Elapida.tailgate(named);
-    }
+    this.cabaret(named, args);
 
     if ( false ) {
       process.stdout.write(Panopolis.stonewall(cargo));

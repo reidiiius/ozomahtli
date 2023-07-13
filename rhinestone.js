@@ -207,7 +207,7 @@ Panopolis.crucible = function(cord, subs) {
  * Parses flag and assigns name to returned mask.
  */
 Panopolis.garment = function(kind) {
-  let mask = new String();
+  let mask = String();
 
   switch(kind) {
     case '-ac':
@@ -235,8 +235,8 @@ Panopolis.garment = function(kind) {
  * Formats menu of unique tonalities tabulated.
  */
 Panopolis.stonewall = function(star) {
-  const elms = new Array();
-  let rope = new String();
+  const elms = Array();
+  let rope = String();
 
   for (let ndx = 0; ndx < star.length; ndx++) {
     if (ndx % 7 === 0) elms.push('\n');
@@ -261,9 +261,9 @@ Panopolis.distill = function(orcs) {
   const mask = this.garment(orcs.kind);
   const bank = this.zosimos;
   const duos = new Set();
-  let yarn = new String();
-  let star = new Array();
-  let rope = new String();
+  let yarn = String();
+  let star = Array();
+  let rope = String();
 
   for (const sign of iter) {
 
@@ -317,12 +317,12 @@ Panopolis.machine = function(yarn, gear) {
  * according to the string array of tuning pitches.
  */
 Panopolis.lattice = function(yarn, tune) {
-  const elms = new Array();
-  let stock = new Array();
-  let step = new String();
-  let gear = new Array();
-  let cord = new String();
-  let rope = new String();
+  const elms = Array();
+  let stock = Array();
+  let step = String();
+  let gear = Array();
+  let cord = String();
+  let rope = String();
 
   yarn.length > 36 ? step = 'quintet' : step = 'triplet';
 
@@ -357,10 +357,10 @@ Panopolis.lattice = function(yarn, tune) {
  */
 Panopolis.panther = function(orcs) {
   const sigs = this.signats;
-  const elms = new Array();
-  let gems = new Array();
-  let flaw = new String();
-  let rope = new String();
+  const elms = Array();
+  let gems = Array();
+  let flaw = String();
+  let rope = String();
 
   gems = sigs.filter(sign => sign.match(orcs.spat));
 
@@ -392,11 +392,11 @@ Panopolis.vulture = function(orcs) {
   const sigs = this.signats;
   const mask = this.garment(orcs.kind);
   const bank = this.zosimos;
-  const gems = new Array();
-  const elms = new Array();
-  let yarn = new String();
-  let flaw = new String();
-  let rope = new String();
+  const gems = Array();
+  const elms = Array();
+  let yarn = String();
+  let flaw = String();
+  let rope = String();
 
   sigs.forEach(sign => {
     if (mask === 'metals') {
@@ -435,8 +435,8 @@ Panopolis.vulture = function(orcs) {
  * Formats menu of key signats tabulated.
  */
 Panopolis.dashboard = function() {
-  const elms = new Array();
-  let rope = new String();
+  const elms = Array();
+  let rope = String();
 
   for (const ndx in this.signats) {
     if (ndx % 7 === 0) elms.push('\n');
@@ -460,10 +460,10 @@ Panopolis.dumpster = function(orcs) {
   const iter = this.signats.values();
   const bank = this.zosimos;
   const mask = this.garment(orcs.kind);
-  const elms = new Array();
-  let stem = new String();
-  let flaw = new String();
-  let rope = new String();
+  const elms = Array();
+  let stem = String();
+  let flaw = String();
+  let rope = String();
 
   for (const sign of iter) {
 
@@ -499,8 +499,8 @@ Panopolis.dumpster = function(orcs) {
  * Builds an array of formatted strings to be joined.
  */
 Panopolis.composer = function(stem, yarn, tune) {
-  const elms = new Array();
-  let rope = new String();
+  const elms = Array();
+  let rope = String();
 
   elms.push(stem);
   elms.push(this.lattice(yarn, tune));
@@ -520,11 +520,11 @@ Panopolis.retrieve = function(orcs) {
   const rexp = new RegExp(this.keyhole);
   const bank = this.zosimos;
   const mask = this.garment(orcs.kind);
-  const elms = new Array();
-  let yarn = new String();
-  let stem = new String();
-  let flaw = new String();
-  let rope = new String();
+  const elms = Array();
+  let yarn = String();
+  let stem = String();
+  let flaw = String();
+  let rope = String();
 
   orcs.arks.forEach(sign => {
     if (rexp.test(sign) && sign in bank) {
@@ -565,7 +565,7 @@ Panopolis.retrieve = function(orcs) {
  */
 Panopolis.sentinel = function(args) {
   const limit = 16; // maximum characters
-  let cart = new Array();
+  let cart = Array();
 
   if (args.length > this.volume) {
     cart = [String(args.length)];
@@ -587,11 +587,11 @@ Panopolis.estates = function(args) {
   const rexp = new RegExp(this.keyhole);
   const pegs = Object.keys(this.pegbox);
   const orcs = {
-    arks: new Array(),
+    arks: Array(),
     cart: this.sentinel(args),
-    funk: new String(),
+    funk: String(),
     kind: '-ac',
-    spat: new String(),
+    spat: String(),
     tune: 'beadgcf',
   };
 
@@ -733,7 +733,7 @@ Panopolis.tutorial = function() {
  */
 Panopolis.entryway = function(args) {
   const orcs = this.estates(args);
-  let wire = new String();
+  let wire = String();
 
   if (!orcs.cart.length) {
     wire = this.dashboard();
