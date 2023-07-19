@@ -596,7 +596,7 @@ Panopolis.estates = function(args) {
   if (orcs.cart.length) {
     const pegs = Object.keys(this.pegbox);
     const rexp = new RegExp(this.keyhole);
-    const lyre = /^[^\-]([a-g][j-n]?)+[^0-9]$/;
+    const lyre = /^([a-g][j-n]?)+[^0-9]$/;
 
     let sign;
     for (const clef of orcs.cart) {
