@@ -452,6 +452,19 @@ Elapida.worker.exemplar = function() {
 };
 
 
+Elapida.worker.attuned = function() {
+  const named = 'attuned';
+
+  this.datatype(named, 'object');
+
+  if ( false ) {
+    console.log(Panopolis[named].source);
+  }
+
+  return;
+};
+
+
 Elapida.worker.keyhole = function() {
   const named = 'keyhole';
 
@@ -883,6 +896,146 @@ Elapida.worker.retrieve = function() {
 };
 
 
+Elapida.worker.featured = function() {
+  const named = 'featured';
+  const utils = Panopolis.utensils;
+
+  const cyclist = Array();
+
+  for (const item of utils) {
+    cyclist.push(['-dc', 'cgdae', 'j6', item]);
+  }
+
+  let funky = String();
+
+  this.datatype(named, 'function');
+
+  cyclist.forEach(star => {
+    this.teletype('string', named, star);
+
+    if ( false ) {
+      funky = Panopolis[named](star);
+
+      console.log(funky);
+    }
+  });
+
+  return;
+};
+
+
+Elapida.worker.flagpole = function() {
+  const named = 'flagpole';
+  const flags = Panopolis.vexillar;
+
+  const cyclist = Array();
+
+  for (const item of flags) {
+    cyclist.push([item, 'cgdae', 'k5']);
+  }
+
+  let opted = String();
+
+  this.datatype(named, 'function');
+
+  cyclist.forEach(star => {
+    this.teletype('string', named, star);
+
+    if ( false ) {
+      opted = Panopolis[named](star);
+
+      console.log(opted);
+    }
+  });
+
+  return;
+};
+
+
+Elapida.worker.phonemic = function() {
+  const named = 'phonemic';
+
+  const cyclist = [
+    ['-ac', 'j36', 'cgdae', 'group', 'yq'],
+    ['-dc', 'k15', 'cgdae', 'group', 'Q4'],
+    ['-lt',  'j6', 'cgdae', 'group', 'NpFe'],
+    ['-zh',  'k5', 'cgdae', 'group', '钚铁'],
+  ];
+
+  let graph = String();
+
+  this.datatype(named, 'function');
+
+  cyclist.forEach(star => {
+    this.teletype('string', named, star);
+
+    if ( false ) {
+      graph = Panopolis[named](star);
+
+      console.log(graph);
+    }
+  });
+
+  return;
+};
+
+
+Elapida.worker.keynoted = function() {
+  const named = 'keynoted';
+
+  const cyclist = [
+    ['-ac', 'j36', 'cgdae', 'query', 'yq'],
+    ['-dc', 'k15', 'cgdae', 'query', 'Q4'],
+    ['-lt',  'j6', 'cgdae', 'query', 'NpFe'],
+    ['-zh',  'k5', 'cgdae', 'query', '钚铁'],
+  ];
+
+  let graph = String();
+
+  this.datatype(named, 'function');
+
+  cyclist.forEach(star => {
+    this.teletype('string', named, star);
+
+    if ( false ) {
+      graph = Panopolis[named](star);
+
+      console.log(graph);
+    }
+  });
+
+  return;
+};
+
+
+Elapida.worker.stockade = function() {
+  const named = 'stockade';
+  const harps = Object.keys(Panopolis.pegbox);
+
+  const cyclist = Array();
+
+  for (const item of harps) {
+    cyclist.push(['-ac', item, 'k5']);
+  }
+
+  let tuned = String();
+
+  this.datatype(named, 'function');
+
+  cyclist.forEach(star => {
+    this.teletype('string', named, star);
+
+    if ( false ) {
+      tuned = Panopolis[named](star);
+
+      console.log(tuned);
+    }
+  });
+
+  return;
+};
+
+
 Elapida.worker.sentinel = function() {
   const named = 'sentinel';
   const slots = Panopolis.volume;
@@ -1016,6 +1169,7 @@ Elapida.runabout = function() {
     'charms',
     'glyphs',
     'exemplar',
+    'attuned',
     'keyhole',
     'signats',
     'volume',
@@ -1032,6 +1186,11 @@ Elapida.runabout = function() {
     'dumpster',
     'composer',
     'retrieve',
+    'featured',
+    'flagpole',
+    'phonemic',
+    'keynoted',
+    'stockade',
     'sentinel',
     'estates',
     'inspecto',

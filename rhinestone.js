@@ -175,6 +175,8 @@ Panopolis.exemplar = [
   '__', 'Ti', 'Mn', 'Fe', 'Cu', 'Ag', 'Sn', 'Au', 'Hg', 'Pb', 'Ur', 'Np', 'Pu'
 ];
 
+Panopolis.attuned = /^([a-g][j-n]?)+[^0-9]$/;
+
 Panopolis.keyhole = /^([i|j|k|n][0-7]{1,3}){1,2}([x|y][1-7]{1,2})?[h|i]?$/;
 
 Panopolis.signats = Object.keys(Panopolis.zosimos).sort();
@@ -517,7 +519,7 @@ Panopolis.composer = function(stem, yarn, tune) {
  * Formats selected records tabulated.
  */
 Panopolis.retrieve = function(orcs) {
-  const rexp = new RegExp(this.keyhole);
+  const clef = new RegExp(this.keyhole);
   const bank = this.zosimos;
   const mask = this.garment(orcs.kind);
   const elms = Array();
@@ -527,7 +529,7 @@ Panopolis.retrieve = function(orcs) {
   let rope = String();
 
   orcs.arks.forEach(sign => {
-    if (rexp.test(sign) && sign in bank) {
+    if (clef.test(sign) && sign in bank) {
 
       if (orcs.kind === '-lt') {
         yarn = bank[sign];
@@ -556,6 +558,111 @@ Panopolis.retrieve = function(orcs) {
   rope = elms.join('') + '\n';
 
   return rope;
+};
+
+
+/*
+ * Takes a string array argument and returns a string.
+ * Filters string array with match of utensils member.
+ */
+Panopolis.featured = function(cart) {
+  const clef = new RegExp(this.keyhole);
+  const lyre = new RegExp(this.attuned);
+  let funky = String();
+
+  for (const proc of this.utensils) {
+    funky = cart.find(item =>
+      !item.startsWith('-') &&
+      !clef.test(item) &&
+      !lyre.test(item) &&
+      item === proc);
+
+    if (funky) break;
+  }
+
+  return funky;
+};
+
+
+/*
+ * Takes a string array argument and returns a string.
+ * Filters string array with match of vexillar member.
+ */
+Panopolis.flagpole = function(cart) {
+  let opted = String();
+
+  for (const opal of this.vexillar) {
+    opted = cart.find(item =>
+      item.startsWith('-') && item === opal);
+
+    if (opted) break;
+  }
+
+  return opted;
+};
+
+
+/*
+ * Takes a string array argument and returns a string.
+ * Filters options, signats, tunings, and utilities.
+ */
+Panopolis.phonemic = function(cart) {
+  const clef = new RegExp(this.keyhole);
+  const lyre = new RegExp(this.attuned);
+  let graph = String();
+
+  for (const item of cart) {
+    if (!item.startsWith('-') &&
+        !clef.test(item) &&
+        !lyre.test(item) &&
+        !this.utensils.includes(item)) {
+      graph = item;
+      break;
+    }
+  }
+
+  return graph;
+};
+
+
+/*
+ * Takes a string array argument and returns a string.
+ * Filters options, tunings, and utilities from array.
+ */
+Panopolis.keynoted = function(cart) {
+  const lyre = new RegExp(this.attuned);
+  let graph = String();
+
+  for (const item of cart) {
+    if (!item.startsWith('-') &&
+        !lyre.test(item) &&
+        !this.utensils.includes(item)) {
+      graph = item;
+      break;
+    }
+  }
+
+  return graph;
+};
+
+
+/*
+ * Takes a string array argument and returns a string.
+ * Filters string array with match of pegbox property.
+ */
+Panopolis.stockade = function(cart) {
+  const pegs = Object.keys(this.pegbox);
+  const lyre = new RegExp(this.attuned);
+  let tuned = String();
+
+  for (const harp of pegs) {
+    tuned = cart.find(item =>
+      lyre.test(item) && item === harp);
+
+    if (tuned) break;
+  }
+
+  return tuned;
 };
 
 
@@ -594,60 +701,77 @@ Panopolis.estates = function(args) {
   };
 
   if (orcs.cart.length) {
-    const pegs = Object.keys(this.pegbox);
-    const rexp = new RegExp(this.keyhole);
-    const lyre = /^([a-g][j-n]?)+[^0-9]$/;
+    const clef = new RegExp(this.keyhole);
+    let funky, graph, opted, signa, tuned;
 
-    let sign;
-    for (const clef of orcs.cart) {
-      if (rexp.test(clef)) {
-        sign = this.signats.find(item => item === clef);
+    funky = this.featured(orcs.cart);
 
-        orcs.arks.push(sign);
-      }
+    if (funky) {
+      orcs.funk = funky;
     }
 
-    let opted;
-    for (const opal of this.vexillar) {
-      opted = orcs.cart.find(item =>
-        item.startsWith('-') && item === opal);
+    switch(orcs.funk) {
+      case 'gamut':
+        opted = this.flagpole(orcs.cart);
+        tuned = this.stockade(orcs.cart);
 
-      if (opted) {
-        orcs.kind = opted;
+        if (opted) {
+          orcs.kind = opted;
+        }
+        if (tuned) {
+          orcs.tune = tuned;
+        }
+
         break;
-      }
-    }
+      case 'group':
+        opted = this.flagpole(orcs.cart);
+        graph = this.phonemic(orcs.cart);
 
-    let tuned;
-    for (const harp of pegs) {
-      tuned = orcs.cart.find(item =>
-        lyre.test(item) && item === harp);
+        if (opted) {
+          orcs.kind = opted;
+        }
+        if (graph) {
+          orcs.spat = graph;
+        }
 
-      if (tuned) {
-        orcs.tune = tuned;
         break;
-      }
-    }
+      case 'query':
+        graph = this.keynoted(orcs.cart);
 
-    let funky;
-    for (const proc of this.utensils) {
-      funky = orcs.cart.find(item =>
-        !item.startsWith('-') && item === proc);
+        if (graph) {
+          orcs.spat = graph;
+        }
 
-      if (funky) {
-        orcs.funk = funky;
         break;
-      }
-    }
+      case 'tonal':
+        opted = this.flagpole(orcs.cart);
 
-    for (const item of orcs.cart) {
-      if (!item.startsWith('-') &&
-          !this.utensils.includes(item) &&
-          !pegs.includes(item)) {
-        orcs.spat = item;
-      }
-    }
+        if (opted) {
+          orcs.kind = opted;
+        }
 
+        break;
+      default:
+        opted = this.flagpole(orcs.cart);
+        tuned = this.stockade(orcs.cart);
+
+        if (opted) {
+          orcs.kind = opted;
+        }
+        if (tuned) {
+          orcs.tune = tuned;
+        }
+
+        for (const item of orcs.cart) {
+          if (clef.test(item)) {
+            signa = this.signats.find(sign => sign === item);
+
+            if (signa) {
+              orcs.arks.push(signa);
+            }
+          }
+        }
+    }
   } else {
     orcs.kind = "";
     orcs.tune = "";
