@@ -562,13 +562,13 @@ Panopolis.retrieve = function(orcs) {
 
 
 /*
- * Takes a string array argument and returns a string.
- * Filters string array with match of utensils member.
+ * Takes a string array argument and returns a string
+ * if matched utensils member, else returns undefined.
  */
 Panopolis.featured = function(cart) {
   const clef = new RegExp(this.keyhole);
   const lyre = new RegExp(this.attuned);
-  let funky = String();
+  let funky;
 
   for (const proc of this.utensils) {
     funky = cart.find(item =>
@@ -585,11 +585,11 @@ Panopolis.featured = function(cart) {
 
 
 /*
- * Takes a string array argument and returns a string.
- * Filters string array with match of vexillar member.
+ * Takes a string array argument and returns a string
+ * if matched vexillar member, else returns undefined.
  */
 Panopolis.flagpole = function(cart) {
-  let opted = String();
+  let opted;
 
   for (const opal of this.vexillar) {
     opted = cart.find(item =>
@@ -603,13 +603,14 @@ Panopolis.flagpole = function(cart) {
 
 
 /*
- * Takes a string array argument and returns a string.
- * Filters options, signats, tunings, and utilities.
+ * Takes a string array argument and returns undefined
+ * if matched vexillar, signats, pegbox, or utensils,
+ * else returns a string pattern for zosimos search.
  */
 Panopolis.phonemic = function(cart) {
   const clef = new RegExp(this.keyhole);
   const lyre = new RegExp(this.attuned);
-  let graph = String();
+  let graph;
 
   for (const item of cart) {
     if (!item.startsWith('-') &&
@@ -626,12 +627,13 @@ Panopolis.phonemic = function(cart) {
 
 
 /*
- * Takes a string array argument and returns a string.
- * Filters options, tunings, and utilities from array.
+ * Takes a string array argument and returns undefined
+ * if matched vexillar, pegbox, or utensils members,
+ * else returns a string pattern for zosimos search.
  */
 Panopolis.keynoted = function(cart) {
   const lyre = new RegExp(this.attuned);
-  let graph = String();
+  let graph;
 
   for (const item of cart) {
     if (!item.startsWith('-') &&
@@ -647,13 +649,13 @@ Panopolis.keynoted = function(cart) {
 
 
 /*
- * Takes a string array argument and returns a string.
- * Filters string array with match of pegbox property.
+ * Takes a string array argument and returns a string
+ * if matched pegbox property, else returns undefined.
  */
 Panopolis.stockade = function(cart) {
   const pegs = Object.keys(this.pegbox);
   const lyre = new RegExp(this.attuned);
-  let tuned = String();
+  let tuned;
 
   for (const harp of pegs) {
     tuned = cart.find(item =>
@@ -812,17 +814,18 @@ Panopolis.tutorial = function() {
     -lt 	Latin chemical symbols
     -zh 	Hanzi chemical symbols
 
+  Tunings:
+    beadgcf 	Fourths: Bass, Guitar
+    bfbfb 	Augmented fourths, Tritones
+    cgdae 	Fifths: Cello, Viola, Violin
+    eadgbe 	Standard Guitar
+    fkbjdn 	Major thirds
+
   Utilities:
     gamut 	Print records tabulated with optional flag
     group 	Correlate key signatures by tonal function
     query 	Search available key signatures by pattern
     tonal 	Correlate tonal functions by optional flag
-
-  Tunings:
-    bfbfb 	Augmented fourths, Tritones
-    cgdae 	Fifths: Cello, Viola, Violin
-    eadgbe 	Standard Guitar
-    fkbjdn 	Major thirds
 
   Samples:
 		${cmds}
@@ -831,29 +834,27 @@ Panopolis.tutorial = function() {
 
 		${cmds} n0 j36
 
-		${cmds} -dc n0 j36
-
-		${cmds} cgdae n0 j36
-
-		${cmds} -zh cgdae n0 j36
-
-		${cmds} group yq
-
-		${cmds} -lt group NpFe
-
 		${cmds} query j2
 
 		${cmds} query '^[jk]..$'
 
+		${cmds} -dc j23 j26
+
+		${cmds} cgdae j6 j236
+
+		${cmds} -zh cgdae j3 j36
+
 		${cmds} tonal
 
-		${cmds} -zh tonal
+		${cmds} group yq
+
+		${cmds} -lt tonal
+
+		${cmds} -lt group NpFe
 
 		${cmds} gamut
 
-		${cmds} -dc gamut
-
-		${cmds} -lt eadgbe gamut
+		${cmds} gamut eadgbe -dc
   \n`;
 
   return wire;

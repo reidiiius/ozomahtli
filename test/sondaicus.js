@@ -956,10 +956,10 @@ Elapida.worker.phonemic = function() {
   const named = 'phonemic';
 
   const cyclist = [
-    ['-ac', 'j36', 'cgdae', 'group', 'yq'],
-    ['-dc', 'k15', 'cgdae', 'group', 'Q4'],
-    ['-lt',  'j6', 'cgdae', 'group', 'NpFe'],
-    ['-zh',  'k5', 'cgdae', 'group', '钚铁'],
+    ['-ac', 'bfbfb', 'j36', 'group', 'yq'],
+    ['-dc', 'cgdae', 'k15', 'group', 'Q4'],
+    ['-lt', 'eadgbe', 'j6', 'group', 'NpFe'],
+    ['-zh', 'fkbjdn', 'k5', 'group', '钚铁'],
   ];
 
   let graph = String();
@@ -984,10 +984,10 @@ Elapida.worker.keynoted = function() {
   const named = 'keynoted';
 
   const cyclist = [
-    ['-ac', 'j36', 'cgdae', 'query', 'yq'],
-    ['-dc', 'k15', 'cgdae', 'query', 'Q4'],
-    ['-lt',  'j6', 'cgdae', 'query', 'NpFe'],
-    ['-zh',  'k5', 'cgdae', 'query', '钚铁'],
+    ['-ac', 'bfbfb', 'j36', 'query', 'yq'],
+    ['-dc', 'cgdae', 'k15', 'query', 'Q4'],
+    ['-lt', 'eadgbe', 'j6', 'query', 'NpFe'],
+    ['-zh', 'fkbjdn', 'k5', 'query', '钚铁'],
   ];
 
   let graph = String();
