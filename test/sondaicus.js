@@ -348,6 +348,19 @@ Elapida.worker.pegbox = function() {
 };
 
 
+Elapida.worker.natural = function() {
+  const named ='natural';
+
+  this.datatype(named, 'string');
+
+  if ( false ) {
+    console.log(Panopolis[named]);
+  }
+
+  return;
+};
+
+
 Elapida.worker.vexillar = function() {
   const named = 'vexillar';
 
@@ -357,6 +370,19 @@ Elapida.worker.vexillar = function() {
 
   if ( false ) {
     Panopolis.inspecto(Panopolis[named]);
+  }
+
+  return;
+};
+
+
+Elapida.worker.encoded = function() {
+  const named ='encoded';
+
+  this.datatype(named, 'string');
+
+  if ( false ) {
+    console.log(Panopolis[named]);
   }
 
   return;
@@ -1164,7 +1190,9 @@ Elapida.runabout = function() {
     'triplet',
     'pitches',
     'pegbox',
+    'natural',
     'vexillar',
+    'encoded',
     'utensils',
     'arcane',
     'charms',

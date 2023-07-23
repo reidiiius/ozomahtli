@@ -136,14 +136,18 @@ Panopolis.pitches = [
 ];
 
 Panopolis.pegbox = {
+  beadgcf: [5, 0, 7, 2, 9, 4, 11],
   bfbfb: [11, 5, 11, 5, 11],
   cgdae: [4, 9, 2, 7, 0],
   eadgbe: [4, 11, 7, 2, 9, 4],
   fkbjdn: [2, 10, 6, 2, 10, 6],
-  beadgcf: [5, 0, 7, 2, 9, 4, 11],
 };
 
+Panopolis.natural = 'beadgcf'; // default
+
 Panopolis.vexillar = ['-ac', '-dc', '-h', '-lt', '-zh'];
+
+Panopolis.encoded = '-ac'; // default
 
 Panopolis.utensils = ['gamut', 'group', 'query', 'tonal'];
 
@@ -330,16 +334,8 @@ Panopolis.lattice = function(yarn, tune) {
 
   elms.push('\t');
 
-  switch(tune) {
-    case 'bfbfb':
-    case 'cgdae':
-    case 'eadgbe':
-    case 'fkbjdn':
-      stock = this.pegbox[tune];
-      break;
-    default:
-      stock = this.pegbox['beadgcf'];
-  }
+  stock = (this.attuned.test(tune) && tune in this.pegbox)
+    ? this.pegbox[tune] : this.pegbox[this.natural];
 
   for (let ndx = 0; ndx < stock.length; ndx++) {
     gear = this[step][this.pitches[stock[ndx]]];
@@ -697,9 +693,9 @@ Panopolis.estates = function(args) {
     arks: Array(),
     cart: this.sentinel(args),
     funk: String(),
-    kind: '-ac',
+    kind: this.encoded,
     spat: String(),
-    tune: 'beadgcf',
+    tune: this.natural,
   };
 
   if (orcs.cart.length) {
