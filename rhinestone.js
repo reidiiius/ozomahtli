@@ -330,13 +330,12 @@ Panopolis.lattice = function(yarn, tune) {
   let cord = String();
   let rope = String();
 
-  yarn.length > 36 ? step = 'quintet' : step = 'triplet';
-
-  elms.push('\t');
-
   stock = (this.attuned.test(tune) && tune in this.pegbox)
     ? this.pegbox[tune] : this.pegbox[this.natural];
 
+  step = (yarn.length > 36) ? 'quintet' : 'triplet';
+
+  elms.push('\t');
   for (let ndx = 0; ndx < stock.length; ndx++) {
     gear = this[step][this.pitches[stock[ndx]]];
     cord = this.machine(yarn, gear);

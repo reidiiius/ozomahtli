@@ -300,7 +300,7 @@ Elapida.worker.quintet = function() {
 
 
 Elapida.worker.triplet = function() {
-  const named ='triplet';
+  const named = 'triplet';
 
   this.datatype(named, 'object');
 
@@ -334,7 +334,7 @@ Elapida.worker.pitches = function() {
 
 
 Elapida.worker.pegbox = function() {
-  const named ='pegbox';
+  const named = 'pegbox';
 
   this.datatype(named, 'object');
 
@@ -349,13 +349,23 @@ Elapida.worker.pegbox = function() {
 
 
 Elapida.worker.natural = function() {
-  const named ='natural';
-
-  this.datatype(named, 'string');
+  const named = 'natural';
+  const refer = 'pegbox';
 
   if ( false ) {
     console.log(Panopolis[named]);
   }
+
+  if (! Panopolis[named] in Panopolis[refer]) {
+      const anomaly = Error(`${named} not in ${refer}`);
+      anomaly.name = "ConfigurationError";
+
+      ++Elapida.tested;
+
+      throw anomaly.toString();
+  }
+
+  this.datatype(named, 'string');
 
   return;
 };
@@ -377,13 +387,23 @@ Elapida.worker.vexillar = function() {
 
 
 Elapida.worker.encoded = function() {
-  const named ='encoded';
-
-  this.datatype(named, 'string');
+  const named = 'encoded';
+  const refer = 'vexillar';
 
   if ( false ) {
     console.log(Panopolis[named]);
   }
+
+  if (! Panopolis[refer].includes(Panopolis[named])) {
+      const anomaly = Error(`${named} not in ${refer}`);
+      anomaly.name = "ConfigurationError";
+
+      ++Elapida.tested;
+
+      throw anomaly.toString();
+  }
+
+  this.datatype(named, 'string');
 
   return;
 };
