@@ -2,7 +2,7 @@
 
 "use strict";
 
-import { Panopolis } from '../rhinestone.js';
+import { Panopolis } from '../lib/rhinestone.js';
 
 if (! Object.entries(Panopolis).length ) {
   console.clear();
@@ -1196,7 +1196,7 @@ Elapida.worker.entryway = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(star => {
-    this.teletype('number', named, star);
+    this.teletype('string', named, star);
   });
 
   return;
