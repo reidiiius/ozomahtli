@@ -1,8 +1,8 @@
-#! /usr/bin/env js
+#! /usr/bin/env node
 
 "use strict";
 
-const Panopolis = require('../rhinestone');
+import { Panopolis } from '../rhinestone.js';
 
 if (! Object.entries(Panopolis).length ) {
   console.clear();

@@ -1,0 +1,27 @@
+{
+  "name": "ozomahtli",
+  "version": "0.1.0",
+  "description": "Codex Harmonia",
+  "keywords": [
+    "music-composition",
+    "music-education",
+    "music-notation",
+    "music-theory"
+  ],
+  "type": "module",
+  "main": "rhinestone.js",
+  "scripts" : {
+    "test" : "node test/sondaicus.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reidiiius/ozomahtli.git"
+  },
+  "engines": {
+    "node": ">=12.22.9"
+  },
+  "homepage": "https://github.com/reidiiius/ozomahtli#readme",
+  "author": "Reid Netterville III",
+  "license" : "MIT"
+}
+
