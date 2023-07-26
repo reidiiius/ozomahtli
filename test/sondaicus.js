@@ -4,7 +4,7 @@
 
 import { Panopolis } from '../lib/rhinestone.js';
 
-if (! Object.entries(Panopolis).length ) {
+if ( typeof Panopolis === 'undefined' ) {
   console.clear();
   console.warn("\n\t%s\n", 'Warning: check export declaration of rhinestone');
   process.exit(0);
