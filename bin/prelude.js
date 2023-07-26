@@ -4,16 +4,19 @@
 
 import { Panopolis } from '../lib/rhinestone.js';
 
-if (! Object.entries(Panopolis).length ) {
-  console.clear();
-  console.warn("\n\t%s\n", 'Warning: check export declaration of rhinestone');
-  process.exit(0);
-}
+try {
+  if ( 'entryway' in Panopolis ) {
+    const wire = Panopolis.entryway(process.argv);
 
-if ( Object.isFrozen(Panopolis) ) {
-  const wire = Panopolis.entryway(process.argv);
+    process.stdout.write(wire);
+  } else {
+    const flaw = Error('entryway is not defined');
+      flaw.name = 'ReferenceError';
 
-  process.stdout.write(wire);
+    throw flaw;
+  }
+} catch ( { name, message } ) {
+  console.error("\n\t%s: %s\n", name, message);
 }
 
 

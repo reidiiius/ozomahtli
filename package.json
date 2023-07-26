@@ -1,6 +1,6 @@
 {
   "name": "ozomahtli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Codex Harmonia",
   "keywords": [
     "music-composition",
@@ -10,6 +10,7 @@
   ],
   "type": "module",
   "main": "lib/rhinestone.js",
+  "exports": "lib/rhinestone.js",
   "bin": {
     "ozomahtli": "bin/prelude.js"
   },
