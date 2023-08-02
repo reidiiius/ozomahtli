@@ -653,7 +653,7 @@ Elapida.worker.stonewall = function() {
 
 Elapida.worker.distill = function() {
   const named = 'distill';
-  const orcs = {
+  const recs = {
     arks: Array(),
     cart: Array(),
     funk: 'tonal',
@@ -673,17 +673,17 @@ Elapida.worker.distill = function() {
 
   this.datatype(named, 'function');
 
-  orcs.funk = 'tonal';
+  recs.funk = 'tonal';
 
   cyclist.forEach(flop => {
-    orcs.kind = flop;
+    recs.kind = flop;
 
-    this.teletype('string', named, orcs);
+    this.teletype('string', named, recs);
 
     if ( false ) {
-      process.stdout.write(Panopolis[named](orcs));
+      process.stdout.write(Panopolis[named](recs));
 
-      Panopolis.inspecto(orcs);
+      Panopolis.inspecto(recs);
     }
   });
 
@@ -741,7 +741,7 @@ Elapida.worker.lattice = function() {
 
 Elapida.worker.panther = function() {
   const named = 'panther';
-  const orcs = {
+  const recs = {
     arks: Array(),
     cart: Array(),
     funk: 'query',
@@ -765,13 +765,13 @@ Elapida.worker.panther = function() {
     this.teletype('string', named, item);
 
     if ( false ) {
-      orcs.spat = item;
+      recs.spat = item;
 
-      rope = Panopolis[named](orcs);
+      rope = Panopolis[named](recs);
 
       process.stdout.write(rope);
 
-      Panopolis.inspecto(orcs);
+      Panopolis.inspecto(recs);
     }
   });
 
@@ -781,7 +781,7 @@ Elapida.worker.panther = function() {
 
 Elapida.worker.vulture = function() {
   const named = 'vulture';
-  const orcs = {
+  const recs = {
     arks: Array(),
     cart: Array(),
     funk: 'group',
@@ -803,17 +803,17 @@ Elapida.worker.vulture = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(task => {
-    orcs.kind = task[0];
-    orcs.spat = task[1];
+    recs.kind = task[0];
+    recs.spat = task[1];
 
-    this.teletype('string', named, orcs);
+    this.teletype('string', named, recs);
 
     if ( false ) {
-      rope = Panopolis[named](orcs);
+      rope = Panopolis[named](recs);
 
       process.stdout.write(rope);
 
-      Panopolis.inspecto(orcs);
+      Panopolis.inspecto(recs);
     }
   });
 
@@ -840,7 +840,7 @@ Elapida.worker.dashboard = function() {
 
 Elapida.worker.dumpster = function() {
   const named = 'dumpster';
-  const orcs = {
+  const recs = {
     arks: Array(),
     cart: Array(),
     funk: 'gamut',
@@ -862,16 +862,16 @@ Elapida.worker.dumpster = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(pair => {
-    orcs.kind = pair[0], orcs.tune = pair[1],
+    recs.kind = pair[0], recs.tune = pair[1],
 
-    this.teletype('string', named, orcs);
+    this.teletype('string', named, recs);
 
     if ( false ) {
-      rope = Panopolis[named](orcs);
+      rope = Panopolis[named](recs);
 
       process.stdout.write(rope);
 
-      Panopolis.inspecto(orcs);
+      Panopolis.inspecto(recs);
     }
   });
 
@@ -904,7 +904,7 @@ Elapida.worker.composer = function() {
 
 Elapida.worker.retrieve = function() {
   const named = 'retrieve';
-  const orcs = {
+  const recs = {
     arks: ['n0', 'k1'],
     cart: Array(),
     funk: String(),
@@ -926,16 +926,16 @@ Elapida.worker.retrieve = function() {
   this.datatype(named, 'function');
 
   cyclist.forEach(pair => {
-    orcs.kind = pair[0], orcs.tune = pair[1],
+    recs.kind = pair[0], recs.tune = pair[1],
 
-    this.teletype('string', named, orcs);
+    this.teletype('string', named, recs);
 
     if ( false ) {
-      rope = Panopolis[named](orcs);
+      rope = Panopolis[named](recs);
 
       process.stdout.write(rope);
 
-      Panopolis.inspecto(orcs);
+      Panopolis.inspecto(recs);
     }
   });
 
@@ -1116,9 +1116,9 @@ Elapida.worker.estates = function() {
   this.teletype('object', named, args);
 
   if ( false ) {
-    let orcs = Panopolis[named](args);
+    let recs = Panopolis[named](args);
 
-    Panopolis.inspecto(orcs);
+    Panopolis.inspecto(recs);
   }
 
   return;
@@ -1127,7 +1127,7 @@ Elapida.worker.estates = function() {
 
 Elapida.worker.inspecto = function() {
   const named = 'inspecto';
-  const orcs = {
+  const recs = {
     arks: [],
     cart: [],
     funk: "",
@@ -1138,7 +1138,7 @@ Elapida.worker.inspecto = function() {
 
   this.datatype(named, 'function');
 
-  this.teletype('number', named, orcs);
+  this.teletype('number', named, recs);
 
   return;
 };

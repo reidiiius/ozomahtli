@@ -108,7 +108,7 @@ Command-line
 
 :
 
-    node bin/prelude.js gamut | sensible-pager
+    node bin/prelude.js gamut
 
 :
 
@@ -124,7 +124,7 @@ Command-line
 
 :
 
-    node bin/prelude.js eadgbe gamut
+    node bin/prelude.js cgdae gamut
 
 :
 
@@ -136,7 +136,191 @@ Command-line
 
 :
 
-    node bin/prelude.js -zh cgdae gamut
+    node bin/prelude.js -zh cgdae gamut | sensible-pager
+
+REPL
+
+    node
+
+;
+
+    let oz, ns = {};
+
+;
+
+    (async ()=> { oz = await import('./lib/rhinestone.js').catch(()=> {}) })();
+
+;
+
+    typeof oz === 'object' ? 'success' : 'failure';
+
+;
+
+    ns.show = function(txt) { process.stdout.write(txt) };
+
+;
+
+    ns.args = [process.title, process.execPath, '-dc', 'eadgbe'];
+
+;
+
+    ns.recs = oz.Panopolis.estates(ns.args);
+
+;
+
+    console.table(ns.recs);
+
+;
+
+    ns.wire = oz.Panopolis.dashboard();
+
+;
+
+    ns.show(ns.wire);
+
+;
+
+    ns.args.push('n0'); ns.args.push('j3');
+
+;
+
+    ns.recs = oz.Panopolis.estates(ns.args);
+
+;
+
+    console.table(ns.recs);
+
+;
+
+    ns.wire = oz.Panopolis.retrieve(ns.recs);
+
+;
+
+    ns.show(ns.wire);
+
+;
+
+    ns.wire = oz.Panopolis.distill(ns.recs);
+
+;
+
+    ns.show(ns.wire);
+
+;
+
+    ns.args.pop(); ns.args.pop();
+
+;
+
+    ns.args.push('group'); ns.args.push('Q4');
+
+;
+
+    ns.recs = oz.Panopolis.estates(ns.args);
+
+;
+
+    console.table(ns.recs);
+
+;
+
+    ns.wire = oz.Panopolis.vulture(ns.recs);
+
+;
+
+    ns.show(ns.wire);
+
+;
+
+    ns.args.pop(); ns.args.pop();
+
+;
+
+    ns.args.push('j56'); ns.args.push('k56');
+
+;
+
+    ns.recs = oz.Panopolis.estates(ns.args);
+
+;
+
+    console.table(ns.recs);
+
+;
+
+    ns.wire = oz.Panopolis.retrieve(ns.recs);
+
+;
+
+    ns.show(ns.wire);
+
+;
+
+    ns.args.pop(); ns.args.pop();
+
+;
+
+    ns.args.push('query'); ns.args.push('56');
+
+;
+
+    ns.recs = oz.Panopolis.estates(ns.args);
+
+;
+
+    console.table(ns.recs);
+
+;
+
+    ns.wire = oz.Panopolis.panther(ns.recs);
+
+;
+
+    ns.show(ns.wire);
+
+;
+
+    ns.args.pop(); ns.args.pop();
+
+;
+
+    ns.args.push('j256'); ns.args.push('k256');
+
+;
+
+    ns.recs = oz.Panopolis.estates(ns.args);
+
+;
+
+    console.table(ns.recs);
+
+;
+
+    ns.wire = oz.Panopolis.retrieve(ns.recs);
+
+;
+
+    ns.show(ns.wire);
+
+;
+
+    ns.show('\n\t' + Object.keys(oz.Panopolis.pegbox).join('  ') + '\n');
+
+;
+
+    ns.show(oz.Panopolis.dashboard());
+
+;
+
+    ns.args = [process.title, process.execPath, 'cgdae', 'k6', 'j5'];
+
+;
+
+    ns.show(oz.Panopolis.entryway(ns.args));
+
+;
+
+    .exit
 
 ---
 
