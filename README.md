@@ -168,7 +168,7 @@ REPL
 
 ;
 
-    console.table(ns.recs);
+    oz.Panopolis.inspecto(ns.recs);
 
 ;
 
@@ -220,7 +220,7 @@ REPL
 
 ;
 
-    console.table(ns.recs);
+    oz.Panopolis.inspecto(ns.recs);
 
 ;
 
@@ -268,7 +268,7 @@ REPL
 
 ;
 
-    console.table(ns.recs);
+    oz.Panopolis.inspecto(ns.recs);
 
 ;
 
