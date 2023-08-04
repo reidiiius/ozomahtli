@@ -172,11 +172,7 @@ REPL
 
 ;
 
-    ns.wire = oz.Panopolis.dashboard();
-
-;
-
-    ns.show(ns.wire);
+    ns.show(oz.Panopolis.dashboard());
 
 ;
 
@@ -192,19 +188,11 @@ REPL
 
 ;
 
-    ns.wire = oz.Panopolis.retrieve(ns.recs);
+    ns.show(oz.Panopolis.retrieve(ns.recs));
 
 ;
 
-    ns.show(ns.wire);
-
-;
-
-    ns.wire = oz.Panopolis.distill(ns.recs);
-
-;
-
-    ns.show(ns.wire);
+    ns.show(oz.Panopolis.distill(ns.recs));
 
 ;
 
@@ -224,11 +212,7 @@ REPL
 
 ;
 
-    ns.wire = oz.Panopolis.vulture(ns.recs);
-
-;
-
-    ns.show(ns.wire);
+    ns.show(oz.Panopolis.vulture(ns.recs));
 
 ;
 
@@ -244,15 +228,7 @@ REPL
 
 ;
 
-    console.table(ns.recs);
-
-;
-
-    ns.wire = oz.Panopolis.retrieve(ns.recs);
-
-;
-
-    ns.show(ns.wire);
+    ns.show(oz.Panopolis.retrieve(ns.recs));
 
 ;
 
@@ -268,15 +244,7 @@ REPL
 
 ;
 
-    oz.Panopolis.inspecto(ns.recs);
-
-;
-
-    ns.wire = oz.Panopolis.panther(ns.recs);
-
-;
-
-    ns.show(ns.wire);
+    ns.show(oz.Panopolis.panther(ns.recs));
 
 ;
 
@@ -292,27 +260,71 @@ REPL
 
 ;
 
-    console.table(ns.recs);
+    ns.show(oz.Panopolis.retrieve(ns.recs));
 
 ;
 
-    ns.wire = oz.Panopolis.retrieve(ns.recs);
+    ns.cord = oz.Panopolis.zosimos['n0'];
 
 ;
 
-    ns.show(ns.wire);
+    ns.mask = oz.Panopolis.garment('-zh');
 
 ;
 
-    ns.show('\n\t' + Object.keys(oz.Panopolis.pegbox).join('  ') + '\n');
+    ns.subs = oz.Panopolis[ns.mask];
 
 ;
 
-    ns.show(oz.Panopolis.dashboard());
+    console.log(oz.Panopolis.crucible(ns.cord, ns.subs));
 
 ;
 
-    ns.args = [process.title, process.execPath, 'cgdae', 'k6', 'j5'];
+    ns.yarn = oz.Panopolis.zosimos['j3'];
+
+;
+
+    ns.gear = oz.Panopolis.quintet['gn'];
+
+;
+
+    console.log(oz.Panopolis.machine(ns.yarn, ns.gear));
+
+;
+
+    ns.harps = Object.keys(oz.Panopolis.pegbox);
+
+;
+
+    console.log('\n\t%s', ns.harps.join('  '));
+
+;
+
+    ns.tune = 'cgdae';
+
+;
+
+    console.log(oz.Panopolis.lattice(ns.yarn, ns.tune));
+
+;
+
+    ns.args.pop(); ns.args.pop();
+
+;
+
+    ns.args.push('k6'); ns.args.push('j5');
+
+;
+
+    console.log(...ns.args);
+
+;
+
+    ns.show(oz.Panopolis.entryway(ns.args));
+
+;
+
+    ns.args[2] = '-lt'; ns.args[3] = 'beadgcf';
 
 ;
 
