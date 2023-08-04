@@ -196,6 +196,14 @@ REPL
 
 ;
 
+    ns.funks = oz.Panopolis.utensils;
+
+;
+
+    console.log('\n\t%s\n', ns.funks.join('  '));
+
+;
+
     ns.args.pop(); ns.args.pop();
 
 ;
@@ -205,10 +213,6 @@ REPL
 ;
 
     ns.recs = oz.Panopolis.estates(ns.args);
-
-;
-
-    oz.Panopolis.inspecto(ns.recs);
 
 ;
 
@@ -264,6 +268,14 @@ REPL
 
 ;
 
+    ns.kinds = oz.Panopolis.vexillar;
+
+;
+
+    console.log('\n\t%s\n', ns.kinds.join('  '));
+
+;
+
     ns.cord = oz.Panopolis.zosimos['n0'];
 
 ;
@@ -284,6 +296,14 @@ REPL
 
 ;
 
+    ns.pegs = oz.Panopolis.pitches;
+
+;
+
+    console.log('\n\t%s\n', ns.pegs.join('  '));
+
+;
+
     ns.gear = oz.Panopolis.quintet['gn'];
 
 ;
@@ -296,7 +316,7 @@ REPL
 
 ;
 
-    console.log('\n\t%s', ns.harps.join('  '));
+    console.log('\n\t%s\n', ns.harps.join('  '));
 
 ;
 
@@ -316,7 +336,7 @@ REPL
 
 ;
 
-    console.log(...ns.args);
+    console.log('\n\t', ...ns.args, '\n');
 
 ;
 
@@ -325,6 +345,18 @@ REPL
 ;
 
     ns.args[2] = '-lt'; ns.args[3] = 'beadgcf';
+
+;
+
+    console.log('\n\t', ...ns.args, '\n');
+
+;
+
+    ns.show(oz.Panopolis.entryway(ns.args));
+
+;
+
+    ns.args.push('tonal');
 
 ;
 
