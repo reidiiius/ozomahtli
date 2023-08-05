@@ -324,7 +324,7 @@ REPL
 
 ;
 
-    console.log(oz.Panopolis.lattice(ns.yarn, ns.tune));
+    console.log(oz.Panopolis.lattice(ns.yarn, ns.tune), '\n');
 
 ;
 
